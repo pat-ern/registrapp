@@ -1,0 +1,37 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+
+  <div id="logo" class="ion-text-center">
+    <img src="assets/img/lock.png" alt="usuario" width="75px" height="auto">
+  </div>
+  <br>
+  <div id="cuadro-texto">
+    <ion-text id="mensaje" class="ion-text-center" color="dark">
+      <h5>Ingresa tu correo, si está registrado te enviaremos un código de confirmacion para reestablecer la contraseña.</h5>
+    </ion-text>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Obtener Código</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-text class="ion-text-center">
+    <a [routerLink]="['/login']"><h4>Volver</h4></a>
+  </ion-text>
+
+</ion-content>
+
+<ion-footer>
+      <ion-text style="padding:30%;">
+        Ayuda - Redes Sociales
+      </ion-text>
+</ion-footer> 
