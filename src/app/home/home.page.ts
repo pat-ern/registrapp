@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController } from '@ionic/angular';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -35,5 +35,23 @@ export class HomePage {
   openCustom() {
     this.menu.enable(true, 'custom');
     this.menu.open('custom');
+  }
+
+  user={
+    email:"",
+    password:""
+  }
+
+  ngOnDestroy(){
+    this.user.email = '';
+    this.user.password = '';
+    let NavigationExtras: NavigationExtras = {
+      state: {
+        user: this.user
+      }
+    };
+    console.log(this.user)
+    console.log("^^^^home on destroy")
+    this.router.navigate(['/login'],NavigationExtras)
   }
 }
