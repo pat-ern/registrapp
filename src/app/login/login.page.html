@@ -2,27 +2,25 @@
 </ion-header>
 
 <ion-content>
-  <br>
-  <br>
-  <br>
-  <ion-title class="ion-text-center">RegistrAPP</ion-title>
-  <br>
-  
-<ion-card>
-<ion-card-content>
-  <ion-item>
-    <ion-label position="floating">Usuario</ion-label>
-    <ion-input type="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="password"></ion-input>
-  </ion-item>
-  <br>
-  <ion-button color="primary" expand="block" [routerLink]="['/home']">Ingresar</ion-button>
-</ion-card-content>
-</ion-card>
 
+  <div id="logo" class="ion-text-center">
+    <img src="assets/img/r2.png" alt="usuario" width="125px" height="auto">
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="email" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Ingresar</ion-button>
+    </ion-card-content>
+  </ion-card>
 
   <ion-text class="ion-text-center">
     <a [routerLink]="['/reset']"><h4>¿Olvidaste tu contraseña?</h4></a>
@@ -31,6 +29,7 @@
   <br>  
 
 </ion-content>
+
 <ion-footer>
       <ion-text style="padding:30%;">
         Ayuda - Redes Sociales
