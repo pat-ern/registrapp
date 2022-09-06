@@ -38,6 +38,13 @@ export class LoginPage implements OnInit {
     */
   }
 
+  ionViewWillEnter(){
+    this.user={
+      email:"",
+      password:""
+    }
+  }
+
   //funcion para guardar datos del formulario en state, navegar a otra pagina y llevar esos datos con navigation extras
   login(){
     let NavigationExtras: NavigationExtras = {
