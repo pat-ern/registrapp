@@ -14,6 +14,7 @@ export class LoginPage implements OnInit {
     password:""
   }
 
+  /*
   data: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.activatedRoute.queryParams.subscribe(params => {
@@ -24,13 +25,17 @@ export class LoginPage implements OnInit {
         this.router.navigate(["/login"])
       }
     });
-   }//debe instanciar router para poder usarlo
+   }*/
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    /*
     this.user.email = '';
     this.user.password = '';
     console.log(this.user)
     console.log("^^^^login on init")
+    */
   }
 
   //funcion para guardar datos del formulario en state, navegar a otra pagina y llevar esos datos con navigation extras
