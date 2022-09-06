@@ -10,8 +10,10 @@ proyecto app moviles duoc uc
     - [ ] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
 - [ ] Recuperar contrasenna
     - [X] Agregar pag de recuperar contrasenna
-    - [ ] Agregar ToastController que indique que se envio correo para recuperar password
+    - [X] Agregar ToastController que indique que se envio correo para recuperar password
+    - [X] Mostrar correo ingresado en el toast
     - [ ] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
+    - [ ] Validar que el correo no puede estar vacio
 - [ ] Home
     - [X] Recibir datos de usuario y mostrarlos
     - [ ] Agregar funcionalidad a boton qr que lleve a otra pagina
