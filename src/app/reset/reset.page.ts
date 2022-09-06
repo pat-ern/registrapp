@@ -14,7 +14,7 @@ export class ResetPage implements OnInit {
     email:""
   }
 
-  async presentToast(position: 'middle') {
+  async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
       message: 'Se ha enviado código de confirmación a '+this.user.email,
       duration: 4000,
