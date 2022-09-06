@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reset',
@@ -7,7 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResetPage implements OnInit {
 
-  constructor() { }
+  constructor(private toastController: ToastController) { }
+
+  user={
+    email:""
+  }
+
+  async presentToast(position: 'middle') {
+    const toast = await this.toastController.create({
+      message: 'Se ha enviado código de confirmación a '+this.user.email,
+      duration: 4000,
+      position: position,
+      icon: 'mail',
+      //cssClass: 'custom-toast',
+      color: "dark"
+    });
+
+    await toast.present();
+  }
 
   ngOnInit() {
   }
