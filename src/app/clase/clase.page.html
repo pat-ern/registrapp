@@ -1,0 +1,45 @@
+<ion-header>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        Tu clase es:
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <ion-list>
+        <ion-item>
+          <ion-text color="dark" size="small">
+            Asignatura: {{clase.asignatura}}
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-text color="dark" size="small">
+            Secci&oacute;n: {{clase.seccion}}
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-text color="dark" size="small">
+            Docente: {{clase.docente}}
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-text color="dark" size="small">
+            Fecha: {{clase.fecha}}
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-text color="dark" size="small">
+            Hora: {{clase.hora}}
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+    <ion-button color="tertiary" expand="block" [routerLink]="['/home']">¡Presente!</ion-button>
+
+  </ion-card>
+
+</ion-content>
