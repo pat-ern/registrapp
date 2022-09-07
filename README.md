@@ -34,3 +34,6 @@ proyecto app moviles duoc uc
     - https://angular.io/guide/deprecations#ngmodel-with-reactive-forms
     - No entendi bien como arreglar eso, pero por ahora funciona.
     - Habria que actualizar pagina login y cualquier otra que use form control
+
+## Ideas
+- Boton que deje ver la contraseña y esconderla
