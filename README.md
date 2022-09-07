@@ -37,4 +37,5 @@ proyecto app moviles duoc uc
 
 ## Ideas
 - Boton que deje ver la contraseña y esconderla
+- validar que usuario tenga un @ y un .cl
 - ver si se pueden traspasar algunas cosas a componente para poder reutilizar codigo
