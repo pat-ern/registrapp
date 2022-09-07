@@ -36,6 +36,7 @@ proyecto app moviles duoc uc
     - Habria que actualizar pagina login y cualquier otra que use form control
 
 ## Ideas
+- botones de perfil u opciones solo en menu lateral, no en menu principal pa que no se repitan
 - Boton que deje ver la contraseña y esconderla
 - validar que usuario tenga un @ y un .cl
 - bloquear simbolos excepto @ y .
@@ -43,3 +44,4 @@ proyecto app moviles duoc uc
 - input para ingresar el codigo enviado al correo
 - ver si se pueden traspasar algunas cosas a componente para poder reutilizar codigo
 - menu de justificar asistencias, que deje seleccionar clase de fecha especifica y adjuntar documentos relevantes
+- acordeon para ver horario por dias
