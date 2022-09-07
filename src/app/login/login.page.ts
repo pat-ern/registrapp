@@ -16,6 +16,16 @@ export class LoginPage implements OnInit {
     password:""
   }
 
+  usuario1={
+    email:"p.cortes@duocuc.cl",
+    password:"123456789"
+  }
+
+  usuario2={
+    email:"correo@correo.com",
+    password:"asdf"
+  }
+
   isSubmitted = false;
 
   /*
@@ -33,11 +43,12 @@ export class LoginPage implements OnInit {
 
   errores=[
     {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
+    {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'},
     {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'}
   ]
   loginForm= new FormGroup({
     emailForm: new FormControl('',[Validators.required]),
-    passForm: new FormControl('',[Validators.required,Validators.maxLength(5)]),
+    passForm: new FormControl('',[Validators.required]),
   });
 
   constructor(private router: Router) { }
@@ -69,7 +80,12 @@ export class LoginPage implements OnInit {
           user: this.user
         }
       };
-      this.router.navigate(['/home'],NavigationExtras)
+      if(this.user.email==this.usuario1.email && this.user.password==this.usuario1.password){
+        this.router.navigate(['/home'],NavigationExtras)
+      } else {
+        console.log("error")
+      }
+      
     }
     
   }
