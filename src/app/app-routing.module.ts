@@ -22,7 +22,15 @@ const routes: Routes = [
   {
     path: 'clase',
     loadChildren: () => import('./clase/clase.module').then( m => m.ClasePageModule)
+  },  {
+    path: 'scan',
+    loadChildren: () => import('./scan/scan.module').then( m => m.ScanPageModule)
   },
+  {
+    path: 'historial',
+    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
+  },
+
 ];
 
 @NgModule({

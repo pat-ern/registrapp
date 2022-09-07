@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-clase',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClasePage implements OnInit {
 
-  constructor( ) { }
+  constructor(private toastController: ToastController) { }
 
   ngOnInit() {
   }
@@ -18,6 +19,19 @@ export class ClasePage implements OnInit {
     docente: "Lesly Perez",
     fecha: "14-08-2019",
     hora: "08:00-10:00",
+  }
+
+  async presentToast(position: 'bottom') {
+    const toast = await this.toastController.create({
+      message: 'Tu asistencia ha sido registrada',
+      duration: 4000,
+      position: position,
+      icon: 'checkmark-circle-outline',
+      //cssClass: 'custom-toast',
+      color: "dark"
+    });
+
+    await toast.present();
   }
 
 }
