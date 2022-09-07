@@ -2,25 +2,24 @@
 proyecto app moviles duoc uc
 
 ## TO DO
-- [ ] Login
+- [X] Login
     - [X] Recibir correo y contrasenna, y pasarlo a otras paginas
     - [X] Validar que correo y contrasenna no puedan estar vacios
-    - [ ] Validar que usuario y contrasenna coincidan con datos en duro puestos en ts
+    - [X] Validar que usuario y contrasenna coincidan con datos en duro puestos en ts
         - Otras validaciones son opcionales por ahora
-    - [ ] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
-- [ ] Recuperar contrasenna
+    - [X] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
+- [X] Recuperar contrasenna
     - [X] Agregar pag de recuperar contrasenna
     - [X] Agregar ToastController que indique que se envio correo para recuperar password
     - [X] Mostrar correo ingresado en el toast
-    - [ ] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
-    - [ ] Validar que el correo no puede estar vacio
-- [ ] Home
+    - [X] Validar que el correo no puede estar vacio
+- [X] Home
     - [X] Recibir datos de usuario y mostrarlos
     - [X] Agregar funcionalidad a boton qr que lleve a otra pagina
-    - [ ] Planear funcionalidad de cada boton
-    - [ ] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
-- [ ] Pagina QR
-    - [ ] Quizas mostrar foto de qr como prototipo y boton de aceptar
+    - [X] Planear funcionalidad de cada boton
+    - [X] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
+- [X] Pagina QR
+    - [X] Quizas mostrar foto de qr como prototipo y boton de aceptar
     - [X] Mostrar datos de la clase a la que se esta asistiendo:
         - Codigo clase. Ejemplo: "PY41447"
         - Nombre clase. Ejemplo: "Programacion de aplicaciones moviles"
