@@ -17,8 +17,13 @@ export class HomePage {
     if (this.router.getCurrentNavigation().extras.state){
       this.data = router.getCurrentNavigation().extras.state.user;
       console.log(this.data)
-    }else{
+      console.log("^^^^if")
+    } else{
+      console.log(this.data)
+      console.log("^^^^else")
+      /*
       this.router.navigate(["/login"])
+      */
     }
   });
   }
@@ -42,7 +47,9 @@ export class HomePage {
     password:""
   }
 
+  
   ngOnDestroy(){
+    /*
     this.user.email = '';
     this.user.password = '';
     let NavigationExtras: NavigationExtras = {
@@ -51,7 +58,11 @@ export class HomePage {
       }
     };
     console.log(this.user)
-    console.log("^^^^home on destroy")
+    */
+    console.log("home on destroy")
+    /*
     this.router.navigate(['/login'],NavigationExtras)
+    */
   }
+  
 }
