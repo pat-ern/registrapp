@@ -44,7 +44,6 @@ export class LoginPage implements OnInit {
   errores=[
     {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
     {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'},
-    {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'}
   ]
   loginForm= new FormGroup({
     emailForm: new FormControl('',[Validators.required]),
@@ -69,8 +68,11 @@ export class LoginPage implements OnInit {
     }
   }
 
+  datosError="Usuario y contraseña no coinciden"
+  errorBoolean=false;
   //funcion para guardar datos del formulario en state, navegar a otra pagina y llevar esos datos con navigation extras
   login(){
+    this.errorBoolean=false;
     this.isSubmitted = true;
     if(!this.loginForm.valid){
       return false;
@@ -80,10 +82,11 @@ export class LoginPage implements OnInit {
           user: this.user
         }
       };
-      if(this.user.email==this.usuario1.email && this.user.password==this.usuario1.password){
+      if(this.user.email==this.usuario1.email && this.user.password==this.usuario1.password || this.user.email==this.usuario2.email && this.user.password==this.usuario2.password){
         this.router.navigate(['/home'],NavigationExtras)
       } else {
-        console.log("error")
+        this.errorBoolean=true;
+        //console.log("error")
       }
       
     }
