@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Animation, AnimationController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,7 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  @ViewChild('logo', { read: ElementRef, static: true }) logo: ElementRef;
 
   //Inicializar los datos a guardar de la pagina, con un valor inicial vacio
   user={
@@ -50,7 +52,7 @@ export class LoginPage implements OnInit {
     passForm: new FormControl('',[Validators.required]),
   });
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
     /*
@@ -59,6 +61,64 @@ export class LoginPage implements OnInit {
     console.log(this.user)
     console.log("^^^^login on init")
     */
+  }
+
+  ngAfterViewInit() {
+    /*
+    const otra = this.animationCtrl.create()
+      .addElement(this.otra.nativeElement)
+      .duration(1500)
+      .iterations(Infinity)
+      .fromTo('transform', 'translateX(0px)', 'translateX(150px)')
+      .fromTo('opacity', '1', '0.5');
+    */
+
+    const logo = this.animationCtrl.create()
+      .addElement(this.logo.nativeElement)
+      .keyframes([
+        { offset: 0, transform: 'scale(1) rotate(0)' },
+        { offset: 0.5, transform: 'scale(1.5) rotate(0)', opacity: '0.3'  },
+        { offset: 1, transform: 'scale(1) rotate(0)' }
+      ]);
+
+      /*
+    const squareB = this.animationCtrl.create()
+      .addElement(this.squareB.nativeElement)
+      .keyframes([
+        { offset: 0, transform: 'scale(1))', opacity: '1' },
+        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.3' },
+        { offset: 1, transform: 'scale(1)', opacity: '1' }
+      ]);
+
+    const squareC = this.animationCtrl.create()
+      .addElement(this.squareC.nativeElement)
+      .duration(5000)
+      .keyframes([
+        { offset: 0, transform: 'scale(1))', opacity: '0.5' },
+        { offset: 0.5, transform: 'scale(0.8)', opacity: '1' },
+        { offset: 1, transform: 'scale(1)', opacity: '0.5' }
+      ]);
+
+    const hola1 = this.animationCtrl
+      .create()
+      .addElement(this.hola1.nativeElement)
+      .duration(3000)
+      .iterations(Infinity)
+      .keyframes([
+        { offset: 0, background: 'yellow' },
+        { offset: 0.72, background: 'var(--background)' },
+        { offset: 1, background: 'purple' }
+      ]);
+      */
+
+    const animacion = this.animationCtrl
+      .create()
+      .duration(2000)
+      .iterations(1)
+      .addAnimation([logo]);
+      //.addAnimation([hola1, squareA, squareB, squareC, otra]);
+
+    animacion.play();
   }
 
   ionViewWillEnter(){
