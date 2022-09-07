@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,8 @@ export class LoginPage implements OnInit {
     password:""
   }
 
+  isSubmitted = false;
+
   /*
   data: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
@@ -26,6 +30,15 @@ export class LoginPage implements OnInit {
       }
     });
    }*/
+
+  errores=[
+    {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
+    {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'}
+  ]
+  loginForm= new FormGroup({
+    emailForm: new FormControl('',[Validators.required]),
+    passForm: new FormControl('',[Validators.required,Validators.maxLength(5)]),
+  });
 
   constructor(private router: Router) { }
 
@@ -47,12 +60,18 @@ export class LoginPage implements OnInit {
 
   //funcion para guardar datos del formulario en state, navegar a otra pagina y llevar esos datos con navigation extras
   login(){
-    let NavigationExtras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    };
-    this.router.navigate(['/home'],NavigationExtras)
+    this.isSubmitted = true;
+    if(!this.loginForm.valid){
+      return false;
+    } else {
+      let NavigationExtras: NavigationExtras = {
+        state: {
+          user: this.user
+        }
+      };
+      this.router.navigate(['/home'],NavigationExtras)
+    }
+    
   }
 
   ngOnDestroy(){
