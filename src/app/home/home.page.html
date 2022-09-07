@@ -22,9 +22,8 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-item><mat-icon>camera_alt</mat-icon>&nbsp;Escanear codigo QR</ion-item>
-          <ion-item><mat-icon>spellcheck</mat-icon>&nbsp;Asistencia</ion-item>
-          <ion-item><mat-icon>schedule</mat-icon>&nbsp;Horario</ion-item>
+          <a [routerLink]="['/scan']"><ion-item><mat-icon>camera_alt</mat-icon>&nbsp;Escanear codigo QR</ion-item></a>
+          <a [routerLink]="['/historial']"><ion-item><mat-icon>spellcheck</mat-icon>&nbsp;Ultimas clases</ion-item></a>
           <ion-item><mat-icon>person</mat-icon>&nbsp;Cuenta</ion-item>
           <ion-item><mat-icon>settings</mat-icon>&nbsp;Opciones</ion-item>
           <a [routerLink]="['/login']"><ion-item><mat-icon>logout</mat-icon>&nbsp;Salir</ion-item></a>
@@ -64,19 +63,10 @@
           <ion-col>
             <ion-card>
               <ion-card-content class="ion-text-center">
-                <mat-icon>spellcheck</mat-icon>
+                <a [routerLink]="['/historial']"><mat-icon>spellcheck</mat-icon></a>
               </ion-card-content>
             </ion-card>
           </ion-col>
-          <ion-col>
-            <ion-card>
-              <ion-card-content class="ion-text-center">
-                <mat-icon>schedule</mat-icon>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-        <ion-row>
           <ion-col>
             <ion-card>
               <ion-card-content class="ion-text-center">
@@ -84,10 +74,20 @@
               </ion-card-content>
             </ion-card>
           </ion-col>
+        </ion-row>
+
+        <ion-row>
           <ion-col>
             <ion-card>
               <ion-card-content class="ion-text-center">
                 <mat-icon>settings</mat-icon>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col>
+            <ion-card>
+              <ion-card-content class="ion-text-center">
+                <a [routerLink]="['/login']"><mat-icon>logout</mat-icon></a>
               </ion-card-content>
             </ion-card>
           </ion-col>

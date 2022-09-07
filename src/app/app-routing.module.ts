@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'scan',
     loadChildren: () => import('./scan/scan.module').then( m => m.ScanPageModule)
   },
+  {
+    path: 'historial',
+    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
+  },
 
 ];
 
