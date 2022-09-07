@@ -49,6 +49,7 @@ export class ResetPage implements OnInit {
   datosError="Ese correo no esta registrado"
   errorBoolean=false;
   verificar(){
+    this.errorBoolean=false;
     if(!this.recuperarForm.valid){
       return false;
     } else {
