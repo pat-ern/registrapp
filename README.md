@@ -26,7 +26,7 @@ proyecto app moviles duoc uc
         - Seccion. Ejemplo: "008D"
         - Dia y hora: Formato datetime me imagino
         - Nombre docente. Ejemplo: "Yaravi Villegas"
-- [ ] ppt
+- [X] ppt
 
 
 ## Detalles:
@@ -38,4 +38,7 @@ proyecto app moviles duoc uc
 ## Ideas
 - Boton que deje ver la contraseña y esconderla
 - validar que usuario tenga un @ y un .cl
+- boton para recordar al usuario y no pedirle clave denuevo
+- input para ingresar el codigo enviado al correo
 - ver si se pueden traspasar algunas cosas a componente para poder reutilizar codigo
+- menu de justificar asistencias, que deje seleccionar clase de fecha especifica y adjuntar documentos relevantes
