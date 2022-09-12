@@ -13,16 +13,26 @@
     </ion-text>
   </div>
 
-  <ion-card>
-    <ion-card-content>
-      <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input type="email" [(ngModel)]="user.email"></ion-input>
-      </ion-item>
-      <br>
-      <ion-button color="tertiary" expand="block" (click)="presentToast('bottom')">Obtener Código</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <form action="" [formGroup]="recuperarForm">
+    <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="email" [(ngModel)]="user.email" formControlName="emailForm"></ion-input>
+          <div *ngFor="let er of errores">
+            <ng-container *ngIf="recuperarForm.get('emailForm').hasError(er.tipo) && (recuperarForm.get('emailForm').touched || recuperarForm.get('emailForm').dirty)">
+              <p style="color: brown;">{{er.mensaje}}</p>
+            </ng-container>
+          </div>
+        </ion-item>
+        <br>
+        <ion-button color="tertiary" expand="block" (click)="verificar()">Obtener Código</ion-button>
+        <ng-container *ngIf="errorBoolean==true">
+          <p style="color: brown;">{{datosError}}</p>
+        </ng-container>
+      </ion-card-content>
+    </ion-card>
+  </form>
 
   <ion-text class="ion-text-center">
     <a [routerLink]="['/login']"><h4>Volver</h4></a>
@@ -30,8 +40,10 @@
 
 </ion-content>
 
+<!--
 <ion-footer>
       <ion-text style="padding:30%;">
         Ayuda - Redes Sociales
       </ion-text>
 </ion-footer> 
+-->

@@ -38,7 +38,7 @@
         </ion-menu-toggle>
 
         <br>
-        <ion-card-title class="ion-text-center">
+        <ion-card-title class="ion-text-center" #titulo>
           Bienvenido {{data.email}}
         </ion-card-title>
 
@@ -52,7 +52,7 @@
             </ion-card-title>
           </ion-card-header>
         
-          <ion-card-content class="ion-text-center">
+          <ion-card-content class="ion-text-center" #qr>
             <img src="assets/img/qr-code2.png" alt="usuario" width="75px" height="auto">
           </ion-card-content>
         </ion-card>

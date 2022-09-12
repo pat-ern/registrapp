@@ -2,7 +2,7 @@
 </ion-header>
 
 <ion-content>
-  <div id="logo" class="ion-text-center">
+  <div id="logo" class="ion-text-center" #logo>
     <img src="assets/img/r2.png" alt="usuario" width="125px" height="auto">
   </div>
 
@@ -29,6 +29,11 @@
         </ion-item>
         <br>
         <ion-button color="tertiary" expand="block" type="submit" >Ingresar</ion-button> <!--(click)="login()"-->
+
+          <ng-container *ngIf="errorBoolean==true">
+            <p style="color: brown;">{{datosError}}</p>
+          </ng-container>
+
       </form>
     </ion-card-content>
   </ion-card>
@@ -41,8 +46,10 @@
 
 </ion-content>
 
+<!--
 <ion-footer>
       <ion-text style="padding:30%;">
         Ayuda - Redes Sociales
       </ion-text>
 </ion-footer> 
+-->
