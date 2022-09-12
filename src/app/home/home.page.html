@@ -30,7 +30,6 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-    
     <div class="ion-page" id="main">
       <ion-content class="ion-padding">
 
@@ -38,50 +37,24 @@
           <ion-button color="tertiary" expand="block">Menu</ion-button>
         </ion-menu-toggle>
 
-<<<<<<< Updated upstream
         <br>
         <ion-card-title class="ion-text-center">
           Bienvenido {{data.email}}
         </ion-card-title>
 
         <br>
-=======
-        <ion-card id="user-avatar">
-            <ion-row>
-              <ion-col size="2">
-                <ion-avatar>
-                  <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
-                </ion-avatar>
-              </ion-col>
-              &nbsp;
-              <ion-col>
-                <ion-text class="ion-text-right" #titulo>
-                  <h3>Bienvenido {{data.email}}</h3>
-                </ion-text>
-              </ion-col>
-            </ion-row>
-        </ion-card>
-        
-        
->>>>>>> Stashed changes
 
 
         <ion-card [routerLink]="['/scan']">
-
+          <ion-card-header>
+            <ion-card-title class="ion-text-center">
+              Escanear código QR
+            </ion-card-title>
+          </ion-card-header>
         
-<<<<<<< Updated upstream
           <ion-card-content class="ion-text-center">
             <img src="assets/img/qr-code2.png" alt="usuario" width="75px" height="auto">
-=======
-          <ion-card-content class="ion-text-center" #qr>
-            <img src="assets/img/qr-code.png" alt="usuario" width="125px" height="auto">
->>>>>>> Stashed changes
           </ion-card-content>
-          <ion-text class="ion-text-center">
-            <h3>
-              Escanear código QR
-            </h3>
-          </ion-text>
         </ion-card>
 
         <hr>

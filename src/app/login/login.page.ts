@@ -17,8 +17,8 @@ export class LoginPage implements OnInit {
   }
 
   usuario1={
-    email:"123@123.com",
-    password:"123"
+    email:"p.cortes@duocuc.cl",
+    password:"123456789"
   }
 
   usuario2={
@@ -62,67 +62,6 @@ export class LoginPage implements OnInit {
     */
   }
 
-<<<<<<< Updated upstream
-=======
-  ngAfterViewInit() {
-    /*
-    const otra = this.animationCtrl.create()
-      .addElement(this.otra.nativeElement)
-      .duration(1500)
-      .iterations(Infinity)
-      .fromTo('transform', 'translateX(0px)', 'translateX(150px)')
-      .fromTo('opacity', '1', '0.5');
-    */
-
-    const logo = this.animationCtrl.create()
-      .addElement(this.logo.nativeElement)
-      .keyframes([
-        { offset: 0, transform: 'scale(1) rotate(0)' },
-        { offset: 0.5, transform: 'scale(1.3) rotate(0)', opacity: '0.3'  },
-        { offset: 1, transform: 'scale(1) rotate(0)' }
-      ]);
-
-      /*
-    const squareB = this.animationCtrl.create()
-      .addElement(this.squareB.nativeElement)
-      .keyframes([
-        { offset: 0, transform: 'scale(1))', opacity: '1' },
-        { offset: 0.5, transform: 'scale(1.2)', opacity: '0.3' },
-        { offset: 1, transform: 'scale(1)', opacity: '1' }
-      ]);
-
-    const squareC = this.animationCtrl.create()
-      .addElement(this.squareC.nativeElement)
-      .duration(5000)
-      .keyframes([
-        { offset: 0, transform: 'scale(1))', opacity: '0.5' },
-        { offset: 0.5, transform: 'scale(0.8)', opacity: '1' },
-        { offset: 1, transform: 'scale(1)', opacity: '0.5' }
-      ]);
-
-    const hola1 = this.animationCtrl
-      .create()
-      .addElement(this.hola1.nativeElement)
-      .duration(3000)
-      .iterations(Infinity)
-      .keyframes([
-        { offset: 0, background: 'yellow' },
-        { offset: 0.72, background: 'var(--background)' },
-        { offset: 1, background: 'purple' }
-      ]);
-      */
-
-    const animacion = this.animationCtrl
-      .create()
-      .duration(2000)
-      .iterations(1)
-      .addAnimation([logo]);
-      //.addAnimation([hola1, squareA, squareB, squareC, otra]);
-
-    animacion.play();
-  }
-
->>>>>>> Stashed changes
   ionViewWillEnter(){
     this.user={
       email:"",
