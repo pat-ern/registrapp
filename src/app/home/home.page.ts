@@ -37,15 +37,15 @@ export class HomePage {
       .addElement(this.titulo.nativeElement)
       .keyframes([
         { offset: 0, transform: 'scale(1) rotate(0)' },
-        { offset: 0.5, transform: 'scale(1.1) rotate(0)', opacity: '0.1'  },
+        { offset: 0.5, transform: 'scale(1) rotate(0)', opacity: '0.1'  },
         { offset: 1, transform: 'scale(1) rotate(0)' }
       ]);
 
     const qr = this.animationCtrl.create()
       .addElement(this.qr.nativeElement)
       .keyframes([
-        { offset: 0, transform: 'scale(1) rotate(0)' },
-        { offset: 0.5, transform: 'scale(1) rotate(30deg)'},
+        { offset: 0, transform: 'scale(1.2) rotate(0)' },
+        { offset: 0.5, transform: 'scale(1.1) rotate(0)'},
         { offset: 1, transform: 'scale(1) rotate(0)' }
       ]);
 

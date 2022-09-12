@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One');
+
 #container {
   text-align: center;
 
@@ -29,3 +31,18 @@
 ion-app > ion-menu > ion-content > ion-list > a {
   text-decoration: none;
 } 
+
+ion-avatar {
+  --border-radius: 4px;
+}
+
+#username-text {
+  font-size: 14px;
+  color: #090511;
+}
+
+#bienvenido {
+  font-family: 'Contrail One', cursive;
+  font-size: 35px;
+  color: #090511;
+}
