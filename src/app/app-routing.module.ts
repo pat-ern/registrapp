@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AccesoGuard } from './guards/acceso.guard';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'scan',
-    loadChildren: () => import('./scan/scan.module').then( m => m.ScanPageModule)
+    loadChildren: () => import('./scan/scan.module').then( m => m.ScanPageModule),
+    canActivate: [AccesoGuard]
   },
   {
     path: 'historial',
