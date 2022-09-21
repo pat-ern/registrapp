@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Contrail+One');
+
 #container {
   text-align: center;
 
@@ -29,3 +32,26 @@
 ion-app > ion-menu > ion-content > ion-list > a {
   text-decoration: none;
 } 
+
+ion-avatar {
+  --border-radius: 4px;
+}
+
+#username {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  color: #2d2558;
+}
+
+#bienvenido {
+  font-family: 'Contrail One';
+  font-size: 40px;
+  font-weight: bolder;
+  color: #574c96;
+}
+
+#header-toggle {
+  margin-top: 3px;
+  margin-left: 10px;
+}
