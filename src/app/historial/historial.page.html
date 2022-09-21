@@ -1,49 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Historial</ion-title>
+<app-boton-menu></app-boton-menu>
 
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  
+  <ion-app>
+    <app-menu></app-menu>
 
-<ion-content class="ion-padding">
-  <ion-list>
-    <ion-item>
-      <mat-icon>check</mat-icon>&nbsp;
-      <ion-label>ASY4131</ion-label>
-      <ion-text color="dark" size="small" class="ion-text-right">
-        06/09 17:00
-      </ion-text>
-    </ion-item>
-    <ion-item>
-      <mat-icon>check</mat-icon>&nbsp;
-      <ion-label>MAT4140</ion-label>
-      <ion-text color="dark" size="small" class="ion-text-right">
-        06/09 14:00
-      </ion-text>
-    </ion-item>
-    <ion-item>
-      <mat-icon>close</mat-icon>&nbsp;
-      <ion-label>INI5111</ion-label>
-      <ion-text color="dark" size="small" class="ion-text-right">
-        06/09 10:00
-      </ion-text>
-    </ion-item>
-    <ion-item>
-      <mat-icon>check</mat-icon>&nbsp;
-      <ion-label>PGY4121</ion-label>
-      <ion-text color="dark" size="small" class="ion-text-right">
-        05/09 14:00
-      </ion-text>
-    </ion-item>
-    <ion-item>
-      <mat-icon>close</mat-icon>&nbsp;
-      <ion-label>CSY4111</ion-label>
-      <ion-text color="dark" size="small" class="ion-text-right">
-        05/09 11:00
-      </ion-text>
-    </ion-item>
-  </ion-list>
-  <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
+    <div class="ion-page" id="main">
+      <ion-content class="ion-padding">
+        <ion-list>
+          <ion-item>
+            <mat-icon>check</mat-icon>&nbsp;
+            <ion-label>ASY4131</ion-label>
+            <ion-text color="dark" size="small" class="ion-text-right">
+              06/09 17:00
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <mat-icon>check</mat-icon>&nbsp;
+            <ion-label>MAT4140</ion-label>
+            <ion-text color="dark" size="small" class="ion-text-right">
+              06/09 14:00
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <mat-icon>close</mat-icon>&nbsp;
+            <ion-label>INI5111</ion-label>
+            <ion-text color="dark" size="small" class="ion-text-right">
+              06/09 10:00
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <mat-icon>check</mat-icon>&nbsp;
+            <ion-label>PGY4121</ion-label>
+            <ion-text color="dark" size="small" class="ion-text-right">
+              05/09 14:00
+            </ion-text>
+          </ion-item>
+          <ion-item>
+            <mat-icon>close</mat-icon>&nbsp;
+            <ion-label>CSY4111</ion-label>
+            <ion-text color="dark" size="small" class="ion-text-right">
+              05/09 11:00
+            </ion-text>
+          </ion-item>
+        </ion-list>
+        <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
+      </ion-content>
+    </div>
+
+  </ion-app>
+  
+  
 </ion-content>
 
 

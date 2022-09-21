@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { HistorialPageRoutingModule } from './historial-routing.module';
 
 import { HistorialPage } from './historial.page';
+import { MenuComponent } from '../menu/menu.component'
+import { BotonMenuComponent } from '../boton-menu/boton-menu.component';
 
 import { MatIconModule } from '@angular/material/icon';
 
@@ -18,6 +20,6 @@ import { MatIconModule } from '@angular/material/icon';
     HistorialPageRoutingModule,
     MatIconModule,
   ],
-  declarations: [HistorialPage]
+  declarations: [HistorialPage,MenuComponent,BotonMenuComponent]
 })
 export class HistorialPageModule {}
