@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
+import { MenuComponent } from '../menu/menu.component'
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -16,6 +17,6 @@ import { MatIconModule } from '@angular/material/icon';
     HomePageRoutingModule,
     MatIconModule,
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,MenuComponent]
 })
 export class HomePageModule {}

@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-menu-toggle id="header-toggle">
+      <ion-icon name="menu" size="large"></ion-icon>
+    </ion-menu-toggle>
+  </ion-toolbar>
+</ion-header>
+
+
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title><mat-icon>home</mat-icon>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <a [routerLink]="['/scan']"><ion-item><mat-icon>camera_alt</mat-icon>&nbsp;Escanear codigo QR</ion-item></a>
+        <a [routerLink]="['/historial']"><ion-item><mat-icon>spellcheck</mat-icon>&nbsp;Ultimas clases</ion-item></a>
+        <ion-item><mat-icon>person</mat-icon>&nbsp;Cuenta</ion-item>
+        <ion-item><mat-icon>settings</mat-icon>&nbsp;Opciones</ion-item>
+        <a [routerLink]="['/login']"><ion-item><mat-icon>logout</mat-icon>&nbsp;Salir</ion-item></a>
+      </ion-list>
+    </ion-content>
+  </ion-menu>

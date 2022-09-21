@@ -22,6 +22,7 @@ export class HomePage {
       this.data = router.getCurrentNavigation().extras.state.user;
       console.log(this.data)
       console.log("^^^^if")
+      this.router.navigate(['home/menu'])
     } else{
       console.log(this.data)
       console.log("^^^^else")
