@@ -5,7 +5,7 @@ import { AccesoGuard } from './guards/acceso.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'registro',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
@@ -38,9 +38,14 @@ const routes: Routes = [
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
+    path: 'lista',
+    loadChildren: () => import('./lista/lista.module').then( m => m.ListaPageModule)
+  },  
+  {
     path: '**',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
+
 
 
 

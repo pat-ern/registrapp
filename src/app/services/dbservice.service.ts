@@ -16,6 +16,7 @@ export class DbserviceService {
   listaUsuarios = new BehaviorSubject([]);
 
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  
   constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
     this.crearBD();
 
