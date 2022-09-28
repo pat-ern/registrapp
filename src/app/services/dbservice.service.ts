@@ -59,6 +59,7 @@ export class DbserviceService {
       }).then((db: SQLiteObject) => {
         this.database = db;
         this.presentToast("BD Creada");
+        console.log("DB Creada")
         //llamamos a la creación de tablas
         this.crearTablas();
       }).catch(e => this.presentToast(e));
