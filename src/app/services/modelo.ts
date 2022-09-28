@@ -1,5 +1,5 @@
-export class Usuarios {
+export class Usuario {
     //id: number;
-    usuario: string;
+    correo: string;
     contrasena: string;
   }

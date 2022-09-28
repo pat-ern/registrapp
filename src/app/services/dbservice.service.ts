@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Platform, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Usuarios } from './modelo';
+import { Usuario } from './modelo';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class DbserviceService {
 
   public database: SQLiteObject;
 
-  tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS Usuarios(id INTEGER PRIMARY KEY autoincrement, usuario VARCHAR(50) NOT NULL, contrasena TEXT NOT NULL);";
-  registro: string = "INSERT or IGNORE INTO Usuarios(usuario, contrasena) VALUES ('usuario Usuarios', 'contrasena de la Usuarios que se quiere mostrar');";
+  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS Usuario(correo VARCHAR(30) NOT NULL, contrasena VARCHAR(30) NOT NUL);";
+  registro: string = "INSERT or IGNORE INTO Usuario(usuario, contrasena) VALUES ('correo Usuario', 'contrasena de la Usuarios que se quiere mostrar');";
   listaUsuarios = new BehaviorSubject([]);
 
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -21,28 +21,28 @@ export class DbserviceService {
 
   }
 
-  addUsuarios(usuario,contrasena){
-    let data=[usuario,contrasena];
-    return this.database.executeSql('INSERT INTO Usuarios(usuario,contrasena) VALUES(?,?)',data)
+  addUsuarios(correo,contrasena){
+    let data=[correo,contrasena];
+    return this.database.executeSql('INSERT INTO Usuario(correo,contrasena) VALUES(?,?)',data)
     .then(res =>{
-      this.buscarUsuarios();
+      this.buscarUsuario();
     })
 
   }
 
-  updateUsuarios(usuario, contrasena){
-    let data = [usuario, contrasena];
-    return this.database.executeSql('UPDATE Usuarios SET usuario = ?, contrasena = ? WHERE id = ?', data)
+  updateUsuario(correo, contrasena, id){
+    let data = [correo, contrasena, id];
+    return this.database.executeSql('UPDATE Usuario SET correo = ?, contrasena = ? WHERE id = ?', data)
     .then(data2 =>{
-      this.buscarUsuarios();
+      this.buscarUsuario();
     })
 
   }
 
-  deleteUsuarios(id){
-    return this.database.executeSql('DELETE FROM Usuarios WHERE id = ?', [id])
+  deleteUsuario(id){
+    return this.database.executeSql('DELETE FROM Usuario WHERE id = ?', [id])
     .then(a =>{
-      this.buscarUsuarios();
+      this.buscarUsuario();
     })
   }
 
@@ -59,7 +59,6 @@ export class DbserviceService {
       }).then((db: SQLiteObject) => {
         this.database = db;
         this.presentToast("BD Creada");
-        console.log("DB Creada")
         //llamamos a la creación de tablas
         this.crearTablas();
       }).catch(e => this.presentToast(e));
@@ -68,20 +67,20 @@ export class DbserviceService {
 
   async crearTablas() {
     try {
-      await this.database.executeSql(this.tablaUsuarios, []);
+      await this.database.executeSql(this.tablaUsuario, []);
       await this.database.executeSql(this.registro, []);
       this.presentToast("Tabla Creada");
-      this.buscarUsuarios();
+      this.buscarUsuario();
       this.isDbReady.next(true);
     } catch (e) {
       this.presentToast("error creartabla " + e);
     }
   }
 
-  buscarUsuarios() {
+  buscarUsuario() {
     //this.presentAlert("a");
-    return this.database.executeSql('SELECT * FROM Usuarios', []).then(res => {
-      let items: Usuarios[] = [];
+    return this.database.executeSql('SELECT * FROM Usuario', []).then(res => {
+      let items: Usuario[] = [];
       //this.presentAlert("b");
       if (res.rows.length > 0) {
         //this.presentAlert("c");
@@ -89,7 +88,7 @@ export class DbserviceService {
           //this.presentAlert("d");
           items.push({
             //id: res.rows.item(i).id,
-            usuario: res.rows.item(i).usuario,
+            correo: res.rows.item(i).correo,
             contrasena: res.rows.item(i).contrasena
           });
         }
@@ -99,7 +98,7 @@ export class DbserviceService {
     });
   }
 
-  fetchUsuarios(): Observable<Usuarios[]> {
+  fetchUsuarios(): Observable<Usuario[]> {
     return this.listaUsuarios.asObservable();
   }
 
