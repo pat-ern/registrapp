@@ -4,110 +4,110 @@ import { Platform, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Usuarios } from './modelo';
 
-      @Injectable({
-        providedIn: 'root'
-      })
-      export class DbserviceService {
+@Injectable({
+  providedIn: 'root'
+})
+export class DbserviceService {
 
-        public database: SQLiteObject;
+  public database: SQLiteObject;
 
-        tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS noticia(id INTEGER PRIMARY KEY autoincrement, usuario VARCHAR(50) NOT NULL, contrasena TEXT NOT NULL);";
-        registro: string = "INSERT or IGNORE INTO noticia(id, usuario, contrasena) VALUES (1, 'usuario noticia', 'contrasena de la noticia que se quiere mostrar');";
-        listaUsuarios = new BehaviorSubject([]);
+  tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS Usuarios(id INTEGER PRIMARY KEY autoincrement, usuario VARCHAR(50) NOT NULL, contrasena TEXT NOT NULL);";
+  registro: string = "INSERT or IGNORE INTO Usuarios(usuario, contrasena) VALUES ('usuario Usuarios', 'contrasena de la Usuarios que se quiere mostrar');";
+  listaUsuarios = new BehaviorSubject([]);
 
-        private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
-        constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
-          this.crearBD();
+  private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  constructor(private sqlite: SQLite, private platform: Platform, public toastController: ToastController) {
+    this.crearBD();
 
-        }
+  }
 
-        addNoticia(usuario,contrasena){
-          let data=[usuario,contrasena];
-          return this.database.executeSql('INSERT INTO noticia(usuario,contrasena) VALUES(?,?)',data)
-          .then(res =>{
-            this.buscarUsuarios();
-          })
+  addUsuarios(usuario,contrasena){
+    let data=[usuario,contrasena];
+    return this.database.executeSql('INSERT INTO Usuarios(usuario,contrasena) VALUES(?,?)',data)
+    .then(res =>{
+      this.buscarUsuarios();
+    })
 
-        }
+  }
 
-        updateNoticia(id, usuario, contrasena){
-          let data = [usuario, contrasena, id];
-          return this.database.executeSql('UPDATE noticia SET usuario = ?, contrasena = ? WHERE id = ?', data)
-          .then(data2 =>{
-            this.buscarUsuarios();
-          })
+  updateUsuarios(usuario, contrasena){
+    let data = [usuario, contrasena];
+    return this.database.executeSql('UPDATE Usuarios SET usuario = ?, contrasena = ? WHERE id = ?', data)
+    .then(data2 =>{
+      this.buscarUsuarios();
+    })
 
-        }
+  }
 
-        deleteNoticia(id){
-          return this.database.executeSql('DELETE FROM noticia WHERE id = ?', [id])
-          .then(a =>{
-            this.buscarUsuarios();
-          })
-        }
+  deleteUsuarios(id){
+    return this.database.executeSql('DELETE FROM Usuarios WHERE id = ?', [id])
+    .then(a =>{
+      this.buscarUsuarios();
+    })
+  }
 
-        dbState() {
-          return this.isDbReady.asObservable();
-        }
+  dbState() {
+    return this.isDbReady.asObservable();
+  }
 
-        crearBD() {
-          this.platform.ready().then(() => {
-            this.sqlite.create({
-              name: 'Usuarios3.db',
-              location: 'default'
+  crearBD() {
+    this.platform.ready().then(() => {
+      this.sqlite.create({
+        name: 'Usuarios3.db',
+        location: 'default'
 
-            }).then((db: SQLiteObject) => {
-              this.database = db;
-              this.presentToast("BD Creada");
-              //llamamos a la creación de tablas
-              this.crearTablas();
-            }).catch(e => this.presentToast(e));
-          })
-        }
+      }).then((db: SQLiteObject) => {
+        this.database = db;
+        this.presentToast("BD Creada");
+        //llamamos a la creación de tablas
+        this.crearTablas();
+      }).catch(e => this.presentToast(e));
+    })
+  }
 
-        async crearTablas() {
-          try {
-            await this.database.executeSql(this.tablaUsuarios, []);
-            await this.database.executeSql(this.registro, []);
-            this.presentToast("Tabla Creada");
-            this.buscarUsuarios();
-            this.isDbReady.next(true);
-          } catch (e) {
-            this.presentToast("error creartabla " + e);
-          }
-        }
+  async crearTablas() {
+    try {
+      await this.database.executeSql(this.tablaUsuarios, []);
+      await this.database.executeSql(this.registro, []);
+      this.presentToast("Tabla Creada");
+      this.buscarUsuarios();
+      this.isDbReady.next(true);
+    } catch (e) {
+      this.presentToast("error creartabla " + e);
+    }
+  }
 
-        buscarUsuarios() {
-          //this.presentAlert("a");
-          return this.database.executeSql('SELECT * FROM noticia', []).then(res => {
-            let items: Usuarios[] = [];
-            //this.presentAlert("b");
-            if (res.rows.length > 0) {
-              //this.presentAlert("c");
-              for (var i = 0; i < res.rows.length; i++) {
-                //this.presentAlert("d");
-                items.push({
-                  //id: res.rows.item(i).id,
-                  usuario: res.rows.item(i).usuario,
-                  contrasena: res.rows.item(i).contrasena
-                });
-              }
-            }
-            //this.presentAlert("d");
-            this.listaUsuarios.next(items);
+  buscarUsuarios() {
+    //this.presentAlert("a");
+    return this.database.executeSql('SELECT * FROM Usuarios', []).then(res => {
+      let items: Usuarios[] = [];
+      //this.presentAlert("b");
+      if (res.rows.length > 0) {
+        //this.presentAlert("c");
+        for (var i = 0; i < res.rows.length; i++) {
+          //this.presentAlert("d");
+          items.push({
+            //id: res.rows.item(i).id,
+            usuario: res.rows.item(i).usuario,
+            contrasena: res.rows.item(i).contrasena
           });
         }
-
-        fetchUsuarios(): Observable<Usuarios[]> {
-          return this.listaUsuarios.asObservable();
-        }
-
-        async presentToast(mensaje: string) {
-          const toast = await this.toastController.create({
-            message: mensaje,
-            duration: 3000
-          });
-          toast.present();
-        }
-
       }
+      //this.presentAlert("d");
+      this.listaUsuarios.next(items);
+    });
+  }
+
+  fetchUsuarios(): Observable<Usuarios[]> {
+    return this.listaUsuarios.asObservable();
+  }
+
+  async presentToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+}
