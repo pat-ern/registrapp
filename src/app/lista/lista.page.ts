@@ -11,27 +11,31 @@ export class ListaPage implements OnInit {
 
   usuarios: any = [
     {
-      titulo: "correo del usuario",
-      texto: "contrasena del usuario"
+      correo: "correo del usuario",
+      contrasena: "contrasena del usuario"
     }
   ]
 
   constructor(private router: Router, private servicioBD: DbserviceService) { }
 
-  ngOnInit(){
+  ngOnInit() {    
     //this.servicioBD.presentAlert("1");
     this.servicioBD.dbState().subscribe((res) =>{
       //this.servicioBD.presentAlert("2");
       if(res){
+        this.servicioBD.buscarUsuario();
         //this.servicioBD.presentAlert("3");
         this.servicioBD.fetchUsuarios().subscribe(item =>{
           this.usuarios = item;
         })
+        console.log("Base de datos lista");
       }
       //this.servicioBD.presentAlert("4");
-    });
-  }
+    });}
 
+  ionViewWillEnter(){
+
+  }
 
   getItem($event) {
     const valor = $event.target.value;
@@ -41,6 +45,11 @@ export class ListaPage implements OnInit {
 
   agregar() {
 
+  }
+
+  borrarTabla(){
+    this.servicioBD.borrarUsuarios();
+    this.router.navigate(['/login']);
   }
 
   editar(item) {

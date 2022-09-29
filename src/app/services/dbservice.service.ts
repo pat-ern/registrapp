@@ -11,8 +11,8 @@ export class DbserviceService {
 
   public database: SQLiteObject;
 
-  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS Usuario(correo VARCHAR(30) NOT NULL, contrasena VARCHAR(30) NOT NUL);";
-  registro: string = "INSERT or IGNORE INTO Usuario(usuario, contrasena) VALUES ('correo Usuario', 'contrasena de la Usuarios que se quiere mostrar');";
+  tablaUsuario: string = "CREATE TABLE IF NOT EXISTS Usuario(correo VARCHAR(30) NOT NULL, contrasena VARCHAR(30) NOT NULL);";
+  registro: string = "INSERT or IGNORE INTO Usuario(correo, contrasena) VALUES ('correo Usuario', 'contrasena de la Usuarios que se quiere mostrar');";
   listaUsuarios = new BehaviorSubject([]);
 
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -22,32 +22,7 @@ export class DbserviceService {
 
   }
 
-  addUsuarios(correo,contrasena){
-    let data=[correo,contrasena];
-    return this.database.executeSql('INSERT INTO Usuario(correo,contrasena) VALUES(?,?)',data)
-    .then(res =>{
-      this.buscarUsuario();
-    })
-
-  }
-
-  updateUsuario(correo, contrasena, id){
-    let data = [correo, contrasena, id];
-    return this.database.executeSql('UPDATE Usuario SET correo = ?, contrasena = ? WHERE id = ?', data)
-    .then(data2 =>{
-      this.buscarUsuario();
-    })
-
-  }
-
-  deleteUsuario(id){
-    return this.database.executeSql('DELETE FROM Usuario WHERE id = ?', [id])
-    .then(a =>{
-      this.buscarUsuario();
-    })
-  }
-
-  dbState() {
+  dbState() { 
     return this.isDbReady.asObservable();
   }
 
@@ -78,6 +53,48 @@ export class DbserviceService {
     }
   }
 
+  async presentToast(mensaje: string) {
+    const toast = await this.toastController.create({
+      message: mensaje,
+      duration: 3000
+    });
+    toast.present();
+  }
+
+  // CRUD USUARIOS
+
+  addUsuarios(correo,contrasena){
+    let data=[correo,contrasena];
+    return this.database.executeSql('INSERT INTO Usuario(correo,contrasena) VALUES(?,?)',data)
+    .then(res =>{
+      this.buscarUsuario();
+    })
+
+  }
+
+  updateUsuario(correo, contrasena, id){
+    let data = [correo, contrasena, id];
+    return this.database.executeSql('UPDATE Usuario SET correo = ?, contrasena = ? WHERE id = ?', data)
+    .then(data2 =>{
+      this.buscarUsuario();
+    })
+
+  }
+
+  deleteUsuario(id){
+    return this.database.executeSql('DELETE FROM Usuario WHERE id = ?', [id])
+    .then(a =>{
+      this.buscarUsuario();
+    })
+  }
+
+  borrarUsuarios(){
+    return this.database.executeSql('DELETE FROM Usuario')
+    .then(a2 =>{
+      this.buscarUsuario();
+    })
+  }
+
   buscarUsuario() {
     //this.presentAlert("a");
     return this.database.executeSql('SELECT * FROM Usuario', []).then(res => {
@@ -93,7 +110,14 @@ export class DbserviceService {
             contrasena: res.rows.item(i).contrasena
           });
         }
-      }
+      } //else if (res.rows.length == 0) {
+        //this.presentAlert("e");
+        //items.push({
+          //id: 0,
+          //correo: "no hay datos",
+          //contrasena: "no hay datos"
+        //});
+      //}
       //this.presentAlert("d");
       this.listaUsuarios.next(items);
     });
@@ -103,12 +127,6 @@ export class DbserviceService {
     return this.listaUsuarios.asObservable();
   }
 
-  async presentToast(mensaje: string) {
-    const toast = await this.toastController.create({
-      message: mensaje,
-      duration: 3000
-    });
-    toast.present();
-  }
+  // FIN CRUD USUARIOS
 
 }

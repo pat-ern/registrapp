@@ -55,6 +55,7 @@ export class LoginPage implements OnInit {
   constructor(private router: Router, private animationCtrl: AnimationController) { }
 
   ngOnInit() {
+    
     /*
     this.user.email = '';
     this.user.password = '';

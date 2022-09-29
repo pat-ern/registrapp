@@ -9,7 +9,7 @@ import { DbserviceService } from 'src/app/services/dbservice.service';
 })
 export class RegistroPage implements OnInit {
 
-  usuario = "";
+  correo = "";
   contrasena = "";
 
   constructor(private dbservice: DbserviceService, private router: Router) { }
@@ -18,7 +18,7 @@ export class RegistroPage implements OnInit {
   }
 
   onSubmitRegister(){
-    this.dbservice.addUsuarios(this.usuario,this.contrasena);
+    this.dbservice.addUsuarios(this.correo,this.contrasena);
     this.dbservice.presentToast("Usuario Agregado");
     this.router.navigate(['/login']);
     console.log('Formulario enviado');
