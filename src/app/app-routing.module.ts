@@ -10,45 +10,45 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'reset',
-    loadChildren: () => import('./reset/reset.module').then( m => m.ResetPageModule)
+    loadChildren: () => import('./pages/reset/reset.module').then( m => m.ResetPageModule)
   },
   {
     path: 'clase',
-    loadChildren: () => import('./clase/clase.module').then( m => m.ClasePageModule)
+    loadChildren: () => import('./pages/clase/clase.module').then( m => m.ClasePageModule)
   },
   {
     path: 'scan',
-    loadChildren: () => import('./scan/scan.module').then( m => m.ScanPageModule),
+    loadChildren: () => import('./pages/scan/scan.module').then( m => m.ScanPageModule),
     canActivate: [AccesoGuard]
   },
   {
     path: 'historial',
-    loadChildren: () => import('./historial/historial.module').then( m => m.HistorialPageModule)
+    loadChildren: () => import('./pages/historial/historial.module').then( m => m.HistorialPageModule)
   },
   {
     path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
     path: 'lista',
-    loadChildren: () => import('./lista/lista.module').then( m => m.ListaPageModule)
+    loadChildren: () => import('./pages/lista/lista.module').then( m => m.ListaPageModule)
   },  
   {
-    path: '**',
-    loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
+    path: 'bdlocal',
+    loadChildren: () => import('./pages/bdlocal/bdlocal.module').then( m => m.BdlocalPageModule)
   },
-
-
-
-
+  {
+    path: '**',
+    loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
+  },
 
 ];
 

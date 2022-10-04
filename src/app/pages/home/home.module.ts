@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import { MenuComponent } from '../menu/menu.component'
-import { BotonMenuComponent } from '../boton-menu/boton-menu.component';
+import { MenuComponent } from '../../components/menu/menu.component'
+import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
 import { HomePageRoutingModule } from './home-routing.module';
 

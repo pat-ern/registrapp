@@ -1,0 +1,16 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <ion-title>
+          Ejemplo LocalStorage
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+      <ion-input type="text" placeholder="Ingrese nombre" [(ngModel)]="nombre"></ion-input>
+      <ion-input type="text" placeholder="Ingrese numero" [(ngModel)]="nro"></ion-input>
+      <ion-button shape="block" (click)="guardar()">Guardar</ion-button>
+
+  </ion-card>
+</ion-content>

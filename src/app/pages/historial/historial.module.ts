@@ -7,8 +7,8 @@ import { IonicModule } from '@ionic/angular';
 import { HistorialPageRoutingModule } from './historial-routing.module';
 
 import { HistorialPage } from './historial.page';
-import { MenuComponent } from '../menu/menu.component'
-import { BotonMenuComponent } from '../boton-menu/boton-menu.component';
+import { MenuComponent } from '../../components/menu/menu.component'
+import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
 import { MatIconModule } from '@angular/material/icon';
 
