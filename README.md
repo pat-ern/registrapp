@@ -1,5 +1,6 @@
 # registrapp
 proyecto app moviles duoc uc
+https://pcortesduoc.github.io/movilApi/clase.json
 
 ## TO DO
 - [X] Login
