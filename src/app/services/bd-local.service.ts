@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { IAgenda } from '../interfaces/iagenda';
+import { Usuarios } from '../interfaces/usuarios';
 
 
 @Injectable({
@@ -9,7 +9,7 @@ import { IAgenda } from '../interfaces/iagenda';
 })
 export class BdLocalService {
 
-  agenda: IAgenda[]=[];
+  agenda: Usuarios[]=[];
   private _storage: Storage | null = null;
 
   constructor(private storage: Storage, public toastController: ToastController) {
@@ -18,17 +18,30 @@ export class BdLocalService {
     this.cargarContactos();
   }
 
-  guardarContacto(nombre:string, nro:string){
+  guardarContacto(id:number,nombre:string, apellido:string, correo:string, contrasena:string, ){
     //creo una consulta lambda para saber si este nuevo contacto no existe ya
-    const existe= this.agenda.find(c=>c.strNumero===nro);
+    const existe= this.agenda.find(c=>c.strCorreo===correo);
     if (!existe) {
-      this.agenda.unshift({strNombre:nombre,strNumero:nro})
+      this.agenda.unshift({numIdUsuario:id,strNombre:nombre,strApellido:apellido,strCorreo:correo,strContrasena:contrasena})
       this._storage.set('agenda',this.agenda);
-      this.presentToast("Contacto Agregado con Exito!!")
+      this.presentToast("Usuario agregado con exito.")
     } else {
-      this.presentToast("Error: Contacto YA Existe!!")
+      this.presentToast("Error. Usuario ya existe.")
     }
   }
+
+  obtenerUsuario(correo:string){
+    return this.agenda.find(c=>c.strCorreo===correo);
+  }
+
+  generarIdUsuario(){
+    if (this.agenda.length>0) {
+      return this.agenda[0].numIdUsuario+1;
+    } else {
+      return 1;
+    }
+  }
+
   async cargarContactos() {
     const miAgenda=await this.storage.get('agenda');
     if (miAgenda) {

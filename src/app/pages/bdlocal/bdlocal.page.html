@@ -8,9 +8,17 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-      <ion-input type="text" placeholder="Ingrese nombre" [(ngModel)]="nombre"></ion-input>
-      <ion-input type="text" placeholder="Ingrese numero" [(ngModel)]="nro"></ion-input>
-      <ion-button shape="block" (click)="guardar()">Guardar</ion-button>
-
+    <ion-input type="text" placeholder="Ingrese Nombre" [(ngModel)]="nombre"></ion-input>
+    <ion-input type="text" placeholder="Ingrese Apellido" [(ngModel)]="apellido"></ion-input>
+    <ion-input type="text" placeholder="Ingrese Correo" [(ngModel)]="correo"></ion-input>
+    <ion-input type="password" placeholder="Ingrese Contraseña" [(ngModel)]="contrasena"></ion-input>
+    <ion-button shape="block" (click)="guardar()">Guardar</ion-button>
   </ion-card>
+
+  <ion-card>
+    <ion-input type="text" placeholder="Ingrese Correo" [(ngModel)]="correo"></ion-input>
+    <ion-button shape="block" (click)="obtener()">Nombre Usuario</ion-button>
+    <ion-text *ngIf="nombrecompleto">{{nombrecompleto}}</ion-text>
+  </ion-card>
+
 </ion-content>

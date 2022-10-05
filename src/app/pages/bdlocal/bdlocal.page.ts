@@ -10,12 +10,22 @@ import { BdLocalService } from '../../services/bd-local.service';
 export class BdlocalPage {
 
   nombre:string;
-  nro:string;
+  apellido:string;
+  correo:string;
+  contrasena:string;
+
+  nombrecompleto:string;
 
   constructor(public bdlocalservice: BdLocalService) {}
 
   guardar(){
-    this.bdlocalservice.guardarContacto(this.nombre,this.nro)
+    let id = this.bdlocalservice.generarIdUsuario();
+    this.bdlocalservice.guardarContacto(id,this.nombre, this.apellido, this.correo, this.contrasena)
+  }
+
+  obtener(){
+    let usuario = this.bdlocalservice.obtenerUsuario(this.correo);
+    this.nombrecompleto = usuario.strNombre + " " + usuario.strApellido;
   }
 
 }
