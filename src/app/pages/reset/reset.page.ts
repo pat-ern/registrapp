@@ -2,33 +2,28 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { BdLocalService } from 'src/app/services/bd-local.service';
 
 @Component({
   selector: 'app-reset',
   templateUrl: './reset.page.html',
   styleUrls: ['./reset.page.scss'],
 })
+
 export class ResetPage implements OnInit {
 
-  constructor(private toastController: ToastController) { }
+  constructor(
+    private toastController: ToastController,
+    private bdlocalservice: BdLocalService) { }
 
   user={
     email:""
   }
 
-  usuario1={
-    email:"p.cortes@duocuc.cl",
-    password:"123456789"
-  }
-
-  usuario2={
-    email:"correo@correo.com",
-    password:"asdf"
-  }
-
   errores=[
     {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
   ]
+
   recuperarForm= new FormGroup({
     emailForm: new FormControl('',[Validators.required]),
   });
@@ -42,28 +37,27 @@ export class ResetPage implements OnInit {
       //cssClass: 'custom-toast',
       color: "dark"
     });
-
     await toast.present();
   }
 
   datosError="Ese correo no esta registrado"
   errorBoolean=false;
+
   verificar(){
     this.errorBoolean=false;
     if(!this.recuperarForm.valid){
       return false;
     } else {
-      if(this.user.email==this.usuario1.email || this.user.email==this.usuario2.email){
-        this.presentToast('bottom');
-      } else {
+      let usuario = this.bdlocalservice.obtenerUsuario(this.user.email);
+      if(usuario == null){
         this.errorBoolean=true;
+      } else {
+        this.presentToast('bottom');
       }
+
     }
   }
 
-  
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

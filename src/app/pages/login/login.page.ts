@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Animation, AnimationController } from '@ionic/angular';
 
+import { BdLocalService } from '../../services/bd-local.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -52,7 +54,10 @@ export class LoginPage implements OnInit {
     passForm: new FormControl('',[Validators.required]),
   });
 
-  constructor(private router: Router, private animationCtrl: AnimationController) { }
+  constructor(
+    private router: Router, 
+    private animationCtrl: AnimationController,
+    private bdlocalservice: BdLocalService) { }
 
   ngOnInit() {
     
@@ -143,11 +148,25 @@ export class LoginPage implements OnInit {
           user: this.user
         }
       };
-      if(this.user.email==this.usuario1.email && this.user.password==this.usuario1.password || this.user.email==this.usuario2.email && this.user.password==this.usuario2.password){
-        this.router.navigate(['/home'],NavigationExtras)
-      } else {
+
+      let usuario = this.bdlocalservice.obtenerUsuario(this.user.email);
+
+      if(usuario == null){
         this.errorBoolean=true;
-        //console.log("error")
+        this.datosError="Usuario no existe"
+      } else {
+        if(usuario.strContrasena == this.user.password){
+          this.router.navigate(["/home"], NavigationExtras);
+        } else {
+          this.errorBoolean=true;
+          this.datosError="Usuario y contraseña no coinciden"
+        }
+
+      //if(this.user.email==this.usuario1.email && this.user.password==this.usuario1.password || this.user.email==this.usuario2.email && this.user.password==this.usuario2.password){
+      //  this.router.navigate(['/home'],NavigationExtras)
+      //} else {
+      //  this.errorBoolean=true;
+      //  //console.log("error")
       }
       
     }
