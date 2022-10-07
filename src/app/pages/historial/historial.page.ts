@@ -24,12 +24,12 @@ export class HistorialPage implements OnInit {
   }
 
   ionViewWillEnter(){
-    this.getUsuarios(); // la funcion que obtiene los datos del api y los guarda en la variable listaAsignaturas
+    this.crearListaAsignaturas(); // la funcion que obtiene los datos del api y los guarda en la variable listaAsignaturas
     //this.getPosts();
   }
 
-  getUsuarios(){
-    this.api.getUsuarios().subscribe((data)=>{
+  crearListaAsignaturas(){
+    this.api.getAsignaturas().subscribe((data)=>{
       this.listaAsignaturas = data.asignatura; // data es el json que devuelve el api, asignatura es el nombre del array
       console.log(this.listaAsignaturas);
     });

@@ -23,13 +23,14 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getUsuario(userId):Observable<any>{
-    return this.http.get(this.apiURL+'/users/'+userId).pipe(
+  // aun no encuentro la manera de hacer esto con la api de github
+  getAsignatura(asigId):Observable<any>{
+    return this.http.get(this.apiURL+'/users/'+asigId).pipe(
       retry(3)
     );
   }
 
-  getUsuarios():Observable<any>{
+  getAsignaturas():Observable<any>{
     return this.http.get(this.apiURL).pipe(
       retry(3)
     );
