@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class ApiService {
+
   httpOptions = {
     headers: new HttpHeaders
       ({
@@ -16,20 +17,31 @@ export class ApiService {
         'Access-Control-Allow-Origin': '*'
       })
   } // Se establece la base url del API a consumir
- apiURL = 'https://pcortesduoc.github.io/movilApi/; // Fuente Original funciona solo get
+  
+ apiURL = 'https://pcortesduoc.github.io/movilApi/clase.json' // Fuente Original funciona solo get
  //apiURL = 'http://192.168.0.6:3000'; // Ejecuta json-server -H ip .\db.json para ejecutar un Fake APIRest
 
   constructor(private http: HttpClient) { }
+
   getUsuario(userId):Observable<any>{
     return this.http.get(this.apiURL+'/users/'+userId).pipe(
       retry(3)
     );
   }
+
   getUsuarios():Observable<any>{
-    return this.http.get(this.apiURL+'/users/').pipe(
+    return this.http.get(this.apiURL).pipe(
       retry(3)
     );
   }
+
+  // getUsuarios():Observable<any>{
+  //   return this.http.get(this.apiURL+'/users/').pipe(
+  //     retry(3)
+  //   );
+  //  }
+
+
   getPosts(): Observable<any> {
     return this.http.get(this.apiURL + '/posts/').pipe(retry(3));
   }
