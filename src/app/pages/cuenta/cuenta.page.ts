@@ -15,7 +15,6 @@ export class CuentaPage implements OnInit {
   constructor(private sesion: SesionService) { }
 
   rescatarDatos() {
-    console.log('Se esta intentando rescatar el correo del usuario...');
     this.nombre = this.sesion.nombre;
     this.apellido = this.sesion.apellido;
     this.correo = this.sesion.correo;
@@ -23,7 +22,6 @@ export class CuentaPage implements OnInit {
 
   ngOnInit() {
     this.rescatarDatos();
-    console.log(this.correo);
   }
 
 }

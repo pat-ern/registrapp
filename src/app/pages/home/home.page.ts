@@ -16,8 +16,11 @@ export class HomePage {
   @ViewChild('titulo', { read: ElementRef, static: true }) titulo: ElementRef;
   @ViewChild('qr', { read: ElementRef, static: true }) qr: ElementRef;
 
-  //variable para almacenar usuario con correo y contraseña
+  //variable para almacenar usuario con correo y contraseña que vienen de login
   usuario: any; 
+
+  // correo a mostrar en home
+  correo: string = this.sesion.correo;
 
   constructor(
     private menu: MenuController, 
