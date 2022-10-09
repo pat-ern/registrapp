@@ -5,21 +5,25 @@ import { SesionService } from 'src/app/services/sesion.service';
   selector: 'app-cuenta',
   templateUrl: './cuenta.page.html',
   styleUrls: ['./cuenta.page.scss'],
-  providers: [SesionService]
 })
 export class CuentaPage implements OnInit {
 
-  correoUsuario: String;
+  nombre: string;
+  apellido: string;
+  correo: String;
 
   constructor(private sesion: SesionService) { }
 
-  rescatarCorreo() {
-    this.correoUsuario = this.sesion.correoUsuario;
+  rescatarDatos() {
+    console.log('Se esta intentando rescatar el correo del usuario...');
+    this.nombre = this.sesion.nombre;
+    this.apellido = this.sesion.apellido;
+    this.correo = this.sesion.correo;
   }
 
   ngOnInit() {
-    this.rescatarCorreo();
-    console.log(this.correoUsuario);
+    this.rescatarDatos();
+    console.log(this.correo);
   }
 
 }

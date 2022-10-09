@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AnimationController } from '@ionic/angular';
 
-import { BdLocalService } from '../../services/bd-local.service';
+import { SesionService } from '../../services/sesion.service';
 
 @Component({
   selector: 'app-login',
@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router, 
     private animationCtrl: AnimationController,
-    private bdlocalservice: BdLocalService) { }
+    private sesion: SesionService) { }
 
   ngOnInit() {}
 
@@ -87,13 +87,17 @@ export class LoginPage implements OnInit {
         }
       };
 
-      let usuario = this.bdlocalservice.obtenerUsuario(this.usuario.correo);
+      // se consulta por usuario mediante servicio
+      let usuariobd = this.sesion.consultarUsuario(this.usuario.correo);
 
-      if(usuario == null){
+      if(usuariobd == null){
         this.errorBoolean=true;
         this.datosError="Usuario no existe"
       } else {
-        if(usuario.strContrasena == this.usuario.contrasena){
+        if(usuariobd.strContrasena == this.usuario.contrasena){
+          // se guardan datos de usuario en servicio
+          this.sesion.guardarSesion(usuariobd.numIdUsuario,usuariobd.strNombre,usuariobd.strApellido,usuariobd.strCorreo);
+          // navegar a home
           this.router.navigate(["/home"], NavigationExtras);
         } else {
           this.errorBoolean=true;

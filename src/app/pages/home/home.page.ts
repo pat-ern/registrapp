@@ -30,11 +30,10 @@ export class HomePage {
   this.activatedRoute.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state){
       this.usuario = router.getCurrentNavigation().extras.state.user;
-      console.log('Se recibieron los datos del usuario ' + this.usuario.correo);
-      this.sesion.guardarCorreo(this.usuario.correo); // Guardar correo en sesion
+      console.log('Se recibieron los datos del usuario '+this.usuario.correo+' en la pagina home');
       this.router.navigate(['home/menu'])
     } else{
-      console.log('No se recibieron datos');
+      console.log('No se recibieron datos del usuario en la pagina home');
     }
   });
 
