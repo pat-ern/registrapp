@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild  } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Animation, AnimationController } from '@ionic/angular';
+import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
   selector: 'app-home',
@@ -10,30 +11,40 @@ import { Animation, AnimationController } from '@ionic/angular';
 })
 
 export class HomePage {
+
+  // Decoradores de elementos del DOM
   @ViewChild('titulo', { read: ElementRef, static: true }) titulo: ElementRef;
   @ViewChild('qr', { read: ElementRef, static: true }) qr: ElementRef;
 
-  data: any; //variable que puede recibir cualquier valor, para recibir email y password
+  //variable para almacenar usuario con correo y contraseña
+  usuario: any; 
 
-  constructor(private menu: MenuController, private router: Router, private activatedRoute: ActivatedRoute, private animationCtrl: AnimationController) { 
+  constructor(
+    private menu: MenuController, 
+    private router: Router, 
+    private activatedRoute: ActivatedRoute, 
+    private animationCtrl: AnimationController,
+    private sesion: SesionService
+    ) { 
 
   this.activatedRoute.queryParams.subscribe(params => {
     if (this.router.getCurrentNavigation().extras.state){
-      this.data = router.getCurrentNavigation().extras.state.user;
-      console.log(this.data)
-      console.log("^^^^if")
+      this.usuario = router.getCurrentNavigation().extras.state.user;
+      console.log('Se recibieron los datos del usuario ' + this.usuario.correo);
+      this.sesion.guardarCorreo(this.usuario.correo); // Guardar correo en sesion
       this.router.navigate(['home/menu'])
     } else{
-      console.log(this.data)
-      console.log("^^^^else")
-      /*
-      this.router.navigate(["/login"])
-      */
+      console.log('No se recibieron datos');
     }
   });
-  }
+
+  } // fin constructor
 
   ngAfterViewInit() {
+
+    
+
+    // Animacion de titulo
     const titulo = this.animationCtrl.create()
       .addElement(this.titulo.nativeElement)
       .keyframes([
@@ -42,6 +53,7 @@ export class HomePage {
         { offset: 1, transform: 'scale(1) rotate(0)' }
       ]);
 
+    // Animacion de qr
     const qr = this.animationCtrl.create()
       .addElement(this.qr.nativeElement)
       .keyframes([
@@ -50,6 +62,7 @@ export class HomePage {
         { offset: 1, transform: 'scale(1) rotate(0)' }
       ]);
 
+    // Animacion de titulo y qr
     const animacion = this.animationCtrl
       .create()
       .duration(2000)
@@ -58,29 +71,7 @@ export class HomePage {
       //.addAnimation([hola1, squareA, squareB, squareC, otra]);
 
     animacion.play();
-  }
 
-  user={
-    email:"",
-    password:""
-  }
-
-  
-  ngOnDestroy(){
-    /*
-    this.user.email = '';
-    this.user.password = '';
-    let NavigationExtras: NavigationExtras = {
-      state: {
-        user: this.user
-      }
-    };
-    console.log(this.user)
-    */
-    console.log("home on destroy")
-    /*
-    this.router.navigate(['/login'],NavigationExtras)
-    */
   }
   
 }

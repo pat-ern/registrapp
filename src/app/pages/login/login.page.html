@@ -11,7 +11,7 @@
       <form action="" [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-item>
           <ion-label position="floating">Usuario</ion-label>
-          <ion-input type="email" [(ngModel)]="user.email" required formControlName="emailForm"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->
+          <ion-input type="email" [(ngModel)]="usuario.correo" required formControlName="emailForm"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->
           <div *ngFor="let er of errores">
             <ng-container *ngIf="loginForm.get('emailForm').hasError(er.tipo) && (loginForm.get('emailForm').touched || loginForm.get('emailForm').dirty)">
               <p style="color: brown;">{{er.mensaje}}</p>
@@ -20,7 +20,7 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="user.password" required formControlName="passForm"></ion-input>
+          <ion-input type="password" [(ngModel)]="usuario.contrasena" required formControlName="passForm"></ion-input>
           <div *ngFor="let er of errores">
             <ng-container *ngIf="loginForm.get('passForm').hasError(er.tipo) && (loginForm.get('passForm').touched || loginForm.get('passForm').dirty)">
               <p style="color: brown;">{{er.mensaje}}</p>

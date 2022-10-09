@@ -46,9 +46,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/bdlocal/bdlocal.module').then( m => m.BdlocalPageModule)
   },
   {
+    path: 'cuenta',
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
+
 
 ];
 

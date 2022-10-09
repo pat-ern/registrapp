@@ -16,9 +16,9 @@ export class LoginPage implements OnInit {
 
   @ViewChild('logo', { read: ElementRef, static: true }) logo: ElementRef;
 
-  user={
-    email:"",
-    password:""
+  usuario={
+    correo:"",
+    contrasena:""
   }
 
   isSubmitted = false;
@@ -41,9 +41,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter(){
-    this.user={
-      email:"",
-      password:""
+    this.usuario={
+      correo:"",
+      contrasena:""
     }
   }
 
@@ -83,17 +83,17 @@ export class LoginPage implements OnInit {
     } else {
       let NavigationExtras: NavigationExtras = {
         state: {
-          user: this.user
+          user: this.usuario
         }
       };
 
-      let usuario = this.bdlocalservice.obtenerUsuario(this.user.email);
+      let usuario = this.bdlocalservice.obtenerUsuario(this.usuario.correo);
 
       if(usuario == null){
         this.errorBoolean=true;
         this.datosError="Usuario no existe"
       } else {
-        if(usuario.strContrasena == this.user.password){
+        if(usuario.strContrasena == this.usuario.contrasena){
           this.router.navigate(["/home"], NavigationExtras);
         } else {
           this.errorBoolean=true;

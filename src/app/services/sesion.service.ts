@@ -5,8 +5,13 @@ import { Injectable } from '@angular/core';
 })
 export class SesionService {
 
-  public idUsuario: number;
+  correoUsuario: String = 'Usuario en pagina cuenta';
 
   constructor() { }
+
+  public guardarCorreo(correo: string) {
+    this.correoUsuario = correo;
+    console.log('Correo guardado en sesion');
+  }
   
 }

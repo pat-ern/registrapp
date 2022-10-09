@@ -14,10 +14,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { IonicStorageModule } from '@ionic/storage-angular';
 
+// Servicios
+import { SesionService } from './services/sesion.service';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, ReactiveFormsModule, IonicStorageModule.forRoot(),HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite, SesionService],
   bootstrap: [AppComponent],
 })
 
