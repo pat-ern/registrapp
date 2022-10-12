@@ -12,12 +12,12 @@ export class HistorialPage implements OnInit {
 
   listaAsignaturas: any;
 
-  id:any;
-  codigo:any;
-  nombre: any;
-  seccion: any;
-  profesor: any;
-  sede: any;
+  //id:any;
+  //codigo:any;
+  //nombre: any;
+  //seccion: any;
+  //profesor: any;
+  //sede: any;
 
   constructor(private router: Router, private api: ApiService) { 
     this.router.navigate(['historial/menu'])
