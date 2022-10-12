@@ -2,6 +2,8 @@
 proyecto app moviles duoc uc
 https://pcortesduoc.github.io/movilApi/clase.json
 
+https://ionicframework.com/docs/native/camera-preview
+
 ## TO DO
 - [X] Login
     - [X] Recibir correo y contrasenna, y pasarlo a otras paginas
