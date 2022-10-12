@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//import { Camera } from '@awesome-cordova-plugins/camera/ngx';
+import { CameraService } from '../../services/camera.service';
 
 @Component({
   selector: 'app-scan',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScanPage implements OnInit {
 
-  constructor() { }
+  constructor(private camera: CameraService) { }
+  
 
   ngOnInit() {
+  }
+
+  cameraFuncion(){
+    this.camera.takePicture()
   }
 
 }

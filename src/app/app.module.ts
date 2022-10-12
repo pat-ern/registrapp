@@ -21,8 +21,8 @@ import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, ReactiveFormsModule, IonicStorageModule.forRoot(),HttpClientModule,Camera],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite, SesionService],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, ReactiveFormsModule, IonicStorageModule.forRoot(),HttpClientModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, SQLite, SesionService,Camera],
   bootstrap: [AppComponent],
 })
 
