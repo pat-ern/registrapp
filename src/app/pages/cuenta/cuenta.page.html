@@ -21,9 +21,9 @@
             
             <ion-item>
               <ion-label position="stacked">Nombre</ion-label>
-              <ion-input type="text" value="{{nombre}}" readonly></ion-input>
+              <ion-input type="text" value="{{ nombre | titlecase }}" readonly></ion-input>
               <ion-label position="stacked">Apellido</ion-label>
-              <ion-input type="text" value="{{apellido}}" readonly></ion-input>
+              <ion-input type="text" value="{{ apellido | titlecase }}" readonly></ion-input>
               <ion-label position="stacked">Correo</ion-label>
               <ion-input type="text" value="{{correo}}" readonly></ion-input>
             </ion-item>
