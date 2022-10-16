@@ -1,5 +1,8 @@
 # registrapp
 proyecto app moviles duoc uc
+https://pcortesduoc.github.io/movilApi/clase.json
+
+https://ionicframework.com/docs/native/camera-preview
 
 ## TO DO
 - [X] Login

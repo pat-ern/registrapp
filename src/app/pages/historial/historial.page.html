@@ -1,0 +1,28 @@
+<app-boton-menu></app-boton-menu>
+
+<ion-content>
+  
+  <ion-app>
+    <app-menu></app-menu>
+
+    <div class="ion-page" id="main">
+      <ion-content class="ion-margin">
+        <ion-list>
+          <ion-item *ngFor="let a of listaOrdenada ">
+            <!--Mostrar asignaturas del lunes-->
+            <ion-label>{{ a.codigo | uppercase }}</ion-label>
+            <ion-label>{{ a.dia | titlecase }}</ion-label>
+            <ion-label>{{ a.hora }}</ion-label>
+            <mat-icon *ngIf="a">check</mat-icon>
+          </ion-item>
+        </ion-list>
+        <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
+      </ion-content>
+    </div>
+
+  </ion-app>
+  
+</ion-content>
+
+
+

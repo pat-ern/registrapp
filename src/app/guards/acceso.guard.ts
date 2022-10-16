@@ -15,11 +15,13 @@ export class AccesoGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const hora = new Date().getHours();
-    console.log(hora);
 
-    if (hora >= 14 && hora <= 24) {
+    let horaInicio = 18;
+    let horaFin = 24;
+
+    if (hora >= horaInicio && hora <= horaFin) {
       this.router.navigate(['home']);
-      console.log('No puede acceder despues de las '+hora+' horas');
+      console.log('AccesoGuard: No puede acceder entre las '+horaInicio+' y las '+horaFin+' horas');
       return false;
     } 
 
