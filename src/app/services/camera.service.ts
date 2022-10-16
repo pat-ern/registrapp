@@ -10,6 +10,7 @@ export class CameraService {
 
 
   takePicture(){
+
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -25,6 +26,7 @@ export class CameraService {
     }, (err) => {
     // Handle error
     });
+
   }
   
 

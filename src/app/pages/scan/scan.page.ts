@@ -11,9 +11,7 @@ export class ScanPage implements OnInit {
 
   constructor(private camera: CameraService) { }
   
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   cameraFuncion(){
     this.camera.takePicture()

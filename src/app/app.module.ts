@@ -18,7 +18,6 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { SesionService } from './services/sesion.service';
 import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, ReactiveFormsModule, IonicStorageModule.forRoot(),HttpClientModule],
