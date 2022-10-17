@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 //import { Camera } from '@awesome-cordova-plugins/camera/ngx';
 import { CameraService } from '../../services/camera.service';
 
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-
 @Component({
   selector: 'app-scan',
   templateUrl: './scan.page.html',
@@ -11,28 +9,12 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 })
 export class ScanPage implements OnInit {
 
-  code: any;
-
-  constructor(
-    private camera: CameraService,
-    private scanner: BarcodeScanner
-    ) { }
+  constructor(private camera: CameraService) { }
   
-  ngOnInit() {
-    this.startScan();
-  }
+  ngOnInit() {}
 
-  //cameraFuncion(){
-  //  this.camera.takePicture()
-  //}
-
-  startScan(){
-  this.scanner.scan().then(barcodeData => {
-    console.log('Barcode data', barcodeData);
-    this.code = barcodeData.text;
-   }).catch(err => {
-       console.log('Error', err);
-   });
+  cameraFuncion(){
+    this.camera.takePicture()
   }
 
 }
