@@ -2,10 +2,14 @@
 </ion-header>
 
 <ion-content>
+  <!--
   <div id="scan" class="ion-text-center" [routerLink]="['/clase']">
     <img src="assets/img/qrcode.jpeg" alt="usuario" width="150px" height="auto">
-  </div>
+  </div>-->
   <div class="ion-text-center">
-    <ion-button (click)="cameraFuncion()">Foto</ion-button>
+    <ion-button (click)="startScan()">Escanear</ion-button>
   </div>
+  <ion-text>
+    <p>Resultado: {{code}}</p>
+  </ion-text>
 </ion-content>
