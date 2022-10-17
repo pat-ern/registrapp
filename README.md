@@ -6,6 +6,7 @@ https://ionicframework.com/docs/native/camera-preview
 
 ## TO DO
 - [ ] Cambiar guard para que no permita scanear codigo despues de 30 min de cada clase
+    - investigar como leer una hora universal en vez de la hora del dispositivo
     - la profe tambien dijo que podriamos usar algo distinto al de la hora
 - [ ] Cambiar local storage para que guarde alguna otra cosa, y usar sqlite para usuario y contraseña
     - la profe dijo que se podria poner usuario y contraseña en un json y hacer la validacion asi
