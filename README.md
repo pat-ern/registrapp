@@ -6,8 +6,12 @@ https://ionicframework.com/docs/native/camera-preview
 
 ## TO DO
 - [ ] Cambiar guard para que no permita scanear codigo despues de 30 min de cada clase
+    - la profe tambien dijo que podriamos usar algo distinto al de la hora
 - [ ] Cambiar local storage para que guarde alguna otra cosa, y usar sqlite para usuario y contraseña
+    - la profe dijo que se podria poner usuario y contraseña en un json y hacer la validacion asi
 - [ ] agregar escaneo qr https://ionicframework.com/docs/native/barcode-scanner
+    - El qr debe tener información relevante como la seccion de la clase y el horario por ej
+    - ¿como evitar que alguien vea el qr desde su casa y se ponga presente? ¿como evitar que creen un qr nuevo con la misma info y la usen?
 - [ ] ppt
 
 
