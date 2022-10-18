@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -23,25 +22,13 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // aun no encuentro la manera de hacer esto con la api de github
-  getAsignatura(asigId):Observable<any>{
-    return this.http.get(this.apiURL+'/users/'+asigId).pipe(
-      retry(3)
-    );
-  }
-
   getAsignaturas():Observable<any>{
     return this.http.get(this.apiURL).pipe(
       retry(3)
     );
   }
 
-  // getUsuarios():Observable<any>{
-  //   return this.http.get(this.apiURL+'/users/').pipe(
-  //     retry(3)
-  //   );
-  //  }
-
+  // otros metodos
 
   getPosts(): Observable<any> {
     return this.http.get(this.apiURL + '/posts/').pipe(retry(3));

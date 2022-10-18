@@ -2,10 +2,31 @@
 </ion-header>
 
 <ion-content>
-  <div id="scan" class="ion-text-center" [routerLink]="['/clase']">
-    <img src="assets/img/qrcode.jpeg" alt="usuario" width="150px" height="auto">
-  </div>
-  <div class="ion-text-center">
-    <ion-button (click)="cameraFuncion()">Foto</ion-button>
-  </div>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        Tu clase es:
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <ion-item>
+        <ion-label position="stacked">Asignatura:</ion-label>
+        <ion-input type="text" value="{{ clase.asignatura | titlecase }}" readonly></ion-input>
+        <ion-label position="stacked">Secci&oacute;n:</ion-label>
+        <ion-input type="text" value="{{ clase.seccion | uppercase }}" readonly></ion-input>
+        <ion-label position="stacked"> Docente:</ion-label>
+        <ion-input type="text" value="{{ clase.profesor | titlecase }}" readonly></ion-input>
+        <ion-label position="stacked"> Fecha:</ion-label>
+        <ion-input type="text" value="{{ clase.fecha }}" readonly></ion-input>
+        <ion-label position="stacked"> Hora:</ion-label>
+        <ion-input type="text" value="{{ clase.hora }}" readonly></ion-input>
+      </ion-item>
+    </ion-card-content>
+    <ion-button color="tertiary" expand="block" (click)="registrarAsistencia()" [routerLink]="['/home']">Registrar Asistencia</ion-button>
+    <ion-button color="medium" expand="block" (click)="startScan()">Escanear Nuevamente</ion-button>
+  </ion-card>
+
 </ion-content>
+
+

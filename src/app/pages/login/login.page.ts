@@ -4,6 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AnimationController } from '@ionic/angular';
 
+// Servicios
 import { SesionService } from '../../services/sesion.service';
 
 @Component({
@@ -48,7 +49,6 @@ export class LoginPage implements OnInit {
   }
 
   ngAfterViewInit() {
-
     // Animacion logo
     const logo = this.animationCtrl.create()
       .addElement(this.logo.nativeElement)
@@ -63,7 +63,6 @@ export class LoginPage implements OnInit {
       .iterations(1)
       .addAnimation([logo]);
     animacion.play();
-
   }
 
   ngOnDestroy(){

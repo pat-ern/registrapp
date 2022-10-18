@@ -21,10 +21,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/reset/reset.module').then( m => m.ResetPageModule)
   },
   {
-    path: 'clase',
-    loadChildren: () => import('./pages/clase/clase.module').then( m => m.ClasePageModule)
-  },
-  {
     path: 'scan',
     loadChildren: () => import('./pages/scan/scan.module').then( m => m.ScanPageModule),
     canActivate: [AccesoGuard]

@@ -16,8 +16,8 @@ export class AccesoGuard implements CanActivate {
 
     const hora = new Date().getHours();
 
-    let horaInicio = 18;
-    let horaFin = 24;
+    let horaInicio = 5;
+    let horaFin = 7;
 
     if (hora >= horaInicio && hora <= horaFin) {
       this.router.navigate(['home']);

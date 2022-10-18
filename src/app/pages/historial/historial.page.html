@@ -8,15 +8,17 @@
     <div class="ion-page" id="main">
       <ion-content class="ion-margin">
         <ion-list>
-          <ion-item *ngFor="let a of listaOrdenada ">
+          <ion-item *ngFor="let a of listaAsistencia">
             <!--Mostrar asignaturas del lunes-->
-            <ion-label>{{ a.codigo | uppercase }}</ion-label>
-            <ion-label>{{ a.dia | titlecase }}</ion-label>
-            <ion-label>{{ a.hora }}</ion-label>
-            <mat-icon *ngIf="a">check</mat-icon>
+            <ion-label>{{ a.strAsignatura | uppercase }}</ion-label>
+            <ion-label>{{ a.strFecha }}</ion-label>
+            <ion-label>{{ a.strHora }}</ion-label>
+            <mat-icon *ngIf="a.estaPresente">check_circle</mat-icon>
+            <mat-icon *ngIf="!a.estaPresente">cancel</mat-icon>
           </ion-item>
         </ion-list>
         <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
+        <ion-button color="danger" expand="block" (click)="borrarHistorial()">Borrar Historial</ion-button>
       </ion-content>
     </div>
 
