@@ -6,6 +6,7 @@ import { AnimationController } from '@ionic/angular';
 
 // Servicios
 import { SesionService } from '../../services/sesion.service';
+import { ApiUsuarioService } from 'src/app/services/api-usuario.service';
 
 @Component({
   selector: 'app-login',
@@ -37,9 +38,12 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router, 
     private animationCtrl: AnimationController,
-    private sesion: SesionService) { }
+    private sesion: SesionService,
+    private api: ApiUsuarioService,) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.api.funcionGet();
+  }
 
   ionViewWillEnter(){
     this.usuario={
@@ -75,6 +79,8 @@ export class LoginPage implements OnInit {
   errorBoolean=false;
 
   login(){
+    let usuariobd = this.api.consultarUsuario(this.usuario.correo);
+      console.log(usuariobd)
     this.errorBoolean=false;
     this.isSubmitted = true;
     if(!this.loginForm.valid){
@@ -87,15 +93,18 @@ export class LoginPage implements OnInit {
       };
 
       // se consulta por usuario mediante servicio
-      let usuariobd = this.sesion.consultarUsuario(this.usuario.correo);
+      
 
       if(usuariobd == null){
         this.errorBoolean=true;
         this.datosError="Usuario no existe"
       } else {
-        if(usuariobd.strContrasena == this.usuario.contrasena){
+        console.log(usuariobd.contrasena)
+        console.log(this.usuario.contrasena)
+        if(usuariobd.contrasena == this.usuario.contrasena){
           // se guardan datos de usuario en servicio
-          this.sesion.guardarSesion(usuariobd.numIdUsuario,usuariobd.strNombre,usuariobd.strApellido,usuariobd.strCorreo);
+          this.sesion.guardarSesion(usuariobd.id,usuariobd.nombre,usuariobd.apellido,usuariobd.correo);
+          
           // navegar a home
           this.router.navigate(["/home"], NavigationExtras);
         } else {
