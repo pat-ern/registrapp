@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
 
 // Servicios
 import { ApiService } from 'src/app/services/api.service';
@@ -8,7 +7,6 @@ import { BdLocalService } from 'src/app/services/bd-local.service';
 
 // Plugins
 import { BarcodeScanner, BarcodeScanResult, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-scan',
@@ -31,12 +29,9 @@ export class ScanPage implements OnInit {
 
   constructor(
     private scanner: BarcodeScanner,
-    private toastController: ToastController,
     private api: ApiService,
     private bdlocal: BdLocalService,
-    private sesion: SesionService,
-    private router: Router
-    ) { }
+    private sesion: SesionService) { }
   
   ngOnInit() {
     console.log('ngOnInit')

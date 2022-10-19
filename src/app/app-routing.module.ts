@@ -14,7 +14,8 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
+    canActivate: [AccesoGuard]
   },
   {
     path: 'reset',
@@ -27,23 +28,23 @@ const routes: Routes = [
   },
   {
     path: 'historial',
-    loadChildren: () => import('./pages/historial/historial.module').then( m => m.HistorialPageModule)
+    loadChildren: () => import('./pages/historial/historial.module').then( m => m.HistorialPageModule),
+    canActivate: [AccesoGuard]
   },
   {
     path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule),
+    canActivate: [AccesoGuard]
   },
   {
     path: 'lista',
-    loadChildren: () => import('./pages/lista/lista.module').then( m => m.ListaPageModule)
+    loadChildren: () => import('./pages/lista/lista.module').then( m => m.ListaPageModule),
+    canActivate: [AccesoGuard]
   },  
   {
-    path: 'bdlocal',
-    loadChildren: () => import('./pages/bdlocal/bdlocal.module').then( m => m.BdlocalPageModule)
-  },
-  {
     path: 'cuenta',
-    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule)
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    canActivate: [AccesoGuard]
   },
   {
     path: '**',

@@ -28,7 +28,6 @@ export class ApiUsuarioService {
     );
   }
 
-
   usuario = {
     id: null,
     run : null,
@@ -43,7 +42,6 @@ export class ApiUsuarioService {
   funcionGet(){
     this.getUsuarios().subscribe((data)=>{
       this.usuarios = data.usuario
-      console.log(data.usuario)
     })
   }
 
@@ -58,16 +56,10 @@ export class ApiUsuarioService {
           this.usuario.carrera=this.usuarios[i].carrera;
           this.usuario.correo=this.usuarios[i].correo;
           this.usuario.contrasena=this.usuarios[i].contrasena;
-          console.log(this.usuarios[i])
       }
     }
-    console.log(this.usuario)
     return this.usuario;
   }
-
-
-
-  
 
   // otros metodos
 

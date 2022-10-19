@@ -7,13 +7,15 @@ import { ApiUsuarioService } from 'src/app/services/api-usuario.service';
 })
 export class SesionService {
 
+  // variables de sesion
   id: number;
   nombre: string;
   apellido: string;
   correo: string;
   usuarios: any;
-  //usuario: any;
+  activa: boolean = false;
 
+  // variables de usuario rescatado de API
   usuario = {
     id: null,
     run : null,
@@ -29,9 +31,8 @@ export class SesionService {
     private bdlocalservice: BdLocalService,
     private api: ApiUsuarioService) { }
 
-  // solo dentro del servicio se consulta a la base de datos local para obtener los datos del usuario
+  // solo dentro del servicio se consulta a la api y se guarda en la variable usuario
   consultarUsuario(correo: string) {
-
     this.api.getUsuarios().subscribe((data)=>{
       this.usuarios = data.usuario
       console.log(data.usuario)
@@ -53,11 +54,13 @@ export class SesionService {
     return this.usuario;
   }
 
+  // este metodo se llama desde el login para guardar los datos de sesion
   guardarSesion(id: number, nombre: string, apellido: string, correo: string) {
     this.id = id;
     this.nombre = nombre;
     this.apellido = apellido;
     this.correo = correo;
+    this.activa = true;
     console.log('Se almaceno el usuario '+this.correo+' en la sesion');
   }
   

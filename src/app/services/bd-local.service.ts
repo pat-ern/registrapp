@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { Usuarios, Asistencia } from '../interfaces/modelo-local';
+import { Asistencia } from '../interfaces/modelo-local';
 
 
 @Injectable({
@@ -9,38 +9,13 @@ import { Usuarios, Asistencia } from '../interfaces/modelo-local';
 })
 export class BdLocalService {
 
-  agenda: Usuarios[]=[];
   asistencia: Asistencia[]=[];
 
   private _storage: Storage | null = null;
 
   constructor(private storage: Storage, public toastController: ToastController) {
     this.init();
-    this.cargarContactos();
     this.cargarAsistencia();
-  }
-
-  guardarContacto(id:number,nombre:string, apellido:string, correo:string, contrasena:string, ){
-    const existe= this.agenda.find(c=>c.strCorreo===correo);
-    if (!existe) {
-      this.agenda.unshift({numIdUsuario:id,strNombre:nombre,strApellido:apellido,strCorreo:correo,strContrasena:contrasena})
-      this._storage.set('agenda',this.agenda);
-      this.presentToast("Usuario agregado con exito.")
-    } else {
-      this.presentToast("Error. Usuario ya existe.")
-    }
-  }
-
-  obtenerUsuario(correo:string){
-    return this.agenda.find(c=>c.strCorreo===correo);
-  }
-
-  generarIdUsuario(){
-    if (this.agenda.length>0) {
-      return this.agenda[0].numIdUsuario+1;
-    } else {
-      return 1;
-    }
   }
 
   guardarAsistencia(id:string,alumno:string, asignatura:string, seccion:string, fecha:string, hora:string, presente:boolean){
@@ -74,13 +49,6 @@ export class BdLocalService {
     this.presentToast("Historial borrado con exito.")
   }
   //
-
-  async cargarContactos() {
-    const miAgenda=await this.storage.get('agenda');
-    if (miAgenda) {
-      this.agenda=miAgenda;
-    }
-  }
 
   async cargarAsistencia() {
     const miAsistencia=await this.storage.get('asistencia');

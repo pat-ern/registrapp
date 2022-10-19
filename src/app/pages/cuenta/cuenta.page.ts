@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SesionService } from 'src/app/services/sesion.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cuenta',
@@ -13,7 +12,7 @@ export class CuentaPage implements OnInit {
   apellido: string;
   correo: String;
 
-  constructor(private sesion: SesionService, private router: Router) { }
+  constructor(private sesion: SesionService) { }
 
   rescatarDatos() {
     this.nombre = this.sesion.nombre;
@@ -23,10 +22,6 @@ export class CuentaPage implements OnInit {
 
   ngOnInit() {
     this.rescatarDatos();
-  }
-
-  volver(){
-    this.router.navigate(["/home"]);
   }
 
 }

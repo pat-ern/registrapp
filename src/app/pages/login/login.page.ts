@@ -74,13 +74,11 @@ export class LoginPage implements OnInit {
   }
 
   // Login
-
   datosError="Usuario y contraseña no coinciden"
   errorBoolean=false;
 
   login(){
-    let usuariobd = this.api.consultarUsuario(this.usuario.correo);
-      console.log(usuariobd)
+
     this.errorBoolean=false;
     this.isSubmitted = true;
     if(!this.loginForm.valid){
@@ -92,19 +90,17 @@ export class LoginPage implements OnInit {
         }
       };
 
-      // se consulta por usuario mediante servicio
+      // se consulta por usuario mediante servicio de api
       
+      let usuarioApi = this.api.consultarUsuario(this.usuario.correo);
 
-      if(usuariobd == null){
+      if(usuarioApi.correo.length <= 1){
         this.errorBoolean=true;
         this.datosError="Usuario no existe"
       } else {
-        console.log(usuariobd.contrasena)
-        console.log(this.usuario.contrasena)
-        if(usuariobd.contrasena == this.usuario.contrasena){
-          // se guardan datos de usuario en servicio
-          this.sesion.guardarSesion(usuariobd.id,usuariobd.nombre,usuariobd.apellido,usuariobd.correo);
-          
+        if(usuarioApi.contrasena == this.usuario.contrasena){
+          // se guardan datos de usuario en servicio de sesion
+          this.sesion.guardarSesion(usuarioApi.id,usuarioApi.nombre,usuarioApi.apellido,usuarioApi.correo);
           // navegar a home
           this.router.navigate(["/home"], NavigationExtras);
         } else {

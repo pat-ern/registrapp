@@ -28,7 +28,7 @@
           </div>
         </ion-item>
         <br>
-        <ion-button color="tertiary" expand="block" type="submit" >Ingresar</ion-button> <!--(click)="login()"-->
+        <ion-button color="tertiary" expand="block" type="submit">Ingresar</ion-button>
 
           <ng-container *ngIf="errorBoolean==true">
             <p style="color: brown;">{{datosError}}</p>
@@ -40,18 +40,8 @@
 
   <ion-text class="ion-text-center">
     <a [routerLink]="['/reset']"><h4>¿Olvidaste tu contraseña?</h4></a>
-    <a [routerLink]="['/bdlocal']"><h4>¿No tienes cuenta? Registrate</h4></a>
-    <!--<a [routerLink]="['/lista']"><h4>Ir a lista</h4></a>-->
   </ion-text>
 
   <br>  
 
 </ion-content>
-
-<!--
-<ion-footer>
-      <ion-text style="padding:30%;">
-        Ayuda - Redes Sociales
-      </ion-text>
-</ion-footer> 
--->

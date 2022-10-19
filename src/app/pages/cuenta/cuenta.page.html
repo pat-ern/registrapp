@@ -10,15 +10,12 @@
 
       <ion-content class="ion-margin">
 
-        <!--Tarjeta con información de usuario-->
         <ion-card>
           <ion-card-header class="ion-text-center">
             <ion-card-title class="ion-margin">Mis Datos</ion-card-title>
             <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" id="avatar">
           </ion-card-header>
           <ion-card-content>
-            <!--foto de perfil de usuario centrada-->
-            
             <ion-item>
               <ion-label position="stacked">Nombre</ion-label>
               <ion-input type="text" value="{{ nombre | titlecase }}" readonly></ion-input>
@@ -30,7 +27,7 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-button color="tertiary" expand="block" (click)="volver()">Volver</ion-button> <!--(click)="login()"-->
+        <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button>
 
       </ion-content>
 
