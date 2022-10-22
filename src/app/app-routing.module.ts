@@ -11,19 +11,14 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
-    canActivate: [AccesoGuard]
-  },
+  },  
   {
     path: 'reset',
     loadChildren: () => import('./pages/reset/reset.module').then( m => m.ResetPageModule)
   },
   {
-    path: 'scan',
-    loadChildren: () => import('./pages/scan/scan.module').then( m => m.ScanPageModule),
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule),
     canActivate: [AccesoGuard]
   },
   {
@@ -32,25 +27,19 @@ const routes: Routes = [
     canActivate: [AccesoGuard]
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule),
+    path: 'cuenta',
+    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
     canActivate: [AccesoGuard]
   },
   {
-    path: 'lista',
-    loadChildren: () => import('./pages/lista/lista.module').then( m => m.ListaPageModule),
-    canActivate: [AccesoGuard]
-  },  
-  {
-    path: 'cuenta',
-    loadChildren: () => import('./pages/cuenta/cuenta.module').then( m => m.CuentaPageModule),
+    path: 'scan',
+    loadChildren: () => import('./pages/scan/scan.module').then( m => m.ScanPageModule),
     canActivate: [AccesoGuard]
   },
   {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-
 
 ];
 

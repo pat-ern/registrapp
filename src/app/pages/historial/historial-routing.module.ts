@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent } from '../../components/menu/menu.component';
 import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
 import { HistorialPage } from './historial.page';
@@ -10,10 +9,6 @@ const routes: Routes = [
     path: '',
     component: HistorialPage,
     children:[
-      {
-        path:'menu',
-        component: MenuComponent
-      },
       {
         path:'boton-menu',
         component: BotonMenuComponent

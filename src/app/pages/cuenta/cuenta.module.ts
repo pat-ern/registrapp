@@ -9,7 +9,6 @@ import { CuentaPageRoutingModule } from './cuenta-routing.module';
 import { CuentaPage } from './cuenta.page';
 
 // Componentes de la página
-import { MenuComponent } from '../../components/menu/menu.component';
 import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
     CuentaPageRoutingModule,
     MatIconModule,
   ],
-  declarations: [CuentaPage,MenuComponent,BotonMenuComponent]
+  declarations: [
+    CuentaPage,
+    BotonMenuComponent]
 })
 export class CuentaPageModule {}

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { BdLocalService } from 'src/app/services/bd-local.service';
 import { ApiUsuarioService } from '../../services/api-usuario.service';
 
 @Component({
@@ -15,7 +14,6 @@ export class ResetPage implements OnInit {
 
   constructor(
     private toastController: ToastController,
-    private bdlocalservice: BdLocalService,
     private api: ApiUsuarioService) { }
 
   user={

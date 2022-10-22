@@ -1,3 +1,22 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+  <ion-menu contentId="main-content" menuId="main-content" side="start" type="overlay">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        <a (click)="goToScanPage()"><ion-item><ion-icon name="qr-code-outline"></ion-icon>&nbsp;Escanear codigo QR</ion-item></a>
+        <a (click)="goToHistorialPage()"><ion-item><ion-icon name="calendar-outline"></ion-icon>&nbsp;Ultimas clases</ion-item></a>
+        <a (click)="goToCuentaPage()"><ion-item><ion-icon name="person-circle-outline"></ion-icon>&nbsp;Cuenta</ion-item></a>
+        <a (click)="goToSettingsPage()"><ion-item><ion-icon name="settings-outline"></ion-icon>&nbsp;Opciones</ion-item></a>
+        <a (click)="goToLoginPage()"><ion-item><ion-icon name="log-in-outline"></ion-icon>&nbsp;Salir</ion-item></a>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+
 </ion-app>

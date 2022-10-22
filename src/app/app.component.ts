@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SesionService } from './services/sesion.service';
+import { MenuController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +8,34 @@ import { SesionService } from './services/sesion.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  constructor() {}
+  constructor(
+    private menu: MenuController,
+    private router: Router) {}
+
+  goToScanPage() {
+    this.menu.close();
+    this.router.navigate(['/scan']);
+  }
+
+  goToHistorialPage() {
+    this.menu.close();
+    this.router.navigate(['/historial']);
+  }
+
+  goToSettingsPage() {
+    this.menu.close();
+    this.router.navigate(['/settings']);
+  }
+
+  goToCuentaPage() {
+    this.menu.close();
+    this.router.navigate(['/cuenta']);
+  }
+
+  goToLoginPage() {
+    this.menu.close();
+    this.router.navigate(['/login']);
+  }
+
+
 }
