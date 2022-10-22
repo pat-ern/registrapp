@@ -6,10 +6,10 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
 
-    <ion-item id="avatar" color="tertiary" (click)="cuenta()">
-      <ion-label id="username" slot="end">{{correo}}</ion-label>
+    <ion-item color="tertiary" id="usuario">
+      <ion-label id="nombre" slot="end">{{ nombre | titlecase }} {{ apellido | titlecase }}</ion-label>
       &nbsp;
-      <ion-avatar slot="end" >
+      <ion-avatar slot="end" (click)="cuenta()">
         <img alt="Silhouette of a person's head" src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" />
       </ion-avatar>
     </ion-item>

@@ -10,9 +10,8 @@ import { SesionService } from 'src/app/services/sesion.service';
 })
 export class BotonMenuComponent implements OnInit {
 
-  correo = this.sesion.correo;
-
-  ruta: string;
+  nombre = this.sesion.nombre;
+  apellido = this.sesion.apellido;
 
   constructor(private sesion: SesionService, private router: Router) { }
 
