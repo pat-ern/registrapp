@@ -1,74 +1,66 @@
-<app-boton-menu></app-boton-menu>
+<div class="ion-page" id="main-content">
 
-<ion-content>
-  
-  <ion-app>
+  <!--ACA PUEDE HABER UN COMPONENTE-->
+  <app-boton-menu></app-boton-menu>
+  <!--ACA PUEDE HABER UN COMPONENTE-->
 
-    <app-menu></app-menu>
-    
-    <div class="ion-page" id="main">
-      <ion-content class="ion-padding">
+  <ion-content class="ion-padding">
 
-        <ion-card-title class="ion-text-center ion-margin" #titulo>
-          <h1 id="bienvenido">¡Bienvenido!</h1>
-        </ion-card-title>
-        <!--
-        <ion-item id="avatar">
-          <ion-avatar slot="start">
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg" />
-          </ion-avatar>
-          <ion-label id="username">{{correo}}</ion-label>
-        </ion-item>
-        -->
-        <br>
+    <ion-card-title class="ion-text-center ion-margin" #titulo>
+      <h1 id="bienvenido">¡Bienvenido!</h1>
+    </ion-card-title>
 
-        <ion-card [routerLink]="['/scan']" class="ion-background-tertiary">
-          <ion-card-content class="ion-text-center" #qr>
-            <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
+    <br>
+
+    <ion-card [routerLink]="['/scan']" class="ion-background-tertiary">
+      <ion-card-content class="ion-text-center" #qr>
+        <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
+      </ion-card-content>
+      <ion-text class="ion-text-center">
+        <h4>Escanear codigo QR</h4>
+      </ion-text>
+    </ion-card>
+
+    <hr>
+
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <a [routerLink]="['/historial']"><mat-icon>spellcheck</mat-icon></a>
           </ion-card-content>
-          <ion-text class="ion-text-center">
-            <h4>Escanear codigo QR</h4>
-          </ion-text>
         </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <a [routerLink]="['/cuenta']"><mat-icon>person</mat-icon></a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-        <hr>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <a [routerLink]="['/settings']"><mat-icon>settings</mat-icon></a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col>
+        <ion-card>
+          <ion-card-content class="ion-text-center">
+            <a [routerLink]="['/login']"><mat-icon>logout</mat-icon></a>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
 
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <ion-card-content class="ion-text-center">
-                <a [routerLink]="['/historial']"><mat-icon>spellcheck</mat-icon></a>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <ion-card-content class="ion-text-center">
-                <a [routerLink]="['/cuenta']"><mat-icon>person</mat-icon></a>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+  </ion-content>
 
-        <ion-row>
-          <ion-col>
-            <ion-card>
-              <ion-card-content class="ion-text-center">
-                <a [routerLink]="['/settings']"><mat-icon>settings</mat-icon></a>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col>
-            <ion-card>
-              <ion-card-content class="ion-text-center">
-                <a [routerLink]="['/login']"><mat-icon>logout</mat-icon></a>
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-        </ion-row>
+</div>
 
-      </ion-content>
-    </div>
-  </ion-app>
-
-</ion-content>
+<!--ACA PUEDE HABER UN COMPONENTE-->
+<app-menu></app-menu>
+<!--ACA PUEDE HABER UN COMPONENTE-->

@@ -23,7 +23,7 @@ export class HomePage {
   correo: string = this.sesion.correo;
 
   constructor(
-    private menu: MenuController, 
+    private menu: MenuController,
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private animationCtrl: AnimationController,
@@ -44,8 +44,6 @@ export class HomePage {
   } // fin constructor
 
   ngAfterViewInit() {
-
-    
 
     // Animacion de titulo
     const titulo = this.animationCtrl.create()

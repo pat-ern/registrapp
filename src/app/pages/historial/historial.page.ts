@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 // Servicios
 import { ApiService } from 'src/app/services/api.service';
@@ -15,6 +16,7 @@ export class HistorialPage implements OnInit {
   listaAsistencia: any;
 
   constructor(
+    private menu: MenuController,
     private router: Router, 
     private api: ApiService,
     private bdlocal: BdLocalService) { 
@@ -27,11 +29,12 @@ export class HistorialPage implements OnInit {
     this.listaAsistencia = this.bdlocal.obtenerAsistencias();
   }
 
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.listaAsistencia = this.bdlocal.obtenerAsistencias();
   }
 
-  ngOnInit(): void { }
+  ngOnInit() {
+  }
 
   // getUsuario(userId){
   //   this.api.getUsuario(userId).subscribe((data)=>{

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
@@ -12,8 +13,12 @@ export class CuentaPage implements OnInit {
   apellido = this.sesion.apellido;
   correo = this.sesion.correo;
 
-  constructor(private sesion: SesionService) { }
+  constructor(
+    private menu: MenuController,
+    private sesion: SesionService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.menu.enable(true);
+  }
 
 }
