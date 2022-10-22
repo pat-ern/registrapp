@@ -37,6 +37,7 @@ export class HomePage {
       this.router.navigate(['home/menu'])
     } else{
       console.log('No se recibieron datos del usuario en la pagina home');
+      this.router.navigate(['home/menu'])
     }
   });
 

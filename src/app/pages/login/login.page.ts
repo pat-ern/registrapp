@@ -3,6 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AnimationController } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 
 // Servicios
 import { SesionService } from '../../services/sesion.service';
@@ -39,7 +40,8 @@ export class LoginPage implements OnInit {
     private router: Router, 
     private animationCtrl: AnimationController,
     private sesion: SesionService,
-    private api: ApiUsuarioService,) { }
+    private api: ApiUsuarioService,
+    public loadingController: LoadingController) { }
 
   ngOnInit() {
     this.api.funcionGet();

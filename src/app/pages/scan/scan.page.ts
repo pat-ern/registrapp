@@ -92,4 +92,8 @@ export class ScanPage implements OnInit {
     this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
   }
 
+  goBack(){
+    window.history.back();
+  }
+
 }

@@ -20,12 +20,16 @@ export class BdLocalService {
 
   guardarAsistencia(id:string,alumno:string, asignatura:string, seccion:string, fecha:string, hora:string, presente:boolean){
     const existe= this.asistencia.find(c=>c.strIdAsistencia===id);
-    if (!existe) {
-      this.asistencia.unshift({strIdAsistencia:id,strAlumno:alumno,strAsignatura:asignatura,strSeccion:seccion,strFecha:fecha, strHora:hora, estaPresente:presente})
-      this._storage.set('asistencia',this.asistencia);
-      this.presentToast("Asistencia registrada con exito.")
+    if (id.length <= 2) {
+      this.presentToast("Error al ingresar asistencia, intentar en el emulador")
     } else {
-      this.presentToast("Error. Asistencia ya fue registrada hoy.")
+      if (!existe) {
+        this.asistencia.unshift({strIdAsistencia:id,strAlumno:alumno,strAsignatura:asignatura,strSeccion:seccion,strFecha:fecha, strHora:hora, estaPresente:presente})
+        this._storage.set('asistencia',this.asistencia);
+        this.presentToast("Asistencia registrada con exito.")
+      } else {
+        this.presentToast("Error. Asistencia ya fue registrada hoy.")
+      }
     }
   }
 
@@ -33,7 +37,6 @@ export class BdLocalService {
     let listaAsistencias: any[] = [];
     for (let i = 0; i < this.asistencia.length; i++) {
       listaAsistencias.push(this.asistencia[i]);
-      console.log(listaAsistencias);
     }
     return listaAsistencias;
   }
