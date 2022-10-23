@@ -6,13 +6,11 @@
 
   <ion-content class="ion-padding">
 
-    <ion-card-title class="ion-text-center ion-margin" #titulo>
+    <div class="ion-text-center ion-margin" #titulo>
       <ion-text id="bienvenido">¡Bienvenid@!</ion-text>
-    </ion-card-title>
+    </div>
 
-    <br>
-
-    <ion-card [routerLink]="['/scan']" class="ion-background-tertiary">
+    <ion-card [routerLink]="['/scan']">
       <ion-card-content class="ion-text-center" #qr>
         <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
       </ion-card-content>
@@ -20,8 +18,6 @@
         <h4>Escanear codigo QR</h4>
       </ion-text>
     </ion-card>
-
-    <hr>
 
     <ion-row>
       <ion-col>
