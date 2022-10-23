@@ -1,8 +1,4 @@
-<ion-header>
-</ion-header>
-
 <ion-content>
-
   <ion-card>
     <ion-card-header>
       <ion-card-title class="ion-text-center">
@@ -24,9 +20,9 @@
       </ion-item>
     </ion-card-content>
     <ion-button color="tertiary" expand="block" (click)="registrarAsistencia()" [routerLink]="['/home']">Registrar Asistencia</ion-button>
-    <ion-button color="medium" expand="block" (click)="startScan()">Escanear Nuevamente</ion-button>
+    <ion-button color="primary" expand="block" (click)="startScan()">Escanear Nuevamente</ion-button>
+    <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
   </ion-card>
-
 </ion-content>
 
 

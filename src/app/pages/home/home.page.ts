@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild  } from '@angular/core';
-import { MenuController } from '@ionic/angular';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Animation, AnimationController } from '@ionic/angular';
 import { SesionService } from 'src/app/services/sesion.service';
@@ -23,7 +22,6 @@ export class HomePage {
   correo: string = this.sesion.correo;
 
   constructor(
-    private menu: MenuController, 
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private animationCtrl: AnimationController,
@@ -34,7 +32,6 @@ export class HomePage {
     if (this.router.getCurrentNavigation().extras.state){
       this.usuario = router.getCurrentNavigation().extras.state.user;
       console.log('Se recibieron los datos del usuario '+this.usuario.correo+' en la pagina home');
-      this.router.navigate(['home/menu'])
     } else{
       console.log('No se recibieron datos del usuario en la pagina home');
     }
@@ -43,8 +40,6 @@ export class HomePage {
   } // fin constructor
 
   ngAfterViewInit() {
-
-    
 
     // Animacion de titulo
     const titulo = this.animationCtrl.create()

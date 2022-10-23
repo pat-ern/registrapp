@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
@@ -8,20 +9,16 @@ import { SesionService } from 'src/app/services/sesion.service';
 })
 export class CuentaPage implements OnInit {
 
-  nombre: string;
-  apellido: string;
-  correo: String;
+  nombre = this.sesion.nombre;
+  apellido = this.sesion.apellido;
+  correo = this.sesion.correo;
 
-  constructor(private sesion: SesionService) { }
-
-  rescatarDatos() {
-    this.nombre = this.sesion.nombre;
-    this.apellido = this.sesion.apellido;
-    this.correo = this.sesion.correo;
-  }
+  constructor(
+    private menu: MenuController,
+    private sesion: SesionService) { }
 
   ngOnInit() {
-    this.rescatarDatos();
+    this.menu.enable(true);
   }
 
 }

@@ -1,40 +1,30 @@
-<app-boton-menu></app-boton-menu>
+<div class="ion-page" id="main-content">
 
-<ion-content>
-  
-  <ion-app>
+  <!--ACA VA EL COMPONENTE DEL HEADER-->
+  <app-boton-menu></app-boton-menu>
+  <!--ACA VA EL COMPONENTE DEL HEADER-->
 
-    <app-menu></app-menu>
-    
-    <div class="ion-page" id="main">
+  <ion-content class="ion-padding">
 
-      <ion-content class="ion-margin">
+    <ion-card>
+      <ion-card-header class="ion-text-center">
+        <ion-card-title class="ion-margin">Mis Datos</ion-card-title>
+        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" id="avatar">
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input type="text" value="{{ nombre | titlecase }}" readonly></ion-input>
+          <ion-label position="stacked">Apellido</ion-label>
+          <ion-input type="text" value="{{ apellido | titlecase }}" readonly></ion-input>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input type="text" value="{{correo}}" readonly></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
 
-        <!--Tarjeta con información de usuario-->
-        <ion-card>
-          <ion-card-header class="ion-text-center">
-            <ion-card-title class="ion-margin">Mis Datos</ion-card-title>
-            <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" id="avatar">
-          </ion-card-header>
-          <ion-card-content>
-            <!--foto de perfil de usuario centrada-->
-            
-            <ion-item>
-              <ion-label position="stacked">Nombre</ion-label>
-              <ion-input type="text" value="{{ nombre | titlecase }}" readonly></ion-input>
-              <ion-label position="stacked">Apellido</ion-label>
-              <ion-input type="text" value="{{ apellido | titlecase }}" readonly></ion-input>
-              <ion-label position="stacked">Correo</ion-label>
-              <ion-input type="text" value="{{correo}}" readonly></ion-input>
-            </ion-item>
-          </ion-card-content>
-        </ion-card>
+    <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button>
 
-        <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
+  </ion-content>
 
-      </ion-content>
-
-    </div>
-  </ion-app>
-
-</ion-content>
+</div>

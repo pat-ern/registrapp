@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { BdLocalService } from 'src/app/services/bd-local.service';
+import { ApiUsuarioService } from '../../services/api-usuario.service';
 
 @Component({
   selector: 'app-reset',
@@ -14,7 +14,7 @@ export class ResetPage implements OnInit {
 
   constructor(
     private toastController: ToastController,
-    private bdlocalservice: BdLocalService) { }
+    private api: ApiUsuarioService) { }
 
   user={
     email:""
@@ -48,8 +48,10 @@ export class ResetPage implements OnInit {
     if(!this.recuperarForm.valid){
       return false;
     } else {
-      let usuario = this.bdlocalservice.obtenerUsuario(this.user.email);
-      if(usuario == null){
+
+      let usuarioApi = this.api.consultarUsuario(this.user.email);
+
+      if(usuarioApi.correo.length <= 1){
         this.errorBoolean=true;
       } else {
         this.presentToast('bottom');
@@ -58,6 +60,8 @@ export class ResetPage implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.api.funcionGet();
+  }
 
 }
