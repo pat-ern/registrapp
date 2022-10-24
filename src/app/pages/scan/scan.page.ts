@@ -78,13 +78,13 @@ export class ScanPage implements OnInit {
   }
 
   startScan(){
-  this.scanner.scan().then(barcodeData => {
-    this.code = barcodeData.text;
-    this.matchClass();
-   }).catch(err => {
-       console.log('Error', err);
-   });
-  }
+    this.scanner.scan().then(barcodeData => {
+      this.code = barcodeData.text;
+      this.matchClass();
+    }).catch(err => {
+        console.log('Error de this.scanner.scan() linea 87', err);
+    });
+    }
 
   registrarAsistencia(){
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
