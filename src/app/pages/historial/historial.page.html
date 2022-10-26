@@ -7,16 +7,27 @@
   <ion-content class="ion-padding">
   
       <ion-content class="ion-margin">
-        <ion-list>
-          <ion-item *ngFor="let a of listaAsistencia">
-            <!--Mostrar asignaturas del lunes-->
+        
+          
+            <!--Mostrar asignaturas del lunes
             <ion-label>{{ a.strAsignatura | uppercase }}</ion-label>
             <ion-label>{{ a.strFecha }}</ion-label>
             <ion-label>{{ a.strHora }}</ion-label>
             <mat-icon *ngIf="a.estaPresente">check_circle</mat-icon>
             <mat-icon *ngIf="!a.estaPresente">cancel</mat-icon>
-          </ion-item>
-        </ion-list>
+            -->
+            <ion-card *ngFor="let a of listaAsistencia">
+              <ion-card-header>
+                <ion-card-title>{{ a.strAsignatura | uppercase }}</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-label>{{ a.strFecha }}</ion-label>
+                <ion-label>{{ a.strHora }}</ion-label>
+                <mat-icon *ngIf="a.estaPresente">check_circle</mat-icon>
+                <mat-icon *ngIf="!a.estaPresente">cancel</mat-icon>
+              </ion-card-content>
+            </ion-card>
+
         <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button> <!--(click)="login()"-->
         <ion-button color="danger" expand="block" (click)="borrarHistorial()">Borrar Historial</ion-button>
       </ion-content>
