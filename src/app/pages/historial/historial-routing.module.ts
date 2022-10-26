@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
+// historial page
 import { HistorialPage } from './historial.page';
+
+// componentes
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -10,8 +14,12 @@ const routes: Routes = [
     component: HistorialPage,
     children:[
       {
-        path:'boton-menu',
-        component: BotonMenuComponent
+        path:'header',
+        component: HeaderComponent
+      },
+      {
+        path:'footer',
+        component: FooterComponent
       }
     ]
   }

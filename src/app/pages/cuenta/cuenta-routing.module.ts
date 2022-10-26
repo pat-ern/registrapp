@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BotonMenuComponent } from 'src/app/components/boton-menu/boton-menu.component';
 
+// cuenta page
 import { CuentaPage } from './cuenta.page';
+
+// componentes
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -10,8 +14,12 @@ const routes: Routes = [
     component: CuentaPage,
     children:[
       {
-        path:'boton-menu',
-        component: BotonMenuComponent
+        path:'header',
+        component: HeaderComponent
+      },
+      {
+        path:'footer',
+        component: FooterComponent
       }
     ]
   }

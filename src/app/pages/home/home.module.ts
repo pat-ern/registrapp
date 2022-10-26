@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+
+// home page
+import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 
-import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
+// componentes
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
-import { HomePageRoutingModule } from './home-routing.module';
-
+// material
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
@@ -20,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   declarations: [
     HomePage,
-    BotonMenuComponent]
+    HeaderComponent,
+    FooterComponent]
 })
 export class HomePageModule {}
