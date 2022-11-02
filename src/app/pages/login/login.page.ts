@@ -3,7 +3,6 @@ import { Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { AnimationController } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
 
 // Servicios
 import { SesionService } from '../../services/sesion.service';
@@ -19,19 +18,19 @@ export class LoginPage implements OnInit {
 
   @ViewChild('logo', { read: ElementRef, static: true }) logo: ElementRef;
 
-  usuario={
-    correo:"",
-    contrasena:""
+  usuario = {
+    correo: "",
+    contrasena: ""
   }
 
   isSubmitted = false;
 
-  errores=[
+  errores = [
     {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
     {tipo: 'maxLength', mensaje: 'Maximo 15 caracteres'},
   ]
   
-  loginForm= new FormGroup({
+  loginForm = new FormGroup({
     emailForm: new FormControl('',[Validators.required]),
     passForm: new FormControl('',[Validators.required]),
   });
@@ -41,16 +40,16 @@ export class LoginPage implements OnInit {
     private animationCtrl: AnimationController,
     private sesion: SesionService,
     private api: ApiUsuarioService,
-    public loadingController: LoadingController) { }
+    ) { }
 
   ngOnInit() {
     this.api.funcionGet();
   }
 
   ionViewWillEnter(){
-    this.usuario={
-      correo:"",
-      contrasena:""
+    this.usuario = {
+      correo: "",
+      contrasena: ""
     }
   }
 
@@ -76,29 +75,25 @@ export class LoginPage implements OnInit {
   }
 
   // Login
-  datosError="Usuario y contraseña no coinciden"
-  errorBoolean=false;
+  datosError = "Usuario y contraseña no coinciden"
+  errorBoolean = false;
 
   login(){
 
-    this.errorBoolean=false;
+    this.errorBoolean = false;
     this.isSubmitted = true;
+
     if(!this.loginForm.valid){
       return false;
     } else {
       let NavigationExtras: NavigationExtras = {
-        state: {
-          user: this.usuario
-        }
+        state: { user: this.usuario }
       };
-
       // se consulta por usuario mediante servicio de api
-      
       let usuarioApi = this.api.consultarUsuario(this.usuario.correo);
-
       if(usuarioApi.correo.length <= 1){
-        this.errorBoolean=true;
-        this.datosError="Usuario no existe"
+        this.errorBoolean = true;
+        this.datosError = "Usuario no existe"
       } else {
         if(usuarioApi.contrasena == this.usuario.contrasena){
           // se guardan datos de usuario en servicio de sesion
@@ -106,12 +101,10 @@ export class LoginPage implements OnInit {
           // navegar a home
           this.router.navigate(["/home"], NavigationExtras);
         } else {
-          this.errorBoolean=true;
-          this.datosError="Usuario y contraseña no coinciden"
+          this.errorBoolean = true;
+          this.datosError = "Usuario y contraseña no coinciden"
         }
-
       }
-      
     }
     
   }

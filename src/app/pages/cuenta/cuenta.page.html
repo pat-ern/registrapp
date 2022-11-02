@@ -1,16 +1,18 @@
 <div class="ion-page" id="main-content">
 
   <!--ACA VA EL COMPONENTE DEL HEADER-->
-  <app-boton-menu></app-boton-menu>
+  <app-header></app-header>
   <!--ACA VA EL COMPONENTE DEL HEADER-->
 
   <ion-content class="ion-padding">
 
     <ion-card>
+
       <ion-card-header class="ion-text-center">
         <ion-card-title class="ion-margin">Mis Datos</ion-card-title>
-        <img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200" id="avatar">
+        <img src="assets/img/test-avatar.png" id="avatar" alt="avatar">
       </ion-card-header>
+
       <ion-card-content>
         <ion-item>
           <ion-label position="stacked">Nombre</ion-label>
@@ -21,10 +23,13 @@
           <ion-input type="text" value="{{correo}}" readonly></ion-input>
         </ion-item>
       </ion-card-content>
+      
     </ion-card>
 
-    <ion-button color="tertiary" expand="block" [routerLink]="['/home']">Volver</ion-button>
-
   </ion-content>
+
+  <!--ACA VA EL COMPONENTE DEL footer-->
+  <app-footer></app-footer>
+  <!--ACA VA EL COMPONENTE DEL footer-->
 
 </div>

@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
-  selector: 'app-boton-menu',
-  templateUrl: './boton-menu.component.html',
-  styleUrls: ['./boton-menu.component.scss'],
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss'],
 })
-export class BotonMenuComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   nombre = this.sesion.nombre;
   apellido = this.sesion.apellido;

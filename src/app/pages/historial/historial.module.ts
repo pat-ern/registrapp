@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
 
+// historial page
 import { HistorialPageRoutingModule } from './historial-routing.module';
-
 import { HistorialPage } from './historial.page';
-import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
 
+// componentes
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+
+// material
 import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
@@ -21,6 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   declarations: [
     HistorialPage,
-    BotonMenuComponent]
+    HeaderComponent,
+    FooterComponent]
 })
 export class HistorialPageModule {}
