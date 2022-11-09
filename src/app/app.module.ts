@@ -25,7 +25,7 @@ import { isPlatform } from '@ionic/angular';
 
 
 const getConfig = () => {
-  if (isPlatform('desktop')){ //recordatorio cambiar desktop a android
+  if (isPlatform('android')){ //recordatorio cambiar desktop a android
     return {
       menuIcon: 'grid-outline',
       //menuType: 'push'
