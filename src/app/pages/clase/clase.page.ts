@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClasePage implements OnInit {
 
+  size = 300;
+
   qrInfo: string;
 
   selected: any;
@@ -52,15 +54,21 @@ export class ClasePage implements OnInit {
 
   ];
 
-  //
+  constructor() { }
 
   generarQR() {
-    //this.qrInfo = 'reg_app_cod*'+this.currentClass.codigo+'*'+this.currentClass.seccion;
-    this.qrInfo = 'reg_app_cod*'+this.selected.codigo+'*'+this.selected.seccion;
-    console.log('QR generado: ', this.qrInfo);
+    if (this.selected == undefined) {
+      alert('Debes seleccionar una asignatura');
+    } else {
+      this.qrInfo = 'reg_app_cod*'+this.selected.codigo+'*'+this.selected.seccion;
+      console.log('QR generado: ', this.qrInfo); 
+    }
   }
 
-  constructor() { }
+  limpiarQR() {
+    this.qrInfo = null;
+    this.selected = undefined;
+  }
 
   ngOnInit() {
   }
