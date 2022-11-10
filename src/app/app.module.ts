@@ -24,6 +24,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { isPlatform } from '@ionic/angular';
 
 
+
+
 const getConfig = () => {
   if (isPlatform('android')){ //recordatorio cambiar desktop a android
     return {
@@ -46,6 +48,7 @@ const getConfig = () => {
     ReactiveFormsModule, 
     IonicStorageModule.forRoot(),
     HttpClientModule],
+
 
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 

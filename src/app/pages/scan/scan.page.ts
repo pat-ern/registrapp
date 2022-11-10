@@ -38,10 +38,10 @@ export class ScanPage implements OnInit {
     this.startScan();
 
     // solo para prueba -> desde aqui
-    this.bdlocal.guardarAsistencia("MAT230901-10-2022","patricio@duocuc.cl","MAT2309","003X","01-10-2022", "10:00", true)
-    this.bdlocal.guardarAsistencia("LEN781202-10-2022","patricio@duocuc.cl","LEN7812","003X","02-10-2022", "09:00", false)
-    this.bdlocal.guardarAsistencia("MAT230903-10-2022","patricio@duocuc.cl","MAT2309","003X","03-10-2022", "13:00", true)
-    this.bdlocal.guardarAsistencia("LEN781204-10-2022","patricio@duocuc.cl","LEN7812","003X","04-10-2022", "08:00", true)
+    // this.bdlocal.guardarAsistencia("MAT230901-10-2022","patricio@duocuc.cl","MAT2309","003X","01-10-2022", "10:00", true)
+    // this.bdlocal.guardarAsistencia("LEN781202-10-2022","patricio@duocuc.cl","LEN7812","003X","02-10-2022", "09:00", false)
+    // this.bdlocal.guardarAsistencia("MAT230903-10-2022","patricio@duocuc.cl","MAT2309","003X","03-10-2022", "13:00", true)
+    // this.bdlocal.guardarAsistencia("LEN781204-10-2022","patricio@duocuc.cl","LEN7812","003X","04-10-2022", "08:00", true)
     // solo para prueba <- hasta aqui
 
   }
