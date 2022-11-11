@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { QRCodeModule } from 'angular2-qrcode';
 import { AccesoGuard } from './guards/acceso.guard';
 
 const routes: Routes = [
@@ -38,15 +37,9 @@ const routes: Routes = [
     canActivate: [AccesoGuard]
   },
   {
-    path: 'clase',
-    loadChildren: () => import('./pages/clase/clase.module').then( m => m.ClasePageModule)
-  },
-  {
     path: '**',
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
-
-
 
 ];
 
