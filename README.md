@@ -5,10 +5,13 @@ https://pcortesduoc.github.io/movilApi/clase.json
 ## enviar correo
 - https://ionicframework.com/docs/native/email-composer
   - Email Composer Plugin, aqui dice como instalarlo pero tiene poca info en general
+    - npm install cordova-plugin-email-composer
+    - npm install @awesome-cordova-plugins/email-composer @awesome-cordova-plugins/core 
 - https://masteringionic.com/blog/adding-email-functionality-to-an-ionic-application/
   - Tutorial mostrando como se puede hacer, **al final muestra una funcion sendMessage** que podria servir.
 - https://www.youtube.com/watch?v=AF0jnmbbpbE
   - Tutorial en video que muestra **como configurar el plugin**, puede que no funcione sin seguir sus pasos desde 2:19 y 3:00 en adelante. Lo malo es que no muestra como enviar el correo, solo abre una ventana de correo con los datos ya ingresados.
+  - Muestra el comando correcto para instalar el plugin y tambien como configurarlo para ios y android
 
 ## firmar app
 https://developer.android.com/studio/publish/app-signing?hl=es-419#sign-apk
