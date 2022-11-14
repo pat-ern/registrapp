@@ -23,7 +23,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 //configuracion android y ios
 import { isPlatform } from '@ionic/angular';
 
-
+// Plugin de mandar correos
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 
 const getConfig = () => {
@@ -54,7 +55,7 @@ const getConfig = () => {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     SQLite, 
     SesionService,
-    BarcodeScanner],
+    BarcodeScanner,EmailComposer],
 
   bootstrap: [
     AppComponent],
