@@ -20,6 +20,20 @@ import { SesionService } from './services/sesion.service';
 // Plugin scanner (ejemplo youtube)
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
+//configuracion android y ios
+import { isPlatform } from '@ionic/angular';
+
+
+
+
+const getConfig = () => {
+  if (isPlatform('android')){ //recordatorio cambiar desktop a android
+    return {
+      menuIcon: 'grid-outline',
+      //menuType: 'push'
+    }
+  }
+}
 
 @NgModule({
 
@@ -28,12 +42,13 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(getConfig()), 
     AppRoutingModule, 
     BrowserAnimationsModule, 
     ReactiveFormsModule, 
     IonicStorageModule.forRoot(),
     HttpClientModule],
+
 
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 

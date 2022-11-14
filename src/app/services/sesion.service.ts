@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BdLocalService } from './bd-local.service';
 import { ApiUsuarioService } from 'src/app/services/api-usuario.service';
 
 @Injectable({
@@ -27,9 +26,7 @@ export class SesionService {
     contrasena: " ",
   }
 
-  constructor(
-    private bdlocalservice: BdLocalService,
-    private api: ApiUsuarioService) { }
+  constructor(private api: ApiUsuarioService) { }
 
   // solo dentro del servicio se consulta a la api y se guarda en la variable usuario
   consultarUsuario(correo: string) {

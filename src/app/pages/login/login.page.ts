@@ -8,6 +8,8 @@ import { AnimationController } from '@ionic/angular';
 import { SesionService } from '../../services/sesion.service';
 import { ApiUsuarioService } from 'src/app/services/api-usuario.service';
 
+import { Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -40,10 +42,12 @@ export class LoginPage implements OnInit {
     private animationCtrl: AnimationController,
     private sesion: SesionService,
     private api: ApiUsuarioService,
+    private platform: Platform
     ) { }
 
   ngOnInit() {
     this.api.funcionGet();
+    console.log('Plataforma(s) actual(es): ' + this.platform.platforms());
   }
 
   ionViewWillEnter(){
