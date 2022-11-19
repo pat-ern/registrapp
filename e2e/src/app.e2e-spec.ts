@@ -1,4 +1,3 @@
-import { TIMEOUT } from 'dns';
 import { browser, ExpectedConditions } from 'protractor';
 import { AppPage } from './app.po';;
 

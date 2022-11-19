@@ -1,8 +1,8 @@
-import { browser, by, element, ExpectedConditions } from 'protractor';
+import { browser, by, element } from 'protractor';
 
 export class AppPage {
 
-  validUsername = 'testmail@domain.com';
+  validUsername = 'pruebas@email.com';
   validPassword = '123456';
 
   navigateTo() {
