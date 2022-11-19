@@ -12,7 +12,7 @@
         <ion-item>
 
           <!-- input email -->
-          <ion-label position="floating">Usuario</ion-label>
+          <ion-label name="userinputlabel" position="floating">Usuario</ion-label>
           <ion-input type="email" name="email" email [(ngModel)]="usuario.correo" required formControlName="emailForm"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->
           
           <!-- mensaje de error -->
@@ -40,7 +40,7 @@
         <br>
 
         <!-- [disabled]="!this.loginForm.valid" -->
-        <ion-button color="tertiary" expand="block" type="submit" [disabled]="!this.loginForm.valid">Ingresar</ion-button>
+        <ion-button id="login-button" color="tertiary" expand="block" type="submit" [disabled]="!this.loginForm.valid">Ingresar</ion-button>
 
           <ng-container *ngIf="errorBoolean==true">
             <p style="color: brown;">{{datosError}}</p>
