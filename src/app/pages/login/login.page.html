@@ -12,7 +12,7 @@
         <ion-item>
 
           <!-- input email -->
-          <ion-label name="userinputlabel" position="floating">Usuario</ion-label>
+          <ion-label name="emailinputlabel" position="floating">Usuario</ion-label>
           <ion-input type="email" name="email" email [(ngModel)]="usuario.correo" required formControlName="emailForm"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->
           
           <!-- mensaje de error -->
@@ -26,8 +26,8 @@
         <ion-item>
 
           <!-- input contrasena -->
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.contrasena" required formControlName="passForm"></ion-input>
+          <ion-label name="passwordinputlabel" position="floating">Contraseña</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="usuario.contrasena" required formControlName="passForm"></ion-input>
           
           <!-- mensaje de error -->
           <div *ngFor="let er of errores">

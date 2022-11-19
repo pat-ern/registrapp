@@ -1,35 +1,36 @@
-import { ExpectedConditions } from 'protractor';
+import { TIMEOUT } from 'dns';
+import { browser, ExpectedConditions } from 'protractor';
 import { AppPage } from './app.po';;
 
-describe('new App', () => {
+describe('Testeando login para probar que', () => {
   let page: AppPage;
+
+  let emailLabel = 'Usuario';
+  let passLabel = 'Contraseña';
 
   beforeEach(() => {
     page = new AppPage();
-    page.navigateTo();
-  });
-
-  it('should get email input label', async () => {
     
-    expect(page.getLabelText()).toContain('Hola');
-    // check if login button is enabled after input is typed
-    //expect(page.getLoginButton().isEnabled()).toBeTruthy();
   });
 
-  //it('should type password', async () => {
-    //expect(page.typeLoginInputPassword());
-    // check if login button is enabled after input is typed
-    //expect(page.getLoginButton().isEnabled()).toBeTruthy();
-  //});
+  it('el label del input de correo es ' + emailLabel, async () => {
+    page.navigateTo();
+    expect(page.getEmailInputLabel()).toContain(emailLabel);
+  });
 
-  //it('should enable login', async () => {
-    //expect(page.getLoginButton().isEnabled()).toBeTruthy();
-  //});
+  it('el label del input de contraseña es ' + passLabel, async () => {
+    page.navigateTo();
+    expect(page.getPasswordInputLabel()).toContain(passLabel);
+  });
 
-  // obtener el texto del boton login 
-  //it('should get login button text', async () => {
-    //var texto_boton = page.getLoginButton().getText();
-    //console.log(texto_boton);
-  //});
+  it('boton ingresar es clickeable con inputs validos', async () => {
+    page.navigateTo();
+    page.typeEmailInput();
+    browser.sleep(1000);
+    page.typePasswordInput();
+    browser.sleep(1000);
+    var boton = page.getLoginButton();
+    expect(ExpectedConditions.elementToBeClickable(boton));
+  });
 
 });

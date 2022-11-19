@@ -9,8 +9,24 @@ export class AppPage {
     return browser.get('/');
   }
 
-  getLabelText() {
-    return element(by.css('ion-label[name=userinputlabel]')).getText();
+  getEmailInputLabel() {
+    return element(by.css('ion-label[name=emailinputlabel]')).getText();
+  }
+
+  getPasswordInputLabel() {
+    return element(by.css('ion-label[name=passwordinputlabel]')).getText();
+  }
+
+  typeEmailInput() {
+    element(by.css('ion-input[name=email] input')).sendKeys(this.validUsername);
+  }
+
+  typePasswordInput() {
+    element(by.css('ion-input[name=password] input')).sendKeys(this.validPassword);
+  }
+
+  getLoginButton() {
+    return element(by.css('ion-button[id=login-button]'));
   }
 
 }
