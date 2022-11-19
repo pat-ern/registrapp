@@ -1,35 +1,34 @@
-import { browser, ExpectedConditions } from 'protractor';
+import { browser } from 'protractor';
 import { AppPage } from './app.po';;
 
 describe('Testeando login para probar que', () => {
   let page: AppPage;
 
-  let emailLabel = 'Usuario';
-  let passLabel = 'Contraseña';
-
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
     
   });
 
-  it('el label del input de correo es ' + emailLabel, async () => {
-    page.navigateTo();
-    expect(page.getEmailInputLabel()).toContain(emailLabel);
+  it('boton "Ingresar" ES clickeable con usuario y contrasena VALIDOS', async () => {
+    page.ingresarCampos(page.validEmail, page.validPassword);
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe(null);
+    });
   });
 
-  it('el label del input de contraseña es ' + passLabel, async () => {
-    page.navigateTo();
-    expect(page.getPasswordInputLabel()).toContain(passLabel);
+  it('boton "Ingresar" NO ES clickeable con usuario y contrasena INVALIDOS', async () => {
+    page.ingresarCampos(page.invalidEmail, page.invalidPassword);
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe('true');
+    });
   });
 
-  it('boton ingresar es clickeable con inputs validos', async () => {
-    page.navigateTo();
-    page.typeEmailInput();
-    browser.sleep(1000);
-    page.typePasswordInput();
-    browser.sleep(1000);
-    var boton = page.getLoginButton();
-    expect(ExpectedConditions.elementToBeClickable(boton));
+  it('boton "Ingresar" NO ES clickeable con usuario y contrasena VACIOS', async () => {
+    page.ingresarCampos('', '');
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe('true');
+    });
   });
 
 });

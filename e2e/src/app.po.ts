@@ -2,27 +2,21 @@ import { browser, by, element } from 'protractor';
 
 export class AppPage {
 
-  validUsername = 'pruebas@email.com';
+  validEmail = 'pruebas@correo.com';
   validPassword = '123456';
+
+  invalidEmail = 'pruebas@';
+  invalidPassword = '';
 
   navigateTo() {
     return browser.get('/');
   }
 
-  getEmailInputLabel() {
-    return element(by.css('ion-label[name=emailinputlabel]')).getText();
-  }
-
-  getPasswordInputLabel() {
-    return element(by.css('ion-label[name=passwordinputlabel]')).getText();
-  }
-
-  typeEmailInput() {
-    element(by.css('ion-input[name=email] input')).sendKeys(this.validUsername);
-  }
-
-  typePasswordInput() {
-    element(by.css('ion-input[name=password] input')).sendKeys(this.validPassword);
+  ingresarCampos(email: string, pass: string) {
+    element(by.css('ion-input[name=email] input')).sendKeys(email);
+    browser.sleep(1500);
+    element(by.css('ion-input[name=password] input')).sendKeys(pass);
+    browser.sleep(1500);
   }
 
   getLoginButton() {
