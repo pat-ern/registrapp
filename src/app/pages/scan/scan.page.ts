@@ -8,7 +8,6 @@ import { ApiCorreosService } from 'src/app/services/api-correos.service';
 
 // Plugins
 import { BarcodeScanner, BarcodeScanResult, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
-import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
 
 
 @Component({
@@ -35,8 +34,7 @@ export class ScanPage implements OnInit {
     private api: ApiService,
     private bdlocal: BdLocalService,
     private sesion: SesionService,
-    private apiCorreo: ApiCorreosService,
-    private emailComposer: EmailComposer) { }
+    private apiCorreo: ApiCorreosService) { }
   
   ngOnInit() {
     console.log('ngOnInit')
@@ -105,14 +103,6 @@ export class ScanPage implements OnInit {
     this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
     this.apiCorreo.enviarCorreo();
-    /*
-    let email = {
-        to: "p.cortes@duocuc.cl",
-        //cc: "pat.villarroel@duocuc.cl"
-        subject: "Asistencia registrada "+this.clase.codigo+" "+this.clase.seccion,
-        body: "Se ha registrado asistencia en la asignatura "+this.clase.asignatura+" ("+this.clase.codigo+" "+this.clase.seccion+"), para el alumno "+alumno+", en la fecha "+this.clase.fecha+" "+this.clase.hora};
-    this.emailComposer.open(email);
-    */
   }
 
 }
