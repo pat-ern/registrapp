@@ -4,9 +4,12 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { BdLocalService } from 'src/app/services/bd-local.service';
+import { ApiCorreosService } from 'src/app/services/api-correos.service';
 
 // Plugins
 import { BarcodeScanner, BarcodeScanResult, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { EmailComposer } from '@awesome-cordova-plugins/email-composer/ngx';
+
 
 @Component({
   selector: 'app-scan',
@@ -31,7 +34,9 @@ export class ScanPage implements OnInit {
     private scanner: BarcodeScanner,
     private api: ApiService,
     private bdlocal: BdLocalService,
-    private sesion: SesionService) { }
+    private sesion: SesionService,
+    private apiCorreo: ApiCorreosService,
+    private emailComposer: EmailComposer) { }
   
   ngOnInit() {
     console.log('ngOnInit')
@@ -98,6 +103,16 @@ export class ScanPage implements OnInit {
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
     let alumno = this.sesion.correo;
     this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
+    //enviar correo
+    this.apiCorreo.enviarCorreo();
+    /*
+    let email = {
+        to: "p.cortes@duocuc.cl",
+        //cc: "pat.villarroel@duocuc.cl"
+        subject: "Asistencia registrada "+this.clase.codigo+" "+this.clase.seccion,
+        body: "Se ha registrado asistencia en la asignatura "+this.clase.asignatura+" ("+this.clase.codigo+" "+this.clase.seccion+"), para el alumno "+alumno+", en la fecha "+this.clase.fecha+" "+this.clase.hora};
+    this.emailComposer.open(email);
+    */
   }
 
 }
