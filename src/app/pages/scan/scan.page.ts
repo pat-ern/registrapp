@@ -102,6 +102,7 @@ export class ScanPage implements OnInit {
   }
 
   mayusPalabras(palabras:string){
+    //esta funcion toma un string, los separa en un array por cada espacio, en el for le pone mayuscula a la primera letra de cada una y luego las vuelve a unir con un espacio entremedio
     let palSeparadas = palabras.split(" ");
     for(let i = 0; i < palSeparadas.length; i++){
       palSeparadas[i] = palSeparadas[i][0].toUpperCase()+palSeparadas[i].slice(1);
@@ -114,16 +115,13 @@ export class ScanPage implements OnInit {
     let alumno = this.sesion.correo;
     let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
-    if(enviar){
+    if(enviar){ //solo se envia correo si la asistencia no ha sido tomada hoy, segun la validacion de guardarAsistencia()
       this.apiCorreo.enviarCorreo(
         /*from*/'asistencia@duocuc.cl',
         /*to*/'p.cortes@duocuc.cl',
-        /*cc*/'',
+        /*cc*/'', //para agregar mas destinatarios, se deben agregar a los Authorized Recipients en MailGun
         /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
         /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.nombre)+' '+this.mayusPrimeraLetra(this.sesion.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
-        ///*subject*/'Asistencia registrada '+this.clase.codigo+' '+this.clase.seccion,
-        ///*text*/'Se ha registrado asistencia en la asignatura de '+this.clase.asignatura+' ('+this.clase.codigo+' '+this.clase.seccion+'), para el alumno '+this.sesion.nombre+' '+this.sesion.apellido+', en la fecha '+this.clase.fecha+' '+this.clase.hora+' .');
-  
        }
     }
 
