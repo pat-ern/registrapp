@@ -27,6 +27,7 @@ export class ScanPage implements OnInit {
     profesor: " ",
     fecha: " ",
     hora: " ",
+    correoProf: " ",
   }
 
   constructor(
@@ -79,6 +80,7 @@ export class ScanPage implements OnInit {
               this.clase.profesor = this.asignaturas[i].profesor;
               this.clase.fecha = new Date().toLocaleDateString();
               this.clase.hora = new Date().toLocaleTimeString();
+              this.clase.correoProf = this.asignaturas[i].correoProf;
             //} else {
             // alert("No es el horario de la clase");
             //}
@@ -117,8 +119,9 @@ export class ScanPage implements OnInit {
     //enviar correo
     if(enviar){ //solo se envia correo si la asistencia no ha sido tomada hoy, segun la validacion de guardarAsistencia()
       this.apiCorreo.enviarCorreo(
-        /*from*/'asistencia@duocuc.cl',
-        /*to*/'p.cortes@duocuc.cl',
+        /*from*/'asistencia@duocuc.cl', 
+        /*to*/this.clase.correoProf, //El recipiente es el correo del profesor. Ej: ya.villegas@profesor.duoc.cl
+        ///*to*/'p.cortes@duocuc.cl', //Para probar, se puede escribir un correo manualmente aqui
         /*cc*/'', //para agregar mas destinatarios, se deben agregar a los Authorized Recipients en MailGun
         /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
         /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.nombre)+' '+this.mayusPrimeraLetra(this.sesion.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
