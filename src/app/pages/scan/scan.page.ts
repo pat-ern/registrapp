@@ -102,7 +102,13 @@ export class ScanPage implements OnInit {
     let alumno = this.sesion.correo;
     this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
-    this.apiCorreo.enviarCorreo();
+    this.apiCorreo.enviarCorreo(
+      /*to*/'asistencia@duocuc.cl',
+      /*from*/'p.cortes@duocuc.cl',
+      ///*cc*/'pat.villarroel@duocuc.cl',
+      /*subject*/'Asistencia registrada '+this.clase.codigo+' '+this.clase.seccion,
+      /*text*/'Se ha registrado asistencia en la asignatura de '+this.clase.asignatura+' ('+this.clase.codigo+' '+this.clase.seccion+'), para el alumno '+this.sesion.nombre+' '+this.sesion.apellido+', en la fecha '+this.clase.fecha+' '+this.clase.hora+' .');
   }
+  //this.clase.codigo.charAt(0).toUpperCase()+this.clase.codigo.slice(1)
 
 }
