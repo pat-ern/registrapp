@@ -101,19 +101,30 @@ export class ScanPage implements OnInit {
     return palabra.charAt(0).toUpperCase()+palabra.slice(1);
   }
 
+  mayusPalabras(palabras:string){
+    let palSeparadas = palabras.split(" ");
+    for(let i = 0; i < palSeparadas.length; i++){
+      palSeparadas[i] = palSeparadas[i][0].toUpperCase()+palSeparadas[i].slice(1);
+    }
+    return palSeparadas.join(" ");
+  }
+
   registrarAsistencia(){
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
     let alumno = this.sesion.correo;
-    this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
+    let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
-    this.apiCorreo.enviarCorreo(
-      /*from*/'asistencia@duocuc.cl',
-      /*to*/'p.cortes@duocuc.cl',
-      /*cc*/'',
-      /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
-      /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPrimeraLetra(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.nombre)+' '+this.mayusPrimeraLetra(this.sesion.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
-      ///*subject*/'Asistencia registrada '+this.clase.codigo+' '+this.clase.seccion,
-      ///*text*/'Se ha registrado asistencia en la asignatura de '+this.clase.asignatura+' ('+this.clase.codigo+' '+this.clase.seccion+'), para el alumno '+this.sesion.nombre+' '+this.sesion.apellido+', en la fecha '+this.clase.fecha+' '+this.clase.hora+' .');
-  }
+    if(enviar){
+      this.apiCorreo.enviarCorreo(
+        /*from*/'asistencia@duocuc.cl',
+        /*to*/'p.cortes@duocuc.cl',
+        /*cc*/'',
+        /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
+        /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.nombre)+' '+this.mayusPrimeraLetra(this.sesion.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
+        ///*subject*/'Asistencia registrada '+this.clase.codigo+' '+this.clase.seccion,
+        ///*text*/'Se ha registrado asistencia en la asignatura de '+this.clase.asignatura+' ('+this.clase.codigo+' '+this.clase.seccion+'), para el alumno '+this.sesion.nombre+' '+this.sesion.apellido+', en la fecha '+this.clase.fecha+' '+this.clase.hora+' .');
+  
+       }
+    }
 
 }
