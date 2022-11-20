@@ -16,27 +16,34 @@ export class ApiCorreosService {
   } 
   */
 
-  apiURL = 'https://api.mailgun.net/v3/sandboxf43489a9f7614e84af8f183724d6c85f.mailgun.org/messages' 
-  apiKey = '9fe0a678d85579ad66c05a7c69689aa5-2de3d545-23ea1fbc'
+  apiURL = 'https://api.mailgun.net/v3/sandboxf43489a9f7614e84af8f183724d6c85f.mailgun.org/messages'
+  apiKey = 'key-a8af3df8a00d2778589ab927646bf223'
+  //oldApiKey = '9fe0a678d85579ad66c05a7c69689aa5-2de3d545-23ea1fbc'
+  //smtpPass = '7e89d4e1b3eb3d25bc2e5f7f7e47a3ca-2de3d545-ff4afc1d'
+  /*
   from = 'asistencia@duocuc.cl'
   to = 'p.cortes@duocuc.cl'
   cc = ''
   subject = 'Asistencia registrada'
   texto = 'Se ha registrado asistencia en la asignatura NOMBRE (CODIGO SECCION), para el alumno NOMBRE o CORREO, en la fecha FECHA y HORA'
+  */
 
   constructor(private http: HttpClient) { }
 
-  enviarCorreo(){
+  //
+  enviarCorreo(from:string,to:string,subject:string,text:string) {
     return this.http.post(this.apiURL,
-      'from='+this.from + '&to=' + this.to + '&subject=' + this.subject + '&text=' + this.texto, 
+      'from=' + from + '&to=' + to + '&subject=' + subject + '&text=' + text,
       {
-          headers: {'Authorization': 'Basic ' + btoa('api:9fe0a678d85579ad66c05a7c69689aa5-2de3d545-23ea1fbc'),
-          'Content-Type': 'application/x-www-form-urlencoded'}}).subscribe(success => {
+        headers: {
+          'Authorization': 'Basic ' + btoa('api:' + this.apiKey),
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).subscribe(success => {
         console.log("SUCCESS -> " + JSON.stringify(success));
-    }, error => {
+      }, error => {
         console.log("ERROR -> " + JSON.stringify(error));
-    });
-      //"from=test@example.com&to=" + "recipient@example.com" + "&subject=" + "test subject" + "&text=" + "test message sent",)
+      });
   }
 
 }
