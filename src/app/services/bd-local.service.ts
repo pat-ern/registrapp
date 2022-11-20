@@ -27,8 +27,10 @@ export class BdLocalService {
         this.asistencia.unshift({strIdAsistencia:id,strAlumno:alumno,strAsignatura:asignatura,strSeccion:seccion,strFecha:fecha, strHora:hora, estaPresente:presente})
         this._storage.set('asistencia',this.asistencia);
         this.presentToast("Asistencia registrada con exito.")
+        return true;
       } else {
         this.presentToast("Error. Asistencia ya fue registrada hoy.")
+        return false;
       }
     }
   }
