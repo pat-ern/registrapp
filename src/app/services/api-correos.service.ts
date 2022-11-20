@@ -31,9 +31,9 @@ export class ApiCorreosService {
   constructor(private http: HttpClient) { }
 
   //
-  enviarCorreo(from:string,to:string,subject:string,text:string) {
+  enviarCorreo(from:string,to:string,cc:string,subject:string,text:string) {
     return this.http.post(this.apiURL,
-      'from=' + from + '&to=' + to + '&subject=' + subject + '&text=' + text,
+      'from=' + from + '&to=' + to + '&cc=' + cc + '&subject=' + subject + '&text=' + text,
       {
         headers: {
           'Authorization': 'Basic ' + btoa('api:' + this.apiKey),
