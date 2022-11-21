@@ -2,7 +2,7 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
-import { AnimationController } from '@ionic/angular';
+import { AnimationController, MenuController } from '@ionic/angular';
 
 // Servicios
 import { SesionService } from '../../services/sesion.service';
@@ -42,7 +42,8 @@ export class LoginPage implements OnInit {
     private animationCtrl: AnimationController,
     private sesion: SesionService,
     private api: ApiUsuarioService,
-    private platform: Platform
+    private platform: Platform,
+    private menuCtrl: MenuController
     ) { }
 
   ngOnInit() {
@@ -55,6 +56,8 @@ export class LoginPage implements OnInit {
       correo: "",
       contrasena: ""
     }
+    this.menuCtrl.enable(false);
+    console.log("Menu deshabilitado");
   }
 
   ngAfterViewInit() {
@@ -74,8 +77,9 @@ export class LoginPage implements OnInit {
     animacion.play();
   }
 
-  ngOnDestroy(){
-    console.log("login on destroy")
+  ionViewWillLeave(){
+    this.menuCtrl.enable(true);
+    console.log("Menu habilitado");
   }
 
   // Login
