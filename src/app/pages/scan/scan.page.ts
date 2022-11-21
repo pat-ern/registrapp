@@ -30,6 +30,8 @@ export class ScanPage implements OnInit {
     correoProf: " ",
   }
 
+  codigoComparable: string = "";
+  codigoBase: string = "reg_app_cod";
   constructor(
     private scanner: BarcodeScanner,
     private api: ApiService,
@@ -71,7 +73,8 @@ export class ScanPage implements OnInit {
 
       for (let i = 0; i < this.asignaturas.length; i++) {
         //for (let j = 0; j < this.asignaturas[i].horario.length; j++) {
-          if (this.asignaturas[i].codigo.toUpperCase() == this.code.toUpperCase()) { // && this.asignaturas[i].horario[j].dia == hoy
+          this.codigoComparable = this.codigoBase+"*"+this.asignaturas[i].codigo+"*"+this.asignaturas[i].seccion;
+          if (this.codigoComparable.toUpperCase() == this.code.toUpperCase()) { // && this.asignaturas[i].horario[j].dia == hoy
 
             //if (this.validarHorario(this.asignaturas[i].horario[0].hra_ini, this.asignaturas[i].horario[0].min_ini, this.asignaturas[i].horario[0].hra_ter, this.asignaturas[i].horario[0].min_ter)) {
               this.clase.codigo = this.asignaturas[i].codigo;
