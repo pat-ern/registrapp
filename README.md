@@ -16,6 +16,15 @@ https://pcortesduoc.github.io/movilApi/clase.json
 ## firmar app
 https://developer.android.com/studio/publish/app-signing?hl=es-419#sign-apk
 primero se firma en android studio, luego se debe configurar las firmas de apps de play
+- Crear cuenta de google developer en play console
+- Pagar cuota de inscripcion
+- Crear nueva app en pagina de play console y llenar detalles como nombre, precio, tipo, edades, descripcion, fotos
+- Se puede publicar en modo Testing o Production, pero hay que esperar a que google apruebe la app
+- Crear apk firmada:
+  - Android studio/Build/Generate signed bundle or APK
+  - Android App Bundle/Crear keystore con cualquier nombre y contraseña que queramos/release/Finish
+  - el archivo sera .aab, este se debe subir a play console, seleccionar paises en los que se publicara, rellenar datos que falten y enviar.
+- Google revisara la app y sus datos, y la aprobara o rechazara.
 
 ## Detalles:
 - usar ngmodel y formcontrol al mismo tiempo dejara de funcionar en actualizaciones futuras
