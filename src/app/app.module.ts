@@ -23,13 +23,27 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 //configuracion android y ios
 import { isPlatform } from '@ionic/angular';
 
-
-
 const getConfig = () => {
-  if (isPlatform('android')){ //recordatorio cambiar desktop a android
+  if (isPlatform('ios')){ 
+    return {
+      menuIcon: 'list-outline',
+      menuType: 'reveal',
+      animated: false,
+      rippleEffect: false, 
+    }
+  } else if (isPlatform('desktop')) {
     return {
       menuIcon: 'grid-outline',
-      //menuType: 'push'
+      menuType: 'overlay',
+      animated: true,
+      rippleEffect: true, 
+    }
+  } else if (isPlatform('android')) {
+    return {
+      menuIcon: 'menu-outline',
+      menuType: 'push',
+      animated: true,
+      rippleEffect: true, 
     }
   }
 }

@@ -1,18 +1,18 @@
 <ion-header>
 </ion-header>
 
-<ion-content>
+<ion-content class="wrapper">
   <div id="logo" class="ion-text-center" #logo>
     <img src="assets/img/logo2-light.png" alt="logo" width="125px" height="auto">
   </div>
 
-  <ion-card>
+  <ion-card class="ion-activatable ripple-parent">
     <ion-card-content>
       <form action="" [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-item>
 
           <!-- input email -->
-          <ion-label position="floating">Usuario</ion-label>
+          <ion-label name="emailinputlabel" position="floating">Usuario</ion-label>
           <ion-input type="email" name="email" email [(ngModel)]="usuario.correo" required formControlName="emailForm"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->
           
           <!-- mensaje de error -->
@@ -26,8 +26,8 @@
         <ion-item>
 
           <!-- input contrasena -->
-          <ion-label position="floating">Contraseña</ion-label>
-          <ion-input type="password" [(ngModel)]="usuario.contrasena" required formControlName="passForm"></ion-input>
+          <ion-label name="passwordinputlabel" position="floating">Contraseña</ion-label>
+          <ion-input type="password" name="password" [(ngModel)]="usuario.contrasena" required formControlName="passForm"></ion-input>
           
           <!-- mensaje de error -->
           <div *ngFor="let er of errores">
@@ -40,7 +40,7 @@
         <br>
 
         <!-- [disabled]="!this.loginForm.valid" -->
-        <ion-button color="tertiary" expand="block" type="submit" [disabled]="!this.loginForm.valid">Ingresar</ion-button>
+        <ion-button id="login-button" color="tertiary" expand="block" type="submit" [disabled]="!this.loginForm.valid">Ingresar</ion-button>
 
           <ng-container *ngIf="errorBoolean==true">
             <p style="color: brown;">{{datosError}}</p>
@@ -48,6 +48,7 @@
 
       </form>
     </ion-card-content>
+    <ion-ripple-effect></ion-ripple-effect>
   </ion-card>
 
   <ion-text class="ion-text-center">
