@@ -4,13 +4,13 @@
   <app-header></app-header>
   <!--ACA VA EL COMPONENTE DEL HEADER-->
 
-  <ion-content class="ion-padding">
+  <ion-content class="ion-padding wrapper">
 
-    <ion-card>
+    <ion-card class="ion-activatable ripple-parent">
 
       <ion-card-header class="ion-text-center">
         <ion-card-title class="ion-margin">Mis Datos</ion-card-title>
-        <img src="assets/img/test-avatar.png" id="avatar" alt="avatar">
+        <img src="assets/img/avatar.png" id="avatar" alt="avatar">
       </ion-card-header>
 
       <ion-card-content>
@@ -23,7 +23,7 @@
           <ion-input type="text" value="{{correo}}" readonly></ion-input>
         </ion-item>
       </ion-card-content>
-      
+      <ion-ripple-effect></ion-ripple-effect>
     </ion-card>
 
   </ion-content>
