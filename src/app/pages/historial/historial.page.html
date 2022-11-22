@@ -16,10 +16,6 @@
         <ion-icon *ngIf="a.estaPresente" name="checkmark-circle-outline" color="success"></ion-icon>
         <ion-icon *ngIf="!a.estaPresente" name="close-circle-outline" color="danger"></ion-icon>
       </ion-item>
-
-      <ion-button color="danger" expand="block" (click)="borrarHistorial()">
-        <ion-icon name="trash-outline"></ion-icon>&nbsp;Borrar Historial
-      </ion-button>
       
     </ion-content>
 
@@ -28,5 +24,10 @@
   <!--ACA VA EL COMPONENTE DEL footer-->
   <app-footer></app-footer>
   <!--ACA VA EL COMPONENTE DEL footer-->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="borrarHistorial()" color="danger">
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </div>

@@ -4,66 +4,31 @@
   <app-header></app-header>
   <!--ACA VA EL COMPONENTE DEL HEADER-->
 
-  <ion-content class="ion-padding wrapper">
+  <ion-content class="ion-padding">
 
-    <div class="ion-text-center ion-margin" #titulo>
-      <ion-text id="bienvenido">¡Bienvenid@!</ion-text>
+    <div id="titulo" class="ion-text-center ion-margin" #titulo>
+      <ion-img src="assets/img/app-name-light.png"></ion-img>
     </div>
 
-    <ion-card [routerLink]="['/scan']">
+    <hr>
+
+    <ion-card id="qr-card" [routerLink]="['/scan']" class="ion-padding">
       <ion-card-content class="ion-text-center" #qr>
         <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
       </ion-card-content>
       <ion-text class="ion-text-center">
-        <h4>Escanear codigo QR</h4>
+        <h4>Escanea el c&oacute;digo QR de tu clase actual</h4>
       </ion-text>
     </ion-card>
 
-    <ion-row>
-      <ion-col>
-        <a [routerLink]="['/historial']">
-          <ion-card class="ion-activatable ripple-parent">
-            <ion-card-content class="ion-text-center">
-            <mat-icon>spellcheck</mat-icon>
-            </ion-card-content>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-card>
-        </a>
-      </ion-col>
-      <ion-col>
-        <a [routerLink]="['/cuenta']">
-          <ion-card class="ion-activatable ripple-parent">
-            <ion-card-content class="ion-text-center">
-              <mat-icon>person</mat-icon>
-            </ion-card-content>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-card>
-        </a>
-      </ion-col>
-    </ion-row>
+    <hr>
 
-    <ion-row>
-      <ion-col>
-        <a [routerLink]="['/settings']">
-          <ion-card class="ion-activatable ripple-parent">
-            <ion-card-content class="ion-text-center">
-              <mat-icon>settings</mat-icon>
-            </ion-card-content>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-card>
-        </a>
-      </ion-col>
-      <ion-col>
-        <a [routerLink]="['/login']">
-          <ion-card class="ion-activatable ripple-parent">
-            <ion-card-content class="ion-text-center">
-              <mat-icon>logout</mat-icon>
-            </ion-card-content>
-            <ion-ripple-effect></ion-ripple-effect>
-          </ion-card>
-        </a>
-      </ion-col>
-    </ion-row>
+    <div class="ion-text-center ion-margin">
+      <ion-button [routerLink]="['/historial']" color="tertiary" expand="block">
+        <ion-icon name="calendar-outline" ></ion-icon>&nbsp;
+        <ion-label>&uacute;ltimas clases</ion-label>
+      </ion-button>
+    </div>
 
   </ion-content>
 

@@ -1,9 +1,12 @@
 <ion-content>
 
+  <!--centered spinner-->
+  <ion-spinner *ngIf="pageState == 1" color="tertiary" name="circles"></ion-spinner>
+
   <ion-card *ngIf="pageState == 2">
     <ion-card-header>
       <ion-card-title class="ion-text-center">
-        Tu clase es:
+        <h2>Tu clase es:</h2>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
@@ -19,16 +22,22 @@
         <ion-label position="stacked"> Hora:</ion-label>
         <ion-input type="text" value="{{ clase.hora }}" readonly></ion-input>
       </ion-item>
+      <div class="ion-text-center">
+        <ion-button color="tertiary" (click)="registrarAsistencia()" [routerLink]="['/home']">
+          <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;
+          ¡Presente!
+        </ion-button>
+        <ion-button color="medium" [routerLink]="['/home']">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </div>
     </ion-card-content>
-    <ion-button color="tertiary" expand="block" (click)="registrarAsistencia()" [routerLink]="['/home']">Registrar Asistencia</ion-button>
-    <ion-button color="primary" expand="block" (click)="startScan()">Escanear Nuevamente</ion-button>
-    <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
   </ion-card>
 
-  <ion-card *ngIf="pageState == 3">
+  <ion-card *ngIf="pageState == 3" style="margin-top: 50%;">
     <ion-card-header>
       <ion-card-title class="ion-text-center">
-        Error al escanear el c&oacute;digo de tu clase
+        Error al escanear:
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
