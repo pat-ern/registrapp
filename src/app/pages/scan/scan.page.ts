@@ -8,6 +8,7 @@ import { ApiCorreosService } from 'src/app/services/api-correos.service';
 
 // Plugins
 import { BarcodeScanner, BarcodeScanResult, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { browser } from 'protractor';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class ScanPage implements OnInit {
 
   codigoComparable: string = "";
   codigoBase: string = "reg_app_cod";
-  confirmPageEnabled: boolean = true;
+  pageState: number = 1;
 
   constructor(
     private scanner: BarcodeScanner,
@@ -96,14 +97,14 @@ export class ScanPage implements OnInit {
   }
 
   startScan(){
-    this.confirmPageEnabled = true;
+    this.pageState = 1;
     this.scanner.scan().then(barcodeData => {
       this.code = barcodeData.text;
-      // substract the first 11 characters of the code
-      if  (this.code.substring(11) == this.codigoBase) {
+      if  (this.code.substring(0,11) == this.codigoBase) {
+        this.pageState = 2;
         this.matchClass();
       } else {
-        this.confirmPageEnabled = false;
+        this.pageState = 3;
       }
     }).catch(err => {
         console.log('Error', err);

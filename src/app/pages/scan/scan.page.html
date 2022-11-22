@@ -1,6 +1,6 @@
 <ion-content>
 
-  <ion-card *ngIf="confirmPageEnabled">
+  <ion-card *ngIf="pageState == 2">
     <ion-card-header>
       <ion-card-title class="ion-text-center">
         Tu clase es:
@@ -25,7 +25,7 @@
     <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
   </ion-card>
 
-  <ion-card *ngIf="!confirmPageEnabled">
+  <ion-card *ngIf="pageState == 3">
     <ion-card-header>
       <ion-card-title class="ion-text-center">
         Error al escanear el c&oacute;digo QR
