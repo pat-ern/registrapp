@@ -1,5 +1,6 @@
 <ion-content>
-  <ion-card>
+
+  <ion-card *ngIf="confirmPageEnabled">
     <ion-card-header>
       <ion-card-title class="ion-text-center">
         Tu clase es:
@@ -23,6 +24,23 @@
     <ion-button color="primary" expand="block" (click)="startScan()">Escanear Nuevamente</ion-button>
     <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
   </ion-card>
+
+  <ion-card *ngIf="!confirmPageEnabled">
+    <ion-card-header>
+      <ion-card-title class="ion-text-center">
+        Error al escanear el c&oacute;digo QR
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ion-text-center">
+      <ion-text>
+        <p>Este no es un c&oacute;digo de registrapp.</p>
+        <p>Por favor, escanee un c&oacute;digo de registrapp.</p>
+      </ion-text>
+    </ion-card-content>
+    <ion-button color="primary" expand="block" (click)="startScan()">Intentar Nuevamente</ion-button>
+    <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
+  </ion-card>
+
 </ion-content>
 
 

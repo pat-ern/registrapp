@@ -32,6 +32,8 @@ export class ScanPage implements OnInit {
 
   codigoComparable: string = "";
   codigoBase: string = "reg_app_cod";
+  confirmPageEnabled: boolean = true;
+
   constructor(
     private scanner: BarcodeScanner,
     private api: ApiService,
@@ -94,12 +96,18 @@ export class ScanPage implements OnInit {
   }
 
   startScan(){
-  this.scanner.scan().then(barcodeData => {
-    this.code = barcodeData.text;
-    this.matchClass();
-   }).catch(err => {
-       console.log('Error', err);
-   });
+    this.confirmPageEnabled = true;
+    this.scanner.scan().then(barcodeData => {
+      this.code = barcodeData.text;
+      // substract the first 11 characters of the code
+      if  (this.code.substring(11) == this.codigoBase) {
+        this.matchClass();
+      } else {
+        this.confirmPageEnabled = false;
+      }
+    }).catch(err => {
+        console.log('Error', err);
+    });
   }
 
   mayusPrimeraLetra(palabra:string){
