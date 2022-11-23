@@ -6,18 +6,18 @@
 
   <ion-content class="ion-padding">
 
-    <div id="titulo" class="ion-text-center ion-margin" #titulo>
-      <ion-img src="assets/img/app-name-light.png"></ion-img>
+    <div id="titulo" class="ion-margin" #titulo>
+      <img id="imagen-logo" src="assets/img/app-name-light.png">
     </div>
 
     <hr>
 
-    <ion-card id="qr-card" [routerLink]="['/scan']" class="ion-padding">
+    <ion-card id="qr-card" [routerLink]="['/scan']" class="ion-margin">
       <ion-card-content class="ion-text-center" #qr>
         <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
       </ion-card-content>
       <ion-text class="ion-text-center">
-        <h4>Escanea el c&oacute;digo QR de tu clase actual</h4>
+        <h4>Escanea el c&oacute;digo QR de tu clase</h4>
       </ion-text>
     </ion-card>
 

@@ -4,9 +4,10 @@
   <ion-spinner *ngIf="pageState == 1" color="tertiary" name="circles"></ion-spinner>
 
   <ion-card *ngIf="pageState == 2">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">
-        <h2>Tu clase es:</h2>
+    <ion-card-header class="ion-text-center">
+      <ion-icon name="book-outline" size="large"></ion-icon>
+      <ion-card-title>
+        <h2>Tu clase</h2>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
@@ -22,6 +23,8 @@
         <ion-label position="stacked"> Hora:</ion-label>
         <ion-input type="text" value="{{ clase.hora }}" readonly></ion-input>
       </ion-item>
+      <hr>
+
       <div class="ion-text-center">
         <ion-button color="tertiary" (click)="registrarAsistencia()" [routerLink]="['/home']">
           <ion-icon name="checkmark-circle-outline"></ion-icon>&nbsp;
@@ -31,22 +34,34 @@
           <ion-icon name="home-outline"></ion-icon>
         </ion-button>
       </div>
+
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="pageState == 3" style="margin-top: 50%;">
-    <ion-card-header>
-      <ion-card-title class="ion-text-center">
-        Error al escanear:
+    <ion-card-header class="ion-text-center">
+      <ion-icon name="alert-circle-outline" size="large"></ion-icon>
+      <ion-card-title>
+        Error al escanear
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="ion-text-center">
       <ion-text>
         <p>Este no es un c&oacute;digo de Registrapp. Por favor, escanee una fuente v&aacute;lida.</p>
       </ion-text>
+      <hr>
+
+      <div class="ion-text-center">
+        <ion-button color="tertiary" (click)="startScan()">
+          <ion-icon name="qr-code-outline"></ion-icon>&nbsp;
+          Reintentar
+        </ion-button>
+        <ion-button color="medium" [routerLink]="['/home']">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </div>
+
     </ion-card-content>
-    <ion-button color="primary" expand="block" (click)="startScan()">Intentar Nuevamente</ion-button>
-    <ion-button color="medium" expand="block" [routerLink]="['/home']">Cancelar</ion-button>
   </ion-card>
 
 </ion-content>
