@@ -116,7 +116,7 @@ export class ScanPage implements OnInit {
 
   registrarAsistencia(){
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
-    let alumno = this.sesion.correo;
+    let alumno = this.sesion.usuario.correo;
     let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
     if(enviar){ //solo se envia correo si la asistencia no ha sido tomada hoy, segun la validacion de guardarAsistencia()
@@ -126,7 +126,7 @@ export class ScanPage implements OnInit {
         ///*to*/'p.cortes@duocuc.cl', //Para probar, se puede escribir un correo manualmente aqui
         /*cc*/'', //para agregar mas destinatarios, se deben agregar a los Authorized Recipients en MailGun
         /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
-        /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.nombre)+' '+this.mayusPrimeraLetra(this.sesion.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
+        /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.usuario.nombre)+' '+this.mayusPrimeraLetra(this.sesion.usuario.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
        }
     }
 

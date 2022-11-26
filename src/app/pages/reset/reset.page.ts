@@ -49,9 +49,7 @@ export class ResetPage implements OnInit {
       return false;
     } else {
 
-      let usuarioApi = this.api.consultarUsuario(this.user.email);
-
-      if(usuarioApi.correo.length <= 1){
+      if(this.api.usuarioExiste(this.user.email)){
         this.errorBoolean=true;
       } else {
         this.presentToast('bottom');
@@ -61,7 +59,7 @@ export class ResetPage implements OnInit {
   }
 
   ngOnInit() {
-    this.api.funcionGet();
+    this.api.getUsuarios();
   }
 
 }

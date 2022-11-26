@@ -47,8 +47,7 @@ export class LoginPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.api.funcionGet();
-    console.log('Plataforma(s) actual(es): ' + this.platform.platforms());
+    this.api.getUsuarios();
   }
 
   ionViewWillEnter(){
@@ -87,35 +86,58 @@ export class LoginPage implements OnInit {
   errorBoolean = false;
 
   login(){
+    this.reinicioErrores();
+    this.validarFormulario();
+  }
 
-    this.errorBoolean = false;
-    this.isSubmitted = true;
-
+  validarFormulario(){
     if(!this.loginForm.valid){
       return false;
     } else {
-      let NavigationExtras: NavigationExtras = {
-        state: { user: this.usuario }
-      };
-      // se consulta por usuario mediante servicio de api
-      let usuarioApi = this.api.consultarUsuario(this.usuario.correo);
-      if(usuarioApi.correo.length <= 1){
-        this.errorBoolean = true;
-        this.datosError = "Usuario no existe"
-      } else {
-        if(usuarioApi.contrasena == this.usuario.contrasena){
-          // se guardan datos de usuario en servicio de sesion
-          this.sesion.guardarSesion(usuarioApi.id,usuarioApi.nombre,usuarioApi.apellido,usuarioApi.correo);
-          // navegar a home
-          this.router.navigate(["/home"], NavigationExtras);
-        } else {
-          this.errorBoolean = true;
-          this.datosError = "Usuario y contraseña no coinciden"
-        }
-      }
+      this.validarUsuario();
     }
-    
   }
-  // fin login
+
+  validarUsuario(){
+    if(this.api.usuarioExiste(this.usuario.correo)){
+      this.validarContrasena();
+    } else {
+      this.errorUsuario();
+    }
+  }
+
+  validarContrasena(){
+    let pass = this.api.consultarContrasena(this.usuario.correo);
+    if(pass == this.usuario.contrasena){
+      this.generarSesion();
+      this.navigateHome();
+    } else {
+      this.errorContrasena();
+    }
+  }
+
+  generarSesion(){
+    let user = this.api.consultarUsuario(this.usuario.correo);
+    this.sesion.guardarSesion(user);
+  }
+
+  navigateHome(){
+    this.router.navigate(["/home"]);
+  }
+
+  reinicioErrores(){
+    this.errorBoolean = false;
+    this.isSubmitted = true;
+  }
+
+  errorUsuario(){
+    this.errorBoolean = true;
+    this.datosError = "Usuario no existe"
+  }
+
+  errorContrasena(){
+    this.errorBoolean = true;
+    this.datosError = "Usuario y contraseña no coinciden"
+  }
 
 }

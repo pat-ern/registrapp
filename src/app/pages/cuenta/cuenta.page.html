@@ -18,10 +18,12 @@
         <ion-item>
           <ion-label position="stacked">Nombre</ion-label>
           <ion-input type="text" value="{{ nombre | titlecase }}" readonly></ion-input>
-          <ion-label position="stacked">Apellido</ion-label>
-          <ion-input type="text" value="{{ apellido | titlecase }}" readonly></ion-input>
+          <ion-label position="stacked">Rut</ion-label>
+          <ion-input type="text" value="{{rut}}" readonly></ion-input>
           <ion-label position="stacked">Correo</ion-label>
           <ion-input type="text" value="{{correo}}" readonly></ion-input>
+          <ion-label position="stacked">Carrera</ion-label>
+          <ion-input type="text" value="{{carrera | titlecase }}" readonly></ion-input>
         </ion-item>
       </ion-card-content>
       <ion-ripple-effect></ion-ripple-effect>

@@ -8,9 +8,10 @@ import { SesionService } from 'src/app/services/sesion.service';
 })
 export class CuentaPage implements OnInit {
 
-  nombre = this.sesion.nombre;
-  apellido = this.sesion.apellido;
-  correo = this.sesion.correo;
+  nombre = this.sesion.usuario.nombre + " " + this.sesion.usuario.apellido;
+  rut = this.sesion.usuario.run + "-" + this.sesion.usuario.dv;
+  correo = this.sesion.usuario.correo;
+  carrera = this.sesion.usuario.carrera;
 
   constructor(private sesion: SesionService) { }
 

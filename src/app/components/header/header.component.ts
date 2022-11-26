@@ -10,8 +10,8 @@ import { SesionService } from 'src/app/services/sesion.service';
 })
 export class HeaderComponent implements OnInit {
 
-  nombre = this.sesion.nombre;
-  apellido = this.sesion.apellido;
+  nombre = this.sesion.usuario.nombre;
+  apellido = this.sesion.usuario.apellido;
 
   constructor(private sesion: SesionService, private router: Router) { }
 

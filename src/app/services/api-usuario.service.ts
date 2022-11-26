@@ -19,14 +19,6 @@ export class ApiUsuarioService {
   
   apiURL = 'https://pcortesduoc.github.io/movilApi/usuario.json' 
 
-  constructor(private http: HttpClient) { }
-
-  getUsuarios():Observable<any>{
-    return this.http.get(this.apiURL).pipe(
-      retry(3)
-    );
-  }
-
   usuario = {
     id: null,
     run : null,
@@ -39,27 +31,44 @@ export class ApiUsuarioService {
   }
 
   usuarios: any;
-  
-  funcionGet(){
-    this.getUsuarios().subscribe((data)=>{
-      this.usuarios = data.usuario
+
+  constructor(private http: HttpClient) { }
+
+  fetchApi():Observable<any>{
+    return this.http.get(this.apiURL).pipe(
+      retry(3)
+    );
+  }
+
+  getUsuarios(){
+    this.fetchApi().subscribe((data)=>{
+      this.usuarios = data.usuario;
     })
   }
 
-  consultarUsuario(correo: string) {
-      for (let i = 0; i < this.usuarios.length; i++){
-        if (correo===this.usuarios[i].correo){
-          this.usuario.id=this.usuarios[i].id;
-          this.usuario.run=this.usuarios[i].run;
-          this.usuario.dv=this.usuarios[i].dv;
-          this.usuario.nombre=this.usuarios[i].nombre;
-          this.usuario.apellido=this.usuarios[i].apellido;
-          this.usuario.carrera=this.usuarios[i].carrera;
-          this.usuario.correo=this.usuarios[i].correo;
-          this.usuario.contrasena=this.usuarios[i].contrasena;
+  usuarioExiste(correo: string) {
+    for (let i = 0; i < this.usuarios.length; i++){
+      if (correo===this.usuarios[i].correo){
+        console.log("Usuario " + this.usuarios[i].nombre + " existe");
+        return true;
+      } 
+    }
+  }
+
+  consultarContrasena(correo: string){
+    for (let i = 0; i < this.usuarios.length; i++){
+      if (correo===this.usuarios[i].correo){
+        return this.usuarios[i].contrasena;
       }
     }
-    return this.usuario;
+  }
+
+  consultarUsuario(correo: string) {
+    for (let i = 0; i < this.usuarios.length; i++){
+      if (correo===this.usuarios[i].correo){
+        return this.usuario = this.usuarios[i];
+      }
+    }
   }
 
 }
