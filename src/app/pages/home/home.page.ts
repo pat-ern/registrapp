@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild  } from '@angular/core';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { Animation, AnimationController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AnimationController } from '@ionic/angular';
 import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
