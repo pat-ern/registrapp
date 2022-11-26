@@ -10,17 +10,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
-// Base de datos sqlite y localstorage
-import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
+// Storage angular
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 // Servicios locales
 import { SesionService } from './services/sesion.service';
 
-// Plugin scanner (ejemplo youtube)
+// Barcode scanner
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
-//configuracion android y ios
+// Platform
 import { isPlatform } from '@ionic/angular';
 
 const getConfig = () => {
@@ -64,8 +63,7 @@ const getConfig = () => {
 
 
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    SQLite, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
     SesionService,
     BarcodeScanner],
 
