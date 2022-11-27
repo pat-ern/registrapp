@@ -117,7 +117,7 @@ export class ScanPage implements OnInit {
   registrarAsistencia(){
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
     let alumno = this.sesion.usuario.correo;
-    let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
+    let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.asignatura, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
     //enviar correo
     if(enviar){ //solo se envia correo si la asistencia no ha sido tomada hoy, segun la validacion de guardarAsistencia()
       this.apiCorreo.enviarCorreo(
