@@ -10,7 +10,7 @@
 
       <ion-item *ngFor="let a of listaAsistencia">
         <ion-label>
-          <h3>{{ a.strAsignatura | uppercase }}</h3>
+          <h3>{{ a.strAsignatura | titlecase }}</h3>
           <p>{{ a.strFecha }} {{ a.strHora }}</p>
         </ion-label>
         <ion-icon *ngIf="a.estaPresente" name="checkmark-circle-outline" color="success"></ion-icon>
