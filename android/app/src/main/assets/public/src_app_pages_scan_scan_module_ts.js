@@ -172,6 +172,7 @@ let ScanPage = class ScanPage {
         });
     }
     startScan() {
+        // force camera permission
         this.pageState = 1;
         this.scanner.scan().then(barcodeData => {
             this.code = barcodeData.text;

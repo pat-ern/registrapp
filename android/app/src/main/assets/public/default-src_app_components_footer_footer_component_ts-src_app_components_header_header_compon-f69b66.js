@@ -253,7 +253,7 @@ class SkipSubscriber extends _Subscriber__WEBPACK_IMPORTED_MODULE_0__.Subscriber
 
 /***/ }),
 
-/***/ 5921:
+/***/ 8014:
 /*!********************************************************************!*\
   !*** ./node_modules/rxjs/_esm2015/internal/operators/takeUntil.js ***!
   \********************************************************************/
@@ -623,7 +623,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ 3910);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs/operators */ 6276);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! rxjs/operators */ 3298);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rxjs/operators */ 5921);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rxjs/operators */ 8014);
 /* harmony import */ var _angular_cdk_coercion__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/cdk/coercion */ 8971);
 /* harmony import */ var _angular_cdk_observers__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/cdk/observers */ 3773);
 /* harmony import */ var _angular_cdk_layout__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/cdk/layout */ 3278);
@@ -3758,12 +3758,19 @@ class HighContrastModeDetector {
     testElement.remove();
 
     switch (computedColor) {
-      case 'rgb(0,0,0)':
+      // Pre Windows 11 dark theme.
+      case 'rgb(0,0,0)': // Windows 11 dark themes.
+
+      case 'rgb(45,50,54)':
+      case 'rgb(32,32,32)':
         return 2
         /* HighContrastMode.WHITE_ON_BLACK */
         ;
+      // Pre Windows 11 light theme.
 
-      case 'rgb(255,255,255)':
+      case 'rgb(255,255,255)': // Windows 11 light theme.
+
+      case 'rgb(255,250,239)':
         return 1
         /* HighContrastMode.BLACK_ON_WHITE */
         ;
@@ -4220,7 +4227,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /** Current version of the Angular Component Development Kit. */
 
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('14.2.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('14.2.7');
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -4741,7 +4748,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ 823);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ 6942);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! rxjs/operators */ 5722);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 5921);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! rxjs/operators */ 8014);
 /* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/cdk/platform */ 9107);
 
 
@@ -5995,7 +6002,7 @@ function MatOption_span_3_Template(rf, ctx) {
 }
 
 const _c2 = ["*"];
-const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('14.2.0');
+const VERSION = new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('14.2.7');
 /**
  * @license
  * Copyright Google LLC All Rights Reserved.
@@ -9907,10 +9914,10 @@ MatIcon.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
   type: MatIcon,
   selectors: [["mat-icon"]],
   hostAttrs: ["role", "img", 1, "mat-icon", "notranslate"],
-  hostVars: 7,
+  hostVars: 8,
   hostBindings: function MatIcon_HostBindings(rf, ctx) {
     if (rf & 2) {
-      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"]("data-mat-icon-type", ctx._usingFontIcon() ? "font" : "svg")("data-mat-icon-name", ctx._svgName || ctx.fontIcon)("data-mat-icon-namespace", ctx._svgNamespace || ctx.fontSet);
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵattribute"]("data-mat-icon-type", ctx._usingFontIcon() ? "font" : "svg")("data-mat-icon-name", ctx._svgName || ctx.fontIcon)("data-mat-icon-namespace", ctx._svgNamespace || ctx.fontSet)("fontIcon", ctx._usingFontIcon() ? ctx.fontIcon : null);
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("mat-icon-inline", ctx.inline)("mat-icon-no-color", ctx.color !== "primary" && ctx.color !== "accent" && ctx.color !== "warn");
     }
   },
@@ -9951,6 +9958,7 @@ MatIcon.ɵcmp = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵd
         '[attr.data-mat-icon-type]': '_usingFontIcon() ? "font" : "svg"',
         '[attr.data-mat-icon-name]': '_svgName || fontIcon',
         '[attr.data-mat-icon-namespace]': '_svgNamespace || fontSet',
+        '[attr.fontIcon]': '_usingFontIcon() ? fontIcon : null',
         '[class.mat-icon-inline]': 'inline',
         '[class.mat-icon-no-color]': 'color !== "primary" && color !== "accent" && color !== "warn"'
       },

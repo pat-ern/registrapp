@@ -12,6 +12,8 @@ export class HistorialPage implements OnInit {
 
   listaAsistencia: any;
 
+  tamanoLista: number;
+
   constructor(
     private bdlocal: BdLocalService) { 
   }
@@ -26,6 +28,14 @@ export class HistorialPage implements OnInit {
   }
 
   ngOnInit() {
+    this.tamanoLista = this.calcularTamanoLista();
+  }
+
+  calcularTamanoLista(){
+    if (this.listaAsistencia == null) {
+      this.listaAsistencia = [];
+    }
+    return this.listaAsistencia.length;
   }
 
 }

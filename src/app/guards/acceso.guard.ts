@@ -24,7 +24,6 @@ export class AccesoGuard implements CanActivate {
       return true;
     } else {
       this.router.navigate(['/login']);
-      console.log('Debes iniciar sesion');
       return false;
     }
     

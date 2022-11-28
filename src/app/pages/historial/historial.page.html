@@ -24,7 +24,7 @@
   <!--ACA VA EL COMPONENTE DEL footer-->
   <app-footer></app-footer>
   <!--ACA VA EL COMPONENTE DEL footer-->
-  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" *ngIf="tamanoLista > 0">
     <ion-fab-button (click)="borrarHistorial()" color="danger">
       <ion-icon name="trash-outline"></ion-icon>
     </ion-fab-button>
