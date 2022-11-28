@@ -11,6 +11,9 @@ import { BdLocalService } from 'src/app/services/bd-local.service';
 export class HistorialPage implements OnInit {
 
   listaAsistencia: any;
+  
+  tamanoLista: number;
+  
 
   constructor(
     private bdlocal: BdLocalService) { 
@@ -26,7 +29,17 @@ export class HistorialPage implements OnInit {
   }
 
   ngOnInit() {
+    this.tamanoLista = this.calcularTamanoLista();
+    console.log(this.tamanoLista);
   }
+
+  calcularTamanoLista(){
+    if (this.listaAsistencia == null){
+      this.listaAsistencia = [];
+    }
+    return this.listaAsistencia.length;
+  }
+
 
 }
  
