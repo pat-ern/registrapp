@@ -138,11 +138,19 @@ let HistorialPage = class HistorialPage {
     borrarHistorial() {
         this.bdlocal.borrarAsistencias();
         this.listaAsistencia = this.bdlocal.obtenerAsistencias();
+        this.tamanoLista = this.calcularTamanoLista();
     }
     ionViewWillEnter() {
         this.listaAsistencia = this.bdlocal.obtenerAsistencias();
+        this.tamanoLista = this.calcularTamanoLista();
     }
     ngOnInit() {
+    }
+    calcularTamanoLista() {
+        if (this.listaAsistencia == null) {
+            this.listaAsistencia = [];
+        }
+        return this.listaAsistencia.length;
     }
 };
 HistorialPage.ctorParameters = () => [
@@ -176,7 +184,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
   \****************************************************************/
 /***/ ((module) => {
 
-module.exports = "<div class=\"ion-page\" id=\"main-content\">\n\n  <!--ACA VA EL COMPONENTE DEL HEADER-->\n  <app-header></app-header>\n  <!--ACA VA EL COMPONENTE DEL HEADER-->\n\n  <ion-content class=\"ion-padding\">\n  \n    <ion-content class=\"ion-margin\">\n\n      <ion-item *ngFor=\"let a of listaAsistencia\">\n        <ion-label>\n          <h3>{{ a.strAsignatura | titlecase }}</h3>\n          <p>{{ a.strFecha }} {{ a.strHora }}</p>\n        </ion-label>\n        <ion-icon *ngIf=\"a.estaPresente\" name=\"checkmark-circle-outline\" color=\"success\"></ion-icon>\n        <ion-icon *ngIf=\"!a.estaPresente\" name=\"close-circle-outline\" color=\"danger\"></ion-icon>\n      </ion-item>\n      \n    </ion-content>\n\n  </ion-content>\n\n  <!--ACA VA EL COMPONENTE DEL footer-->\n  <app-footer></app-footer>\n  <!--ACA VA EL COMPONENTE DEL footer-->\n  <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\">\n    <ion-fab-button (click)=\"borrarHistorial()\" color=\"danger\">\n      <ion-icon name=\"trash-outline\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</div>";
+module.exports = "<div class=\"ion-page\" id=\"main-content\">\n\n  <!--ACA VA EL COMPONENTE DEL HEADER-->\n  <app-header></app-header>\n  <!--ACA VA EL COMPONENTE DEL HEADER-->\n\n  <ion-content class=\"ion-padding\">\n  \n    <ion-content class=\"ion-margin\">\n\n      <ion-item *ngFor=\"let a of listaAsistencia\">\n        <ion-label>\n          <h3>{{ a.strAsignatura | titlecase }}</h3>\n          <p>{{ a.strFecha }} {{ a.strHora }}</p>\n        </ion-label>\n        <ion-icon *ngIf=\"a.estaPresente\" name=\"checkmark-circle-outline\" color=\"success\"></ion-icon>\n        <ion-icon *ngIf=\"!a.estaPresente\" name=\"close-circle-outline\" color=\"danger\"></ion-icon>\n      </ion-item>\n      \n    </ion-content>\n\n  </ion-content>\n\n  <!--ACA VA EL COMPONENTE DEL footer-->\n  <app-footer></app-footer>\n  <!--ACA VA EL COMPONENTE DEL footer-->\n  <ion-fab slot=\"fixed\" vertical=\"bottom\" horizontal=\"end\" *ngIf=\"tamanoLista > 0\">\n    <ion-fab-button (click)=\"borrarHistorial()\" color=\"danger\">\n      <ion-icon name=\"trash-outline\"></ion-icon>\n    </ion-fab-button>\n  </ion-fab>\n\n</div>";
 
 /***/ })
 

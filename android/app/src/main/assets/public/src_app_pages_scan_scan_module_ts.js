@@ -131,7 +131,6 @@ let ScanPage = class ScanPage {
         this.pageState = 1;
     }
     ngOnInit() {
-        console.log('ngOnInit');
         this.startScan();
     }
     validarHorario(hra_ini, min_ini, hra_ter, min_ter) {
@@ -148,9 +147,7 @@ let ScanPage = class ScanPage {
     matchClass() {
         this.api.getAsignaturas().subscribe((data) => {
             this.asignaturas = data.asignatura;
-            console.log(data);
             let hoy = new Date().getDay();
-            console.log(hoy);
             for (let i = 0; i < this.asignaturas.length; i++) {
                 //for (let j = 0; j < this.asignaturas[i].horario.length; j++) {
                 this.codigoComparable = this.codigoBase + "*" + this.asignaturas[i].codigo + "*" + this.asignaturas[i].seccion;

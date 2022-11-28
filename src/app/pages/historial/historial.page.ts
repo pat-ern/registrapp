@@ -21,14 +21,16 @@ export class HistorialPage implements OnInit {
   borrarHistorial(){
     this.bdlocal.borrarAsistencias();
     this.listaAsistencia = this.bdlocal.obtenerAsistencias();
+    this.tamanoLista = this.calcularTamanoLista();
   }
 
   ionViewWillEnter() {
     this.listaAsistencia = this.bdlocal.obtenerAsistencias();
+    this.tamanoLista = this.calcularTamanoLista();
   }
 
   ngOnInit() {
-    this.tamanoLista = this.calcularTamanoLista();
+    
   }
 
   calcularTamanoLista(){

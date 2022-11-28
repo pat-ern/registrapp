@@ -51,7 +51,6 @@ let ApiUsuarioService = class ApiUsuarioService {
     usuarioExiste(correo) {
         for (let i = 0; i < this.usuarios.length; i++) {
             if (correo === this.usuarios[i].correo) {
-                console.log("Usuario " + this.usuarios[i].nombre + " existe");
                 return true;
             }
         }
@@ -197,7 +196,7 @@ let BdLocalService = class BdLocalService {
       const toast = yield _this3.toastController.create({
         message: mensaje,
         translucent: false,
-        color: 'tertiary',
+        color: 'medium',
         position: 'bottom',
         duration: 2000
       });

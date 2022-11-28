@@ -269,7 +269,6 @@ let AccesoGuard = class AccesoGuard {
         }
         else {
             this.router.navigate(['/login']);
-            console.log('Debes iniciar sesion');
             return false;
         }
     }
@@ -321,7 +320,6 @@ let SesionService = class SesionService {
         this.usuario = usuario;
         // activa la sesion
         this.activa = true;
-        console.log('Se almaceno el usuario ' + this.usuario.correo + ' en la sesion');
     }
 };
 SesionService.ctorParameters = () => [];
