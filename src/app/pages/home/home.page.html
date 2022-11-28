@@ -1,62 +1,39 @@
 <div class="ion-page" id="main-content">
 
   <!--ACA VA EL COMPONENTE DEL HEADER-->
-  <app-boton-menu></app-boton-menu>
+  <app-header></app-header>
   <!--ACA VA EL COMPONENTE DEL HEADER-->
 
   <ion-content class="ion-padding">
 
-    <ion-card-title class="ion-text-center ion-margin" #titulo>
-      <ion-text id="bienvenido">¡Bienvenid@!</ion-text>
-    </ion-card-title>
+    <div id="titulo" class="ion-margin" #titulo>
+      <img id="imagen-logo" src="assets/img/app-name-light.png">
+    </div>
 
-    <br>
+    <hr>
 
-    <ion-card [routerLink]="['/scan']" class="ion-background-tertiary">
+    <ion-card id="qr-card" [routerLink]="['/scan']" class="ion-margin">
       <ion-card-content class="ion-text-center" #qr>
         <img src="assets/img/qr-code.png" alt="qrcode" width="125px" height="auto">
       </ion-card-content>
       <ion-text class="ion-text-center">
-        <h4>Escanear codigo QR</h4>
+        <h4>Escanea el c&oacute;digo QR de tu clase</h4>
       </ion-text>
     </ion-card>
 
     <hr>
 
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-content class="ion-text-center">
-            <a [routerLink]="['/historial']"><mat-icon>spellcheck</mat-icon></a>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-content class="ion-text-center">
-            <a [routerLink]="['/cuenta']"><mat-icon>person</mat-icon></a>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-content class="ion-text-center">
-            <a [routerLink]="['/settings']"><mat-icon>settings</mat-icon></a>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-content class="ion-text-center">
-            <a [routerLink]="['/login']"><mat-icon>logout</mat-icon></a>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+    <div class="ion-text-center ion-margin">
+      <ion-button [routerLink]="['/historial']" color="tertiary" expand="block">
+        <ion-icon name="calendar-outline" ></ion-icon>&nbsp;
+        <ion-label>&Uacute;ltimas clases</ion-label>
+      </ion-button>
+    </div>
 
   </ion-content>
+
+  <!--ACA VA EL COMPONENTE DEL footer-->
+  <app-footer></app-footer>
+  <!--ACA VA EL COMPONENTE DEL footer-->
 
 </div>

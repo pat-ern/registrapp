@@ -18,17 +18,19 @@ export class BdLocalService {
     this.cargarAsistencia();
   }
 
-  guardarAsistencia(id:string,alumno:string, asignatura:string, seccion:string, fecha:string, hora:string, presente:boolean){
+  guardarAsistencia(id:string, alumno:string, asignatura:string, codigo: string, seccion:string, fecha:string, hora:string, presente:boolean){
     const existe= this.asistencia.find(c=>c.strIdAsistencia===id);
     if (id.length <= 2) {
       this.presentToast("Error al ingresar asistencia, intentar en el emulador")
     } else {
       if (!existe) {
-        this.asistencia.unshift({strIdAsistencia:id,strAlumno:alumno,strAsignatura:asignatura,strSeccion:seccion,strFecha:fecha, strHora:hora, estaPresente:presente})
+        this.asistencia.unshift({strIdAsistencia:id,strAlumno:alumno, strAsignatura:asignatura, strCodigo:codigo, strSeccion:seccion,strFecha:fecha, strHora:hora, estaPresente:presente})
         this._storage.set('asistencia',this.asistencia);
         this.presentToast("Asistencia registrada con exito.")
+        return true;
       } else {
         this.presentToast("Error. Asistencia ya fue registrada hoy.")
+        return false;
       }
     }
   }

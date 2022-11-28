@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BotonMenuComponent } from '../../components/boton-menu/boton-menu.component';
+
+// home page
 import { HomePage } from './home.page';
+
+// componentes
+import { HeaderComponent } from '../../components/header/header.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 const routes: Routes = [
   {
@@ -9,8 +14,12 @@ const routes: Routes = [
     component: HomePage,
     children:[
       {
-        path:'boton-menu',
-        component: BotonMenuComponent
+        path:'header',
+        component: HeaderComponent
+      },
+      {
+        path:'footer',
+        component: FooterComponent
       }
     ]
   }

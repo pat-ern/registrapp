@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild  } from '@angular/core';
-import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
-import { Animation, AnimationController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AnimationController } from '@ionic/angular';
 import { SesionService } from 'src/app/services/sesion.service';
 
 @Component({
@@ -15,29 +15,22 @@ export class HomePage {
   @ViewChild('titulo', { read: ElementRef, static: true }) titulo: ElementRef;
   @ViewChild('qr', { read: ElementRef, static: true }) qr: ElementRef;
 
-  //variable para almacenar usuario con correo y contraseña que vienen de login
-  usuario: any; 
-
-  // correo a mostrar en home
-  correo: string = this.sesion.correo;
+  usuario: any; // if navigation extras state is not empty, then we have a user
+  correo: string = this.sesion.usuario.correo;
 
   constructor(
     private router: Router, 
     private activatedRoute: ActivatedRoute, 
     private animationCtrl: AnimationController,
-    private sesion: SesionService
-    ) { 
+    private sesion: SesionService) { 
 
-  this.activatedRoute.queryParams.subscribe(params => {
-    if (this.router.getCurrentNavigation().extras.state){
-      this.usuario = router.getCurrentNavigation().extras.state.user;
-      console.log('Se recibieron los datos del usuario '+this.usuario.correo+' en la pagina home');
-    } else{
-      console.log('No se recibieron datos del usuario en la pagina home');
-    }
-  });
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state){
+        this.usuario = router.getCurrentNavigation().extras.state.user;
+      } 
+    });
 
-  } // fin constructor
+  }
 
   ngAfterViewInit() {
 

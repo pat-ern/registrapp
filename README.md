@@ -2,35 +2,29 @@
 proyecto app moviles duoc uc
 https://pcortesduoc.github.io/movilApi/clase.json
 
-https://ionicframework.com/docs/native/camera-preview
+## enviar correo
+- https://ionicframework.com/docs/native/email-composer
+  - Email Composer Plugin, aqui dice como instalarlo pero tiene poca info en general
+    - npm install cordova-plugin-email-composer
+    - npm install @awesome-cordova-plugins/email-composer @awesome-cordova-plugins/core 
+- https://masteringionic.com/blog/adding-email-functionality-to-an-ionic-application/
+  - Tutorial mostrando como se puede hacer, **al final muestra una funcion sendMessage** que podria servir.
+- https://www.youtube.com/watch?v=AF0jnmbbpbE
+  - Tutorial en video que muestra **como configurar el plugin**, puede que no funcione sin seguir sus pasos desde 2:19 y 3:00 en adelante. Lo malo es que no muestra como enviar el correo, solo abre una ventana de correo con los datos ya ingresados.
+  - Muestra el comando correcto para instalar el plugin y tambien como configurarlo para ios y android
 
-## TO DO
-- [X] Login
-    - [X] Recibir correo y contrasenna, y pasarlo a otras paginas
-    - [X] Validar que correo y contrasenna no puedan estar vacios
-    - [X] Validar que usuario y contrasenna coincidan con datos en duro puestos en ts
-        - Otras validaciones son opcionales por ahora
-    - [X] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
-- [X] Recuperar contrasenna
-    - [X] Agregar pag de recuperar contrasenna
-    - [X] Agregar ToastController que indique que se envio correo para recuperar password
-    - [X] Mostrar correo ingresado en el toast
-    - [X] Validar que el correo no puede estar vacio
-- [X] Home
-    - [X] Recibir datos de usuario y mostrarlos
-    - [X] Agregar funcionalidad a boton qr que lleve a otra pagina
-    - [X] Planear funcionalidad de cada boton
-    - [X] Agregar animaciones con funciones siguiendo ejemplo 04myAppAnimation
-- [X] Pagina QR
-    - [X] Quizas mostrar foto de qr como prototipo y boton de aceptar
-    - [X] Mostrar datos de la clase a la que se esta asistiendo:
-        - Codigo clase. Ejemplo: "PY41447"
-        - Nombre clase. Ejemplo: "Programacion de aplicaciones moviles"
-        - Seccion. Ejemplo: "008D"
-        - Dia y hora: Formato datetime me imagino
-        - Nombre docente. Ejemplo: "Yaravi Villegas"
-- [X] ppt
-
+## firmar app
+https://developer.android.com/studio/publish/app-signing?hl=es-419#sign-apk
+primero se firma en android studio, luego se debe configurar las firmas de apps de play
+- Crear cuenta de google developer en play console
+- Pagar cuota de inscripcion
+- Crear nueva app en pagina de play console y llenar detalles como nombre, precio, tipo, edades, descripcion, fotos
+- Se puede publicar en modo Testing o Production, pero hay que esperar a que google apruebe la app
+- Crear apk firmada:
+  - Android studio/Build/Generate signed bundle or APK
+  - Android App Bundle/Crear keystore con cualquier nombre y contraseña que queramos/release/Finish
+  - el archivo sera .aab, este se debe subir a play console, seleccionar paises en los que se publicara, rellenar datos que falten y enviar.
+- Google revisara la app y sus datos, y la aprobara o rechazara.
 
 ## Detalles:
 - usar ngmodel y formcontrol al mismo tiempo dejara de funcionar en actualizaciones futuras

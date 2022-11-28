@@ -1,3 +1,11 @@
 ion-card {
-  margin-top:30%;
+  margin-top:5%;
+}
+
+// center ion-spinner 
+ion-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

@@ -10,16 +10,42 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 
-// Base de datos sqlite y localstorage
-import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
+// Storage angular
 import { IonicStorageModule } from '@ionic/storage-angular';
 
 // Servicios locales
 import { SesionService } from './services/sesion.service';
 
-// Plugin scanner (ejemplo youtube)
+// Barcode scanner
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
+// Platform
+import { isPlatform } from '@ionic/angular';
+
+const getConfig = () => {
+  if (isPlatform('ios')){ 
+    return {
+      menuIcon: 'list-outline',
+      menuType: 'reveal',
+      animated: false,
+      rippleEffect: false, 
+    }
+  } else if (isPlatform('desktop')) {
+    return {
+      menuIcon: 'grid-outline',
+      menuType: 'overlay',
+      animated: true,
+      rippleEffect: true, 
+    }
+  } else if (isPlatform('android')) {
+    return {
+      menuIcon: 'menu-outline',
+      menuType: 'push',
+      animated: true,
+      rippleEffect: true, 
+    }
+  }
+}
 
 @NgModule({
 
@@ -28,16 +54,16 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(getConfig()), 
     AppRoutingModule, 
     BrowserAnimationsModule, 
     ReactiveFormsModule, 
     IonicStorageModule.forRoot(),
     HttpClientModule],
 
+
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
-    SQLite, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
     SesionService,
     BarcodeScanner],
 

@@ -4,9 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { BdLocalService } from 'src/app/services/bd-local.service';
+import { ApiCorreosService } from 'src/app/services/api-correos.service';
 
 // Plugins
-import { BarcodeScanner, BarcodeScanResult, BarcodeScannerOptions } from '@ionic-native/barcode-scanner/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-scan',
@@ -25,13 +26,19 @@ export class ScanPage implements OnInit {
     profesor: " ",
     fecha: " ",
     hora: " ",
+    correoProf: " ",
   }
+
+  codigoComparable: string = "";
+  codigoBase: string = "reg_app_cod";
+  pageState: number = 1;
 
   constructor(
     private scanner: BarcodeScanner,
     private api: ApiService,
     private bdlocal: BdLocalService,
-    private sesion: SesionService) { }
+    private sesion: SesionService,
+    private apiCorreo: ApiCorreosService) { }
   
   ngOnInit() {
     console.log('ngOnInit')
@@ -59,7 +66,8 @@ export class ScanPage implements OnInit {
 
       for (let i = 0; i < this.asignaturas.length; i++) {
         //for (let j = 0; j < this.asignaturas[i].horario.length; j++) {
-          if (this.asignaturas[i].codigo.toUpperCase() == this.code.toUpperCase()) { // && this.asignaturas[i].horario[j].dia == hoy
+          this.codigoComparable = this.codigoBase+"*"+this.asignaturas[i].codigo+"*"+this.asignaturas[i].seccion;
+          if (this.codigoComparable.toUpperCase() == this.code.toUpperCase()) { // && this.asignaturas[i].horario[j].dia == hoy
 
             //if (this.validarHorario(this.asignaturas[i].horario[0].hra_ini, this.asignaturas[i].horario[0].min_ini, this.asignaturas[i].horario[0].hra_ter, this.asignaturas[i].horario[0].min_ter)) {
               this.clase.codigo = this.asignaturas[i].codigo;
@@ -68,6 +76,7 @@ export class ScanPage implements OnInit {
               this.clase.profesor = this.asignaturas[i].profesor;
               this.clase.fecha = new Date().toLocaleDateString();
               this.clase.hora = new Date().toLocaleTimeString();
+              this.clase.correoProf = this.asignaturas[i].correoProf;
             //} else {
             // alert("No es el horario de la clase");
             //}
@@ -78,18 +87,47 @@ export class ScanPage implements OnInit {
   }
 
   startScan(){
+    this.pageState = 1;
     this.scanner.scan().then(barcodeData => {
       this.code = barcodeData.text;
-      this.matchClass();
+      if  (this.code.substring(0,11) == this.codigoBase) {
+        this.pageState = 2;
+        this.matchClass();
+      } else {
+        this.pageState = 3;
+      }
     }).catch(err => {
-        console.log('Error de this.scanner.scan() linea 87', err);
+        console.log('Error', err);
     });
+  }
+
+  mayusPrimeraLetra(palabra:string){
+    return palabra.charAt(0).toUpperCase()+palabra.slice(1);
+  }
+
+  mayusPalabras(palabras:string){
+    //esta funcion toma un string, los separa en un array por cada espacio, en el for le pone mayuscula a la primera letra de cada una y luego las vuelve a unir con un espacio entremedio
+    let palSeparadas = palabras.split(" ");
+    for(let i = 0; i < palSeparadas.length; i++){
+      palSeparadas[i] = palSeparadas[i][0].toUpperCase()+palSeparadas[i].slice(1);
     }
+    return palSeparadas.join(" ");
+  }
 
   registrarAsistencia(){
     let idAsistencia = this.bdlocal.generarIdAsistencia(this.clase.codigo, this.clase.fecha);
-    let alumno = this.sesion.correo;
-    this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
-  }
+    let alumno = this.sesion.usuario.correo;
+    let enviar = this.bdlocal.guardarAsistencia(idAsistencia,alumno, this.clase.asignatura, this.clase.codigo, this.clase.seccion, this.clase.fecha, this.clase.hora, true);
+    //enviar correo
+    if(enviar){ //solo se envia correo si la asistencia no ha sido tomada hoy, segun la validacion de guardarAsistencia()
+      this.apiCorreo.enviarCorreo(
+        /*from*/'asistencia@duocuc.cl', 
+        /*to*/this.clase.correoProf, //El recipiente es el correo del profesor. Ej: ya.villegas@profesor.duoc.cl
+        ///*to*/'p.cortes@duocuc.cl', //Para probar, se puede escribir un correo manualmente aqui
+        /*cc*/'', //para agregar mas destinatarios, se deben agregar a los Authorized Recipients en MailGun
+        /*subject*/'Asistencia registrada '+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase(),
+        /*text*/'Se ha registrado asistencia en la asignatura de '+this.mayusPalabras(this.clase.asignatura)+' ('+this.clase.codigo.toUpperCase()+' '+this.clase.seccion.toUpperCase()+'), para el alumno '+this.mayusPrimeraLetra(this.sesion.usuario.nombre)+' '+this.mayusPrimeraLetra(this.sesion.usuario.apellido)+', en la fecha '+this.clase.fecha+' a las '+this.clase.hora+'.');
+       }
+    }
 
 }

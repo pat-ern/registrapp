@@ -1,14 +1,34 @@
-import { AppPage } from './app.po';
+import { browser } from 'protractor';
+import { AppPage } from './app.po';;
 
-describe('new App', () => {
+describe('Testeando login para probar que', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
+    page.navigateTo();
+    
   });
 
-  it('should be blank', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toContain('Start with Ionic UI Components');
+  it('boton "Ingresar" ES clickeable con usuario y contrasena VALIDOS', async () => {
+    page.ingresarCampos(page.validEmail, page.validPassword);
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe(null);
+    });
   });
+
+  it('boton "Ingresar" NO ES clickeable con usuario y contrasena INVALIDOS', async () => {
+    page.ingresarCampos(page.invalidEmail, page.invalidPassword);
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe('true');
+    });
+  });
+
+  it('boton "Ingresar" NO ES clickeable con usuario y contrasena VACIOS', async () => {
+    page.ingresarCampos('', '');
+    page.getLoginButton().getAttribute('disabled').then(function (disabled) {
+      expect(disabled).toBe('true');
+    });
+  });
+
 });

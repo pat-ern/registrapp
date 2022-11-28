@@ -1,0 +1,19 @@
+<ion-header >
+
+  <ion-toolbar color="tertiary">
+
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-item color="tertiary" id="usuario">
+      <ion-label id="nombre" slot="end">{{ nombre | titlecase }} {{ apellido | titlecase }}</ion-label>
+      &nbsp;
+      <ion-avatar slot="end" (click)="cuenta()">
+        <img src="assets/img/avatar.png" alt="avatar">
+      </ion-avatar>
+    </ion-item>
+
+  </ion-toolbar>
+
+</ion-header>
