@@ -73,7 +73,7 @@ export class BdLocalService {
   async presentToast(mensaje:string) {
     const toast = await this.toastController.create({
       message: mensaje,
-      translucent:true,
+      translucent:false,
       color:'medium',
       position: 'bottom',
       duration: 2000
