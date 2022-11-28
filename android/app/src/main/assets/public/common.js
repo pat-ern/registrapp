@@ -1,6 +1,225 @@
 "use strict";
 (self["webpackChunkapp"] = self["webpackChunkapp"] || []).push([["common"],{
 
+/***/ 4028:
+/*!*************************************************!*\
+  !*** ./src/app/services/api-usuario.service.ts ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ApiUsuarioService": () => (/* binding */ ApiUsuarioService)
+/* harmony export */ });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 8987);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 8919);
+
+
+
+
+let ApiUsuarioService = class ApiUsuarioService {
+    constructor(http) {
+        this.http = http;
+        this.httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpHeaders({
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            })
+        };
+        this.apiURL = 'https://pcortesduoc.github.io/movilApi/usuario.json';
+        this.usuario = {
+            id: null,
+            run: null,
+            dv: " ",
+            nombre: " ",
+            apellido: " ",
+            carrera: " ",
+            correo: " ",
+            contrasena: " ",
+        };
+    }
+    fetchApi() {
+        return this.http.get(this.apiURL).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
+    }
+    getUsuarios() {
+        this.fetchApi().subscribe((data) => {
+            this.usuarios = data.usuario;
+        });
+    }
+    usuarioExiste(correo) {
+        for (let i = 0; i < this.usuarios.length; i++) {
+            if (correo === this.usuarios[i].correo) {
+                console.log("Usuario " + this.usuarios[i].nombre + " existe");
+                return true;
+            }
+        }
+    }
+    consultarContrasena(correo) {
+        for (let i = 0; i < this.usuarios.length; i++) {
+            if (correo === this.usuarios[i].correo) {
+                return this.usuarios[i].contrasena;
+            }
+        }
+    }
+    consultarUsuario(correo) {
+        for (let i = 0; i < this.usuarios.length; i++) {
+            if (correo === this.usuarios[i].correo) {
+                return this.usuario = this.usuarios[i];
+            }
+        }
+    }
+};
+ApiUsuarioService.ctorParameters = () => [
+    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient }
+];
+ApiUsuarioService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+        providedIn: 'root'
+    })
+], ApiUsuarioService);
+
+
+
+/***/ }),
+
+/***/ 1443:
+/*!**********************************************!*\
+  !*** ./src/app/services/bd-local.service.ts ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "BdLocalService": () => (/* binding */ BdLocalService)
+/* harmony export */ });
+/* harmony import */ var _Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 3819);
+/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
+
+
+
+
+
+let BdLocalService = class BdLocalService {
+  constructor(storage, toastController) {
+    this.storage = storage;
+    this.toastController = toastController;
+    this.asistencia = [];
+    this._storage = null;
+    this.init();
+    this.cargarAsistencia();
+  }
+
+  guardarAsistencia(id, alumno, asignatura, codigo, seccion, fecha, hora, presente) {
+    const existe = this.asistencia.find(c => c.strIdAsistencia === id);
+
+    if (id.length <= 2) {
+      this.presentToast("Error al ingresar asistencia, intentar en el emulador");
+    } else {
+      if (!existe) {
+        this.asistencia.unshift({
+          strIdAsistencia: id,
+          strAlumno: alumno,
+          strAsignatura: asignatura,
+          strCodigo: codigo,
+          strSeccion: seccion,
+          strFecha: fecha,
+          strHora: hora,
+          estaPresente: presente
+        });
+
+        this._storage.set('asistencia', this.asistencia);
+
+        this.presentToast("Asistencia registrada con exito.");
+        return true;
+      } else {
+        this.presentToast("Error. Asistencia ya fue registrada hoy.");
+        return false;
+      }
+    }
+  }
+
+  obtenerAsistencias() {
+    let listaAsistencias = [];
+
+    for (let i = 0; i < this.asistencia.length; i++) {
+      listaAsistencias.push(this.asistencia[i]);
+    }
+
+    return listaAsistencias;
+  }
+
+  generarIdAsistencia(asignatura, fecha) {
+    let id = asignatura + fecha;
+    return id;
+  }
+
+  borrarAsistencias() {
+    this.asistencia = [];
+
+    this._storage.set('asistencia', this.asistencia);
+
+    this.presentToast("Historial borrado con exito.");
+  } //
+
+
+  cargarAsistencia() {
+    var _this = this;
+
+    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const miAsistencia = yield _this.storage.get('asistencia');
+
+      if (miAsistencia) {
+        _this.asistencia = miAsistencia;
+      }
+    })();
+  } // genericos
+
+
+  init() {
+    var _this2 = this;
+
+    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      // If using, define drivers here: await this.storage.defineDriver(/*...*/);
+      const storage = yield _this2.storage.create();
+      _this2._storage = storage;
+    })();
+  }
+
+  presentToast(mensaje) {
+    var _this3 = this;
+
+    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      const toast = yield _this3.toastController.create({
+        message: mensaje,
+        translucent: true,
+        color: 'medium',
+        position: 'bottom',
+        duration: 2000
+      });
+      toast.present();
+    })();
+  }
+
+};
+
+BdLocalService.ctorParameters = () => [{
+  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__.Storage
+}, {
+  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ToastController
+}];
+
+BdLocalService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
+  providedIn: 'root'
+})], BdLocalService);
+
+
+/***/ }),
+
 /***/ 2483:
 /*!*********************************************************************!*\
   !*** ./node_modules/@ionic/core/dist/esm/button-active-4975dbd0.js ***!
@@ -1316,6 +1535,62 @@ const createSwipeBackGesture = (el, canStartHandler, onStartHandler, onMoveHandl
 };
 
 
+
+/***/ }),
+
+/***/ 8919:
+/*!****************************************************************!*\
+  !*** ./node_modules/rxjs/_esm2015/internal/operators/retry.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "retry": () => (/* binding */ retry)
+/* harmony export */ });
+/* harmony import */ var _Subscriber__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../Subscriber */ 14);
+
+function retry(count = -1) {
+  return source => source.lift(new RetryOperator(count, source));
+}
+
+class RetryOperator {
+  constructor(count, source) {
+    this.count = count;
+    this.source = source;
+  }
+
+  call(subscriber, source) {
+    return source.subscribe(new RetrySubscriber(subscriber, this.count, this.source));
+  }
+
+}
+
+class RetrySubscriber extends _Subscriber__WEBPACK_IMPORTED_MODULE_0__.Subscriber {
+  constructor(destination, count, source) {
+    super(destination);
+    this.count = count;
+    this.source = source;
+  }
+
+  error(err) {
+    if (!this.isStopped) {
+      const {
+        source,
+        count
+      } = this;
+
+      if (count === 0) {
+        return super.error(err);
+      } else if (count > -1) {
+        this.count = count - 1;
+      }
+
+      source.subscribe(this._unsubscribeAndRecycle());
+    }
+  }
+
+}
 
 /***/ })
 

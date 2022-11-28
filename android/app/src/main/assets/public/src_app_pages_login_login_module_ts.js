@@ -108,17 +108,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 // Servicios
 
 
+
 let LoginPage = class LoginPage {
-    constructor(router, animationCtrl, sesion, api, loadingController) {
+    constructor(router, animationCtrl, sesion, api, platform, menuCtrl) {
         this.router = router;
         this.animationCtrl = animationCtrl;
         this.sesion = sesion;
         this.api = api;
-        this.loadingController = loadingController;
+        this.platform = platform;
+        this.menuCtrl = menuCtrl;
         this.usuario = {
             correo: "",
             contrasena: ""
@@ -137,13 +138,15 @@ let LoginPage = class LoginPage {
         this.errorBoolean = false;
     }
     ngOnInit() {
-        this.api.funcionGet();
+        this.api.getUsuarios();
     }
     ionViewWillEnter() {
         this.usuario = {
             correo: "",
             contrasena: ""
         };
+        this.menuCtrl.enable(false);
+        console.log("Menu deshabilitado");
     }
     ngAfterViewInit() {
         // Animacion logo
@@ -161,40 +164,58 @@ let LoginPage = class LoginPage {
             .addAnimation([logo]);
         animacion.play();
     }
-    ngOnDestroy() {
-        console.log("login on destroy");
+    ionViewWillLeave() {
+        this.menuCtrl.enable(true);
+        console.log("Menu habilitado");
     }
     login() {
-        this.errorBoolean = false;
-        this.isSubmitted = true;
+        this.reinicioErrores();
+        this.validarFormulario();
+    }
+    validarFormulario() {
         if (!this.loginForm.valid) {
             return false;
         }
         else {
-            let NavigationExtras = {
-                state: {
-                    user: this.usuario
-                }
-            };
-            // se consulta por usuario mediante servicio de api
-            let usuarioApi = this.api.consultarUsuario(this.usuario.correo);
-            if (usuarioApi.correo.length <= 1) {
-                this.errorBoolean = true;
-                this.datosError = "Usuario no existe";
-            }
-            else {
-                if (usuarioApi.contrasena == this.usuario.contrasena) {
-                    // se guardan datos de usuario en servicio de sesion
-                    this.sesion.guardarSesion(usuarioApi.id, usuarioApi.nombre, usuarioApi.apellido, usuarioApi.correo);
-                    // navegar a home
-                    this.router.navigate(["/home"], NavigationExtras);
-                }
-                else {
-                    this.errorBoolean = true;
-                    this.datosError = "Usuario y contraseña no coinciden";
-                }
-            }
+            this.validarUsuario();
         }
+    }
+    validarUsuario() {
+        if (this.api.usuarioExiste(this.usuario.correo)) {
+            this.validarContrasena();
+        }
+        else {
+            this.errorUsuario();
+        }
+    }
+    validarContrasena() {
+        let pass = this.api.consultarContrasena(this.usuario.correo);
+        if (pass == this.usuario.contrasena) {
+            this.generarSesion();
+            this.navigateHome();
+        }
+        else {
+            this.errorContrasena();
+        }
+    }
+    generarSesion() {
+        let user = this.api.consultarUsuario(this.usuario.correo);
+        this.sesion.guardarSesion(user);
+    }
+    navigateHome() {
+        this.router.navigate(["/home"]);
+    }
+    reinicioErrores() {
+        this.errorBoolean = false;
+        this.isSubmitted = true;
+    }
+    errorUsuario() {
+        this.errorBoolean = true;
+        this.datosError = "Usuario no existe";
+    }
+    errorContrasena() {
+        this.errorBoolean = true;
+        this.datosError = "Usuario y contraseña no coinciden";
     }
 };
 LoginPage.ctorParameters = () => [
@@ -202,7 +223,8 @@ LoginPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.AnimationController },
     { type: _services_sesion_service__WEBPACK_IMPORTED_MODULE_2__.SesionService },
     { type: src_app_services_api_usuario_service__WEBPACK_IMPORTED_MODULE_3__.ApiUsuarioService },
-    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.LoadingController }
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.Platform },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_6__.MenuController }
 ];
 LoginPage.propDecorators = {
     logo: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ViewChild, args: ['logo', { read: _angular_core__WEBPACK_IMPORTED_MODULE_7__.ElementRef, static: true },] }]
@@ -235,7 +257,7 @@ module.exports = "#logo {\n  margin-top: 30%;\n}\n/*# sourceMappingURL=data:appl
   \********************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n</ion-header>\n\n<ion-content>\n  <div id=\"logo\" class=\"ion-text-center\" #logo>\n    <img src=\"assets/img/r2.png\" alt=\"usuario\" width=\"125px\" height=\"auto\">\n  </div>\n\n  <ion-card>\n    <ion-card-content>\n      <form action=\"\" [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n        <ion-item>\n          <ion-label position=\"floating\">Usuario</ion-label>\n          <ion-input type=\"email\" [(ngModel)]=\"usuario.correo\" required formControlName=\"emailForm\"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"loginForm.get('emailForm').hasError(er.tipo) && (loginForm.get('emailForm').touched || loginForm.get('emailForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n        </ion-item>\n        <ion-item>\n          <ion-label position=\"floating\">Contraseña</ion-label>\n          <ion-input type=\"password\" [(ngModel)]=\"usuario.contrasena\" required formControlName=\"passForm\"></ion-input>\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"loginForm.get('passForm').hasError(er.tipo) && (loginForm.get('passForm').touched || loginForm.get('passForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n        </ion-item>\n        <br>\n        <ion-button color=\"tertiary\" expand=\"block\" type=\"submit\">Ingresar</ion-button>\n\n          <ng-container *ngIf=\"errorBoolean==true\">\n            <p style=\"color: brown;\">{{datosError}}</p>\n          </ng-container>\n\n      </form>\n    </ion-card-content>\n  </ion-card>\n\n  <ion-text class=\"ion-text-center\">\n    <a [routerLink]=\"['/reset']\"><h4>¿Olvidaste tu contraseña?</h4></a>\n  </ion-text>\n\n  <br>  \n\n</ion-content>";
+module.exports = "<ion-header>\n</ion-header>\n\n<ion-content class=\"wrapper\">\n  <div id=\"logo\" class=\"ion-text-center\" #logo>\n    <img src=\"assets/img/logo2-light.png\" alt=\"logo\" width=\"125px\" height=\"auto\">\n  </div>\n\n  <ion-card class=\"ion-activatable ripple-parent\">\n    <ion-card-content>\n      <form action=\"\" [formGroup]=\"loginForm\" (ngSubmit)=\"login()\">\n        <ion-item>\n\n          <!-- input email -->\n          <ion-label name=\"emailinputlabel\" position=\"floating\">Usuario</ion-label>\n          <ion-input type=\"email\" name=\"email\" email [(ngModel)]=\"usuario.correo\" required formControlName=\"emailForm\"></ion-input><!--required solo funciona a medias, lo muestra rojo pero igual deja enviarlo-->\n          \n          <!-- mensaje de error -->\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"loginForm.get('emailForm').hasError(er.tipo) && (loginForm.get('emailForm').touched || loginForm.get('emailForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n\n        </ion-item>\n        <ion-item>\n\n          <!-- input contrasena -->\n          <ion-label name=\"passwordinputlabel\" position=\"floating\">Contraseña</ion-label>\n          <ion-input type=\"password\" name=\"password\" [(ngModel)]=\"usuario.contrasena\" required formControlName=\"passForm\"></ion-input>\n          \n          <!-- mensaje de error -->\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"loginForm.get('passForm').hasError(er.tipo) && (loginForm.get('passForm').touched || loginForm.get('passForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n\n        </ion-item>\n        <br>\n\n        <!-- [disabled]=\"!this.loginForm.valid\" -->\n        <ion-button id=\"login-button\" color=\"tertiary\" expand=\"block\" type=\"submit\" [disabled]=\"!this.loginForm.valid\">Ingresar</ion-button>\n\n          <ng-container *ngIf=\"errorBoolean==true\">\n            <p style=\"color: brown;\">{{datosError}}</p>\n          </ng-container>\n\n      </form>\n    </ion-card-content>\n    <ion-ripple-effect></ion-ripple-effect>\n  </ion-card>\n\n  <ion-text class=\"ion-text-center\">\n    <a [routerLink]=\"['/reset']\"><h4>¿Olvidaste tu contraseña?</h4></a>\n  </ion-text>\n\n  <br>  \n\n</ion-content>";
 
 /***/ })
 

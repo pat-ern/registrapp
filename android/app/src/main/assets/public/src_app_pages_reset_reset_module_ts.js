@@ -148,9 +148,7 @@ let ResetPage = class ResetPage {
     if (!this.recuperarForm.valid) {
       return false;
     } else {
-      let usuarioApi = this.api.consultarUsuario(this.user.email);
-
-      if (usuarioApi.correo.length <= 1) {
+      if (this.api.usuarioExiste(this.user.email)) {
         this.errorBoolean = true;
       } else {
         this.presentToast('bottom');
@@ -159,7 +157,7 @@ let ResetPage = class ResetPage {
   }
 
   ngOnInit() {
-    this.api.funcionGet();
+    this.api.getUsuarios();
   }
 
 };
@@ -195,7 +193,7 @@ module.exports = "#logo {\n  margin-top: 30%;\n}\n\n#cuadro-texto {\n  border-wi
   \********************************************************/
 /***/ ((module) => {
 
-module.exports = "<ion-header>\n</ion-header>\n\n<ion-content>\n\n  <div id=\"logo\" class=\"ion-text-center\">\n    <img src=\"assets/img/lock.png\" alt=\"usuario\" width=\"75px\" height=\"auto\">\n  </div>\n  <br>\n  <div id=\"cuadro-texto\">\n    <ion-text id=\"mensaje\" class=\"ion-text-center\" color=\"dark\">\n      <h5>Ingresa tu correo, si está registrado te enviaremos un código de confirmacion para reestablecer la contraseña.</h5>\n    </ion-text>\n  </div>\n\n  <form action=\"\" [formGroup]=\"recuperarForm\">\n    <ion-card>\n      <ion-card-content>\n        <ion-item>\n          <ion-label position=\"floating\">Correo</ion-label>\n          <ion-input type=\"email\" [(ngModel)]=\"user.email\" formControlName=\"emailForm\"></ion-input>\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"recuperarForm.get('emailForm').hasError(er.tipo) && (recuperarForm.get('emailForm').touched || recuperarForm.get('emailForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n        </ion-item>\n        <br>\n        <ion-button color=\"tertiary\" expand=\"block\" (click)=\"verificar()\">Obtener Código</ion-button>\n        <ng-container *ngIf=\"errorBoolean==true\">\n          <p style=\"color: brown;\">{{datosError}}</p>\n        </ng-container>\n      </ion-card-content>\n    </ion-card>\n  </form>\n\n  <ion-text class=\"ion-text-center\">\n    <a [routerLink]=\"['/login']\"><h4>Volver</h4></a>\n  </ion-text>\n\n</ion-content>\n\n<!--\n<ion-footer>\n      <ion-text style=\"padding:30%;\">\n        Ayuda - Redes Sociales\n      </ion-text>\n</ion-footer> \n-->";
+module.exports = "<ion-header>\n</ion-header>\n\n<ion-content>\n\n  <div id=\"logo\" class=\"ion-text-center\">\n    <img src=\"assets/img/lock-light.png\" alt=\"usuario\" width=\"75px\" height=\"auto\">\n  </div>\n  <br>\n  <div id=\"cuadro-texto\">\n    <ion-text id=\"mensaje\" class=\"ion-text-center\" color=\"dark\">\n      <h5>Ingresa tu correo, si está registrado te enviaremos un código de confirmacion para reestablecer la contraseña.</h5>\n    </ion-text>\n  </div>\n\n  <form action=\"\" [formGroup]=\"recuperarForm\">\n    <ion-card>\n      <ion-card-content>\n        <ion-item>\n          <ion-label position=\"floating\">Correo</ion-label>\n          <ion-input type=\"email\" [(ngModel)]=\"user.email\" formControlName=\"emailForm\"></ion-input>\n          <div *ngFor=\"let er of errores\">\n            <ng-container *ngIf=\"recuperarForm.get('emailForm').hasError(er.tipo) && (recuperarForm.get('emailForm').touched || recuperarForm.get('emailForm').dirty)\">\n              <p style=\"color: brown;\">{{er.mensaje}}</p>\n            </ng-container>\n          </div>\n        </ion-item>\n        <br>\n        <ion-button color=\"tertiary\" expand=\"block\" (click)=\"verificar()\">Obtener Código</ion-button>\n        <ng-container *ngIf=\"errorBoolean==true\">\n          <p style=\"color: brown;\">{{datosError}}</p>\n        </ng-container>\n      </ion-card-content>\n    </ion-card>\n  </form>\n\n  <ion-text class=\"ion-text-center\">\n    <a [routerLink]=\"['/login']\"><h4>Volver</h4></a>\n  </ion-text>\n\n</ion-content>\n\n<!--\n<ion-footer>\n      <ion-text style=\"padding:30%;\">\n        Ayuda - Redes Sociales\n      </ion-text>\n</ion-footer> \n-->";
 
 /***/ })
 

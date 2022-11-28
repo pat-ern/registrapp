@@ -27,30 +27,30 @@ const routes = [
     },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_login_login_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/login/login.module */ 1053)).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_login_login_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/login/login.module */ 1053)).then(m => m.LoginPageModule)
     },
     {
         path: 'reset',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_reset_reset_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/reset/reset.module */ 7742)).then(m => m.ResetPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_reset_reset_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/reset/reset.module */ 7742)).then(m => m.ResetPageModule)
     },
     {
         path: 'home',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_boton-menu_boton-menu_component_ts-node_modules_angular_material_f-52edac"), __webpack_require__.e("src_app_pages_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/home/home.module */ 7994)).then(m => m.HomePageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_footer_footer_component_ts-src_app_components_header_header_compon-f69b66"), __webpack_require__.e("src_app_pages_home_home_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/home/home.module */ 7994)).then(m => m.HomePageModule),
         canActivate: [_guards_acceso_guard__WEBPACK_IMPORTED_MODULE_0__.AccesoGuard]
     },
     {
         path: 'historial',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_boton-menu_boton-menu_component_ts-node_modules_angular_material_f-52edac"), __webpack_require__.e("src_app_pages_historial_historial_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/historial/historial.module */ 8571)).then(m => m.HistorialPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_footer_footer_component_ts-src_app_components_header_header_compon-f69b66"), __webpack_require__.e("common"), __webpack_require__.e("src_app_pages_historial_historial_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/historial/historial.module */ 8571)).then(m => m.HistorialPageModule),
         canActivate: [_guards_acceso_guard__WEBPACK_IMPORTED_MODULE_0__.AccesoGuard]
     },
     {
         path: 'cuenta',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_boton-menu_boton-menu_component_ts-node_modules_angular_material_f-52edac"), __webpack_require__.e("src_app_pages_cuenta_cuenta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/cuenta/cuenta.module */ 4178)).then(m => m.CuentaPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("default-src_app_components_footer_footer_component_ts-src_app_components_header_header_compon-f69b66"), __webpack_require__.e("src_app_pages_cuenta_cuenta_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/cuenta/cuenta.module */ 4178)).then(m => m.CuentaPageModule),
         canActivate: [_guards_acceso_guard__WEBPACK_IMPORTED_MODULE_0__.AccesoGuard]
     },
     {
         path: 'scan',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_pages_scan_scan_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./pages/scan/scan.module */ 2130)).then(m => m.ScanPageModule),
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_pages_scan_scan_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./pages/scan/scan.module */ 2130)).then(m => m.ScanPageModule),
         canActivate: [_guards_acceso_guard__WEBPACK_IMPORTED_MODULE_0__.AccesoGuard]
     },
     {
@@ -159,10 +159,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/platform-browser/animations */ 7146);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/forms */ 2508);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var _awesome_cordova_plugins_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @awesome-cordova-plugins/sqlite/ngx */ 2154);
 /* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @ionic/storage-angular */ 7566);
-/* harmony import */ var _services_sesion_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./services/sesion.service */ 2555);
-/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ 5684);
+/* harmony import */ var _services_sesion_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./services/sesion.service */ 2555);
+/* harmony import */ var _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/barcode-scanner/ngx */ 5684);
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ 6710);
 
 
 
@@ -173,13 +173,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Base de datos sqlite y localstorage
-
+// Storage angular
 
 // Servicios locales
 
-// Plugin scanner (ejemplo youtube)
+// Barcode scanner
 
+// Platform
+
+const getConfig = () => {
+    if ((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_4__.isPlatform)('ios')) {
+        return {
+            menuIcon: 'list-outline',
+            menuType: 'reveal',
+            animated: false,
+            rippleEffect: false,
+        };
+    }
+    else if ((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_4__.isPlatform)('desktop')) {
+        return {
+            menuIcon: 'grid-outline',
+            menuType: 'overlay',
+            animated: true,
+            rippleEffect: true,
+        };
+    }
+    else if ((0,_ionic_angular__WEBPACK_IMPORTED_MODULE_4__.isPlatform)('android')) {
+        return {
+            menuIcon: 'menu-outline',
+            menuType: 'push',
+            animated: true,
+            rippleEffect: true,
+        };
+    }
+};
 let AppModule = class AppModule {
 };
 AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
@@ -189,7 +216,7 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.BrowserModule,
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule.forRoot(),
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicModule.forRoot(getConfig()),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_1__.AppRoutingModule,
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_9__.BrowserAnimationsModule,
             _angular_forms__WEBPACK_IMPORTED_MODULE_10__.ReactiveFormsModule,
@@ -198,9 +225,8 @@ AppModule = (0,tslib__WEBPACK_IMPORTED_MODULE_5__.__decorate)([
         ],
         providers: [
             { provide: _angular_router__WEBPACK_IMPORTED_MODULE_13__.RouteReuseStrategy, useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__.IonicRouteStrategy },
-            _awesome_cordova_plugins_sqlite_ngx__WEBPACK_IMPORTED_MODULE_2__.SQLite,
-            _services_sesion_service__WEBPACK_IMPORTED_MODULE_3__.SesionService,
-            _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_4__.BarcodeScanner
+            _services_sesion_service__WEBPACK_IMPORTED_MODULE_2__.SesionService,
+            _ionic_native_barcode_scanner_ngx__WEBPACK_IMPORTED_MODULE_3__.BarcodeScanner
         ],
         bootstrap: [
             _app_component__WEBPACK_IMPORTED_MODULE_0__.AppComponent
@@ -262,234 +288,6 @@ AccesoGuard = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
 
 /***/ }),
 
-/***/ 4028:
-/*!*************************************************!*\
-  !*** ./src/app/services/api-usuario.service.ts ***!
-  \*************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ApiUsuarioService": () => (/* binding */ ApiUsuarioService)
-/* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common/http */ 8987);
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 8919);
-
-
-
-
-let ApiUsuarioService = class ApiUsuarioService {
-    //apiURL = 'http://192.168.0.6:3000'; // Ejecuta json-server -H ip .\db.json para ejecutar un Fake APIRest
-    constructor(http) {
-        this.http = http;
-        this.httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpHeaders({
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            })
-        }; // Se establece la base url del API a consumir
-        this.apiURL = 'https://pcortesduoc.github.io/movilApi/usuario.json'; // Fuente Original funciona solo get
-        this.usuario = {
-            id: null,
-            run: null,
-            dv: " ",
-            nombre: " ",
-            apellido: " ",
-            carrera: " ",
-            correo: " ",
-            contrasena: " ",
-        };
-    }
-    getUsuarios() {
-        return this.http.get(this.apiURL).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
-    }
-    funcionGet() {
-        this.getUsuarios().subscribe((data) => {
-            this.usuarios = data.usuario;
-        });
-    }
-    consultarUsuario(correo) {
-        for (let i = 0; i < this.usuarios.length; i++) {
-            if (correo === this.usuarios[i].correo) {
-                this.usuario.id = this.usuarios[i].id;
-                this.usuario.run = this.usuarios[i].run;
-                this.usuario.dv = this.usuarios[i].dv;
-                this.usuario.nombre = this.usuarios[i].nombre;
-                this.usuario.apellido = this.usuarios[i].apellido;
-                this.usuario.carrera = this.usuarios[i].carrera;
-                this.usuario.correo = this.usuarios[i].correo;
-                this.usuario.contrasena = this.usuarios[i].contrasena;
-            }
-        }
-        return this.usuario;
-    }
-    // otros metodos
-    getPosts() {
-        return this.http.get(this.apiURL + '/posts/').pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
-    }
-    getPost(id) {
-        return this.http.get(this.apiURL + '/posts/' + id).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
-    }
-    createPost(post) {
-        return this.http.post(this.apiURL + '/posts', post, this.httpOptions).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
-    }
-    updatePost(id, post) {
-        return this.http.put(this.apiURL + '/posts/' + id, post, this.httpOptions).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.retry)(3));
-    }
-    deletePost(id) {
-        return this.http.delete(this.apiURL + '/posts/' + id, this.httpOptions);
-    }
-};
-ApiUsuarioService.ctorParameters = () => [
-    { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_0__.HttpClient }
-];
-ApiUsuarioService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
-        providedIn: 'root'
-    })
-], ApiUsuarioService);
-
-
-
-/***/ }),
-
-/***/ 1443:
-/*!**********************************************!*\
-  !*** ./src/app/services/bd-local.service.ts ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "BdLocalService": () => (/* binding */ BdLocalService)
-/* harmony export */ });
-/* harmony import */ var _Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 1670);
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ 3819);
-/* harmony import */ var _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/storage-angular */ 190);
-
-
-
-
-
-let BdLocalService = class BdLocalService {
-  constructor(storage, toastController) {
-    this.storage = storage;
-    this.toastController = toastController;
-    this.asistencia = [];
-    this._storage = null;
-    this.init();
-    this.cargarAsistencia();
-  }
-
-  guardarAsistencia(id, alumno, asignatura, seccion, fecha, hora, presente) {
-    const existe = this.asistencia.find(c => c.strIdAsistencia === id);
-
-    if (id.length <= 2) {
-      this.presentToast("Error al ingresar asistencia, intentar en el emulador");
-    } else {
-      if (!existe) {
-        this.asistencia.unshift({
-          strIdAsistencia: id,
-          strAlumno: alumno,
-          strAsignatura: asignatura,
-          strSeccion: seccion,
-          strFecha: fecha,
-          strHora: hora,
-          estaPresente: presente
-        });
-
-        this._storage.set('asistencia', this.asistencia);
-
-        this.presentToast("Asistencia registrada con exito.");
-      } else {
-        this.presentToast("Error. Asistencia ya fue registrada hoy.");
-      }
-    }
-  }
-
-  obtenerAsistencias() {
-    let listaAsistencias = [];
-
-    for (let i = 0; i < this.asistencia.length; i++) {
-      listaAsistencias.push(this.asistencia[i]);
-    }
-
-    return listaAsistencias;
-  }
-
-  generarIdAsistencia(asignatura, fecha) {
-    let id = asignatura + fecha;
-    return id;
-  }
-
-  borrarAsistencias() {
-    this.asistencia = [];
-
-    this._storage.set('asistencia', this.asistencia);
-
-    this.presentToast("Historial borrado con exito.");
-  } //
-
-
-  cargarAsistencia() {
-    var _this = this;
-
-    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const miAsistencia = yield _this.storage.get('asistencia');
-
-      if (miAsistencia) {
-        _this.asistencia = miAsistencia;
-      }
-    })();
-  } // genericos
-
-
-  init() {
-    var _this2 = this;
-
-    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      // If using, define drivers here: await this.storage.defineDriver(/*...*/);
-      const storage = yield _this2.storage.create();
-      _this2._storage = storage;
-    })();
-  }
-
-  presentToast(mensaje) {
-    var _this3 = this;
-
-    return (0,_Users_patricio_Documents_GitHub_registrapp_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
-      const toast = yield _this3.toastController.create({
-        message: mensaje,
-        translucent: true,
-        color: 'medium',
-        position: 'bottom',
-        duration: 2000
-      });
-      toast.present();
-    })();
-  }
-
-};
-
-BdLocalService.ctorParameters = () => [{
-  type: _ionic_storage_angular__WEBPACK_IMPORTED_MODULE_1__.Storage
-}, {
-  type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__.ToastController
-}];
-
-BdLocalService = (0,tslib__WEBPACK_IMPORTED_MODULE_3__.__decorate)([(0,_angular_core__WEBPACK_IMPORTED_MODULE_4__.Injectable)({
-  providedIn: 'root'
-})], BdLocalService);
-
-
-/***/ }),
-
 /***/ 2555:
 /*!********************************************!*\
   !*** ./src/app/services/sesion.service.ts ***!
@@ -501,20 +299,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SesionService": () => (/* binding */ SesionService)
 /* harmony export */ });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! tslib */ 4929);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 2560);
-/* harmony import */ var _bd_local_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bd-local.service */ 1443);
-/* harmony import */ var src_app_services_api_usuario_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/api-usuario.service */ 4028);
-
-
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ 4929);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 2560);
 
 
 let SesionService = class SesionService {
-    constructor(bdlocalservice, api) {
-        this.bdlocalservice = bdlocalservice;
-        this.api = api;
-        this.activa = false;
-        // variables de usuario rescatado de API
+    constructor() {
+        // Atributos de la sesion
         this.usuario = {
             id: null,
             run: null,
@@ -523,47 +314,19 @@ let SesionService = class SesionService {
             apellido: " ",
             carrera: " ",
             correo: " ",
-            contrasena: " ",
         };
+        this.activa = false;
     }
-    // solo dentro del servicio se consulta a la api y se guarda en la variable usuario
-    consultarUsuario(correo) {
-        this.api.getUsuarios().subscribe((data) => {
-            this.usuarios = data.usuario;
-            console.log(data.usuario);
-            for (let i = 0; i < this.usuarios.length; i++) {
-                if (correo === this.usuarios[i].correo) {
-                    this.usuario.id = this.usuarios[i].id;
-                    this.usuario.run = this.usuarios[i].run;
-                    this.usuario.dv = this.usuarios[i].dv;
-                    this.usuario.nombre = this.usuarios[i].nombre;
-                    this.usuario.apellido = this.usuarios[i].apellido;
-                    this.usuario.carrera = this.usuarios[i].carrera;
-                    this.usuario.correo = this.usuarios[i].correo;
-                    this.usuario.contrasena = this.usuarios[i].contrasena;
-                    console.log(this.usuarios[i]);
-                }
-            }
-        });
-        console.log(this.usuario);
-        return this.usuario;
-    }
-    // este metodo se llama desde el login para guardar los datos de sesion
-    guardarSesion(id, nombre, apellido, correo) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
+    guardarSesion(usuario) {
+        this.usuario = usuario;
+        // activa la sesion
         this.activa = true;
-        console.log('Se almaceno el usuario ' + this.correo + ' en la sesion');
+        console.log('Se almaceno el usuario ' + this.usuario.correo + ' en la sesion');
     }
 };
-SesionService.ctorParameters = () => [
-    { type: _bd_local_service__WEBPACK_IMPORTED_MODULE_0__.BdLocalService },
-    { type: src_app_services_api_usuario_service__WEBPACK_IMPORTED_MODULE_1__.ApiUsuarioService }
-];
-SesionService = (0,tslib__WEBPACK_IMPORTED_MODULE_2__.__decorate)([
-    (0,_angular_core__WEBPACK_IMPORTED_MODULE_3__.Injectable)({
+SesionService.ctorParameters = () => [];
+SesionService = (0,tslib__WEBPACK_IMPORTED_MODULE_0__.__decorate)([
+    (0,_angular_core__WEBPACK_IMPORTED_MODULE_1__.Injectable)({
         providedIn: 'root'
     })
 ], SesionService);
@@ -880,7 +643,7 @@ module.exports = webpackAsyncContext;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "@import url(\"https://fonts.googleapis.com/css2?family=Open+Sans\");\n@import url(\"https://fonts.googleapis.com/css2?family=Contrail+One\");\n@import url(\"https://fonts.googleapis.com/css2?family=VT323\");\n@import url(\"https://fonts.googleapis.com/css2?family=Share+Tech+Mono\");\nion-menu > ion-content > ion-list > a {\n  text-decoration: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBUSxpRUFBQTtBQUNBLG9FQUFBO0FBQ0EsNkRBQUE7QUFDQSx1RUFBQTtBQUVSO0VBQ0UscUJBQUE7QUFBRiIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1PcGVuK1NhbnMnKTtcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUNvbnRyYWlsK09uZScpO1xuQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9VlQzMjMnKTtcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PVNoYXJlK1RlY2grTW9ubycpO1xuXG5pb24tbWVudSA+IGlvbi1jb250ZW50ID4gaW9uLWxpc3QgPiBhIHtcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xufSAiXX0= */";
+module.exports = "@import url(\"https://fonts.googleapis.com/css2?family=Open+Sans\");\n@import url(\"https://fonts.googleapis.com/css2?family=Contrail+One\");\n@import url(\"https://fonts.googleapis.com/css2?family=VT323\");\n@import url(\"https://fonts.googleapis.com/css2?family=Share+Tech+Mono\");\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBUSxpRUFBQTtBQUNBLG9FQUFBO0FBQ0EsNkRBQUE7QUFDQSx1RUFBQSIsImZpbGUiOiJhcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1PcGVuK1NhbnMnKTtcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PUNvbnRyYWlsK09uZScpO1xuQGltcG9ydCB1cmwoJ2h0dHBzOi8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzMj9mYW1pbHk9VlQzMjMnKTtcbkBpbXBvcnQgdXJsKCdodHRwczovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2NzczI/ZmFtaWx5PVNoYXJlK1RlY2grTW9ubycpOyJdfQ== */";
 
 /***/ }),
 
@@ -891,7 +654,7 @@ module.exports = "@import url(\"https://fonts.googleapis.com/css2?family=Open+Sa
 /***/ ((module) => {
 
 "use strict";
-module.exports = "<ion-app>\n\n  <ion-menu contentId=\"main-content\" menuId=\"main-content\" side=\"start\" type=\"overlay\">\n    <ion-header>\n      <ion-toolbar color=\"tertiary\">\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n    </ion-header>\n    <ion-content class=\"ion-padding\">\n      <ion-list>\n        <a (click)=\"goToScanPage()\"><ion-item><ion-icon name=\"qr-code-outline\"></ion-icon>&nbsp;Escanear codigo QR</ion-item></a>\n        <a (click)=\"goToHistorialPage()\"><ion-item><ion-icon name=\"calendar-outline\"></ion-icon>&nbsp;Ultimas clases</ion-item></a>\n        <a (click)=\"goToCuentaPage()\"><ion-item><ion-icon name=\"person-circle-outline\"></ion-icon>&nbsp;Cuenta</ion-item></a>\n        <a (click)=\"goToSettingsPage()\"><ion-item><ion-icon name=\"settings-outline\"></ion-icon>&nbsp;Opciones</ion-item></a>\n        <a (click)=\"goToLoginPage()\"><ion-item><ion-icon name=\"log-in-outline\"></ion-icon>&nbsp;Salir</ion-item></a>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n\n  <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n\n</ion-app>\n";
+module.exports = "<ion-app>\n\n  <ion-menu contentId=\"main-content\" menuId=\"main-content\" type=\"reveal\">\n    <ion-header>\n      <ion-toolbar color=\"tertiary\">\n        <ion-title>Menu</ion-title>\n      </ion-toolbar>\n    </ion-header>\n    <ion-content class=\"ion-padding\">\n      <ion-list>\n        <a (click)=\"goToScanPage()\"><ion-item><ion-icon name=\"qr-code-outline\"></ion-icon>&nbsp;Escanear c&oacute;digo QR</ion-item></a>\n        <a (click)=\"goToHistorialPage()\"><ion-item><ion-icon name=\"calendar-outline\"></ion-icon>&nbsp;&Uacute;ltimas clases</ion-item></a>\n        <a (click)=\"goToCuentaPage()\"><ion-item><ion-icon name=\"person-circle-outline\"></ion-icon>&nbsp;Cuenta</ion-item></a>\n        <a (click)=\"goToSettingsPage()\"><ion-item><ion-icon name=\"settings-outline\"></ion-icon>&nbsp;Opciones</ion-item></a>\n        <a (click)=\"goToLoginPage()\"><ion-item><ion-icon name=\"log-in-outline\"></ion-icon>&nbsp;Salir</ion-item></a>\n      </ion-list>\n    </ion-content>\n  </ion-menu>\n\n  <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n\n</ion-app>\n";
 
 /***/ })
 

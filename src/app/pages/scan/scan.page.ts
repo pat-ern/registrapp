@@ -87,7 +87,10 @@ export class ScanPage implements OnInit {
   }
 
   startScan(){
+    // force camera permission
+    
     this.pageState = 1;
+
     this.scanner.scan().then(barcodeData => {
       this.code = barcodeData.text;
       if  (this.code.substring(0,11) == this.codigoBase) {
@@ -99,6 +102,7 @@ export class ScanPage implements OnInit {
     }).catch(err => {
         console.log('Error', err);
     });
+  
   }
 
   mayusPrimeraLetra(palabra:string){
