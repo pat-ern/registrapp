@@ -49,7 +49,6 @@ export class ApiUsuarioService {
   usuarioExiste(correo: string) {
     for (let i = 0; i < this.usuarios.length; i++){
       if (correo===this.usuarios[i].correo){
-        console.log("Usuario " + this.usuarios[i].nombre + " existe");
         return true;
       } 
     }

@@ -30,7 +30,6 @@ export class HistorialPage implements OnInit {
 
   ngOnInit() {
     this.tamanoLista = this.calcularTamanoLista();
-    console.log(this.tamanoLista);
   }
 
   calcularTamanoLista(){
