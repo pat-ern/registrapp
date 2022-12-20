@@ -21,19 +21,4 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/cuenta']);
   }
 
-  
-  // subtract(value, mask) {
-  //   return value.split('').filter(function (a, i) {
-  //       return a !== mask[i];
-  //   }).join('');
-  // }
-
-  // console.log(subtract("1-000-111", " -   -"));
-  // console.log(subtract("foo1-000-111", "foo -   -"));
-
-  // obtenerNombre() {
-  //   const url = this.subtract(window.location.href, "http://localhost:8100/");
-  //   return url;
-  // }
-
 }

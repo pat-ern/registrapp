@@ -2,25 +2,26 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { HttpClientModule } from '@angular/common/http';
 
-// Storage angular
+// Modulos de Ionic
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { isPlatform } from '@ionic/angular';
+
+// Plugins de Ionic
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
+// Modulos compartidos
+import { SharedModule } from './shared-module/shared-module.module';
 
 // Servicios locales
 import { SesionService } from './services/sesion.service';
-
-// Barcode scanner
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
-
-// Platform
-import { isPlatform } from '@ionic/angular';
 
 const getConfig = () => {
   if (isPlatform('ios')){ 
@@ -48,10 +49,8 @@ const getConfig = () => {
 }
 
 @NgModule({
-
   declarations: [
     AppComponent],
-
   imports: [
     BrowserModule, 
     IonicModule.forRoot(getConfig()), 
@@ -60,16 +59,12 @@ const getConfig = () => {
     ReactiveFormsModule, 
     IonicStorageModule.forRoot(),
     HttpClientModule],
-
-
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },  
     SesionService,
-    BarcodeScanner],
-
+    BarcodeScanner,
+    SharedModule],
   bootstrap: [
     AppComponent],
-
 })
-
 export class AppModule {}

@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-// home page
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 
-// componentes
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-
 // material
 import { MatIconModule } from '@angular/material/icon';
+
+// shared module
+import { SharedModule } from '../../shared-module/shared-module.module';
 
 @NgModule({
   imports: [
@@ -21,10 +20,11 @@ import { MatIconModule } from '@angular/material/icon';
     IonicModule,
     HomePageRoutingModule,
     MatIconModule,
+    SharedModule, // importar el modulo de shared module para que se puedan usar los componentes que contiene 
   ],
   declarations: [
     HomePage,
-    HeaderComponent,
-    FooterComponent]
+  ]
 })
+
 export class HomePageModule {}

@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { CuentaPageRoutingModule } from './cuenta-routing.module';
 import { CuentaPage } from './cuenta.page';
 
-// componentes
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-
 // material
 import { MatIconModule } from '@angular/material/icon';
+
+// shared module
+import { SharedModule } from '../../shared-module/shared-module.module';
 
 @NgModule({
   imports: [
@@ -21,10 +20,10 @@ import { MatIconModule } from '@angular/material/icon';
     IonicModule,
     CuentaPageRoutingModule,
     MatIconModule,
+    SharedModule // importar el modulo de shared module para que se puedan usar los componentes que contiene
   ],
   declarations: [
-    CuentaPage,
-    HeaderComponent,
-    FooterComponent]
+    CuentaPage]
 })
+
 export class CuentaPageModule {}

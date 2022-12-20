@@ -7,12 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { HistorialPageRoutingModule } from './historial-routing.module';
 import { HistorialPage } from './historial.page';
 
-// componentes
-import { HeaderComponent } from '../../components/header/header.component';
-import { FooterComponent } from '../../components/footer/footer.component';
-
 // material
 import { MatIconModule } from '@angular/material/icon';
+
+// shared module
+import { SharedModule } from '../../shared-module/shared-module.module';
 
 @NgModule({
   imports: [
@@ -21,10 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
     IonicModule,
     HistorialPageRoutingModule,
     MatIconModule,
+    SharedModule // importar el modulo de shared module para que se puedan usar los componentes que contiene
   ],
   declarations: [
-    HistorialPage,
-    HeaderComponent,
-    FooterComponent]
+    HistorialPage]
 })
 export class HistorialPageModule {}
