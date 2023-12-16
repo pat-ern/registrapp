@@ -1,29 +1,28 @@
 import { Injectable } from '@angular/core';
+import { Usuario } from '../models/usuario.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SesionService {
 
-  // Atributos de la sesion
-  usuario = {
+  usuario: Usuario = {
     id: null,
     run : null,
-    dv : " ",
-    nombre: " ",
-    apellido: " ",
-    carrera: " ",
-    correo: " ",
-  }
+    dv : '',
+    nombre: '',
+    apellido: '',
+    carrera: '',
+    correo: '',
+  };
 
-  activa: boolean = false;
+  activa = false;
 
   constructor() { }
 
   guardarSesion(usuario: any) {
     this.usuario = usuario;
-    // activa la sesion
     this.activa = true;
-  }
-  
-}
+  };
+
+};

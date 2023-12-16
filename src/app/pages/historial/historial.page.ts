@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
-// Servicios
 import { BdLocalService } from 'src/app/services/bd-local.service';
 
 @Component({
@@ -11,12 +9,10 @@ import { BdLocalService } from 'src/app/services/bd-local.service';
 export class HistorialPage implements OnInit {
 
   listaAsistencia: any;
-  
   tamanoLista: number;
-  
 
   constructor(
-    private bdlocal: BdLocalService) { 
+    private bdlocal: BdLocalService) {
   }
 
   borrarHistorial(){
@@ -31,7 +27,7 @@ export class HistorialPage implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   calcularTamanoLista(){
@@ -43,4 +39,3 @@ export class HistorialPage implements OnInit {
 
 
 }
- 

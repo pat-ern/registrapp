@@ -15,9 +15,9 @@ export class ApiService {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*'
       })
-  } 
-  
- apiURL = 'https://pcortesduoc.github.io/movilApi/clase.json'
+  };
+
+ apiURL = 'https://pcortesduoc.github.io/movilApi/clase.json';
 
   constructor(private http: HttpClient) { }
 

@@ -12,49 +12,47 @@ import { ApiUsuarioService } from '../../services/api-usuario.service';
 
 export class ResetPage implements OnInit {
 
+  datosError = 'Ese correo no esta registrado';
+  errorBoolean = false;
+  user = { email: '' };
+  errores = [
+    {
+      tipo: 'required',
+      mensaje: 'Campo no debe estar vacio'
+    },
+  ];
+
+  recuperarForm = new FormGroup({
+    emailForm: new FormControl('', [Validators.required]),
+  });
+
   constructor(
     private toastController: ToastController,
-    private api: ApiUsuarioService) { }
+    private api: ApiUsuarioService) {
 
-  user={
-    email:""
-  }
-
-  errores=[
-    {tipo: 'required', mensaje: 'Campo no debe estar vacio'},
-  ]
-
-  recuperarForm= new FormGroup({
-    emailForm: new FormControl('',[Validators.required]),
-  });
+    }
 
   async presentToast(position: 'bottom') {
     const toast = await this.toastController.create({
-      message: 'Se ha enviado código de confirmación a '+this.user.email,
+      message: 'Se ha enviado código de confirmación a ' + this.user.email,
       duration: 4000,
-      position: position,
+      position,
       icon: 'mail',
-      //cssClass: 'custom-toast',
-      color: "dark"
+      color: 'dark'
     });
     await toast.present();
   }
 
-  datosError="Ese correo no esta registrado"
-  errorBoolean=false;
-
-  verificar(){
-    this.errorBoolean=false;
-    if(!this.recuperarForm.valid){
+  verificar() {
+    this.errorBoolean = false;
+    if (!this.recuperarForm.valid) {
       return false;
     } else {
-
-      if(this.api.usuarioExiste(this.user.email)){
-        this.errorBoolean=true;
+      if (this.api.usuarioExiste(this.user.email)) {
+        this.errorBoolean = true;
       } else {
         this.presentToast('bottom');
       }
-
     }
   }
 
