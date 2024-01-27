@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
-// Servicios
 import { ApiService } from 'src/app/services/api.service';
 import { SesionService } from 'src/app/services/sesion.service';
 import { BdLocalService } from 'src/app/services/bd-local.service';
 import { ApiCorreosService } from 'src/app/services/api-correos.service';
-
-// Plugins
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { RegistroAsistencia } from 'src/app/models/asistencia.model';
 

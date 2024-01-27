@@ -26,14 +26,14 @@ import { SesionService } from './services/sesion.service';
 const getConfig = () => {
   if (isPlatform('ios')){ 
     return {
-      menuIcon: 'list-outline',
+      menuIcon: 'menu-outline',
       menuType: 'reveal',
       animated: false,
       rippleEffect: false, 
     }
   } else if (isPlatform('desktop')) {
     return {
-      menuIcon: 'grid-outline',
+      menuIcon: 'menu-outline',
       menuType: 'overlay',
       animated: true,
       rippleEffect: true, 

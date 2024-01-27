@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
-import { Asistencia } from '../interfaces/modelo-local';
 import { RegistroAsistencia } from '../models/asistencia.model';
 
 @Injectable({
@@ -9,7 +8,7 @@ import { RegistroAsistencia } from '../models/asistencia.model';
 })
 export class BdLocalService {
 
-  asistencia: Asistencia[] = [];
+  asistencia: RegistroAsistencia[] = [];
   private store: Storage | null = null;
 
   constructor(private storage: Storage, public toastController: ToastController) {
@@ -19,21 +18,21 @@ export class BdLocalService {
 
   guardarAsistencia(a: RegistroAsistencia) {
 
-    const existe = this.asistencia.find(c => c.strIdAsistencia === a.id);
+    const existe = this.asistencia.find(c => c.id === a.id);
 
     if (a.id.length <= 2) {
       this.presentToast('Error al ingresar asistencia, intentar en el emulador');
     } else {
       if (!existe) {
         this.asistencia.unshift({
-          strIdAsistencia: a.id,
-          strAlumno: a.alumno,
-          strAsignatura: a.asignatura,
-          strCodigo: a.codigo,
-          strSeccion: a.seccion,
-          strFecha: a.fecha,
-          strHora: a.hora,
-          estaPresente: a.presente
+          id: a.id,
+          alumno: a.alumno,
+          asignatura: a.asignatura,
+          codigo: a.codigo,
+          seccion: a.seccion,
+          fecha: a.fecha,
+          hora: a.hora,
+          presente: a.presente
         });
 
         this.store.set('asistencia', this.asistencia);
@@ -47,7 +46,7 @@ export class BdLocalService {
     }
   }
 
-  obtenerAsistencias(): Asistencia[] {
+  obtenerAsistencias(): RegistroAsistencia[] {
     return this.asistencia;
   }
 

@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { AnimationController } from '@ionic/angular';
 
 @Component({
@@ -12,20 +11,9 @@ export class HomePage implements AfterViewInit {
   @ViewChild('titulo', { read: ElementRef, static: true }) titulo: ElementRef;
   @ViewChild('qr', { read: ElementRef, static: true }) qr: ElementRef;
 
-  usuario: any;
-  // correo: string = this.sesion.usuario.correo;
-
   constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
     private animationCtrl: AnimationController
   ) {
-
-    this.activatedRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        this.usuario = router.getCurrentNavigation().extras.state.user;
-      }
-    });
 
   }
 
